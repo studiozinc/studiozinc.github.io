@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="light" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Name — STUDIO ZINC</title>
+<meta name="description" content="Project description for SEO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════
+   TOKENS — mirrors zinc(blue) system
+═══════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:      #080808; --bg2: #0f0f0f; --surface: #161616;
+  --border:  rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+  --fg:      #f0f0f0; --fg2: #a0a0a0; --fg3: #505050;
+  --cyan:    #00e5ff; --cyan-dim: rgba(0,229,255,0.1);
+  --nav-bg:  rgba(8,8,8,0.95); --noise: 0.025;
+}
+[data-theme="light"] {
+  --bg:      #f8f8f8; --bg2: #f0f0f0; --surface: #e8e8e8;
+  --border:  rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.15);
+  --fg:      #0a0a0a; --fg2: #505050; --fg3: #a0a0a0;
+  --cyan:    #0077aa; --cyan-dim: rgba(0,119,170,0.08);
+  --nav-bg:  rgba(248,248,248,0.96); --noise: 0.012;
+}
+
+/* ═══════════════════════════════════
+   RESET
+═══════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg); color: var(--fg);
+  overflow-x: hidden; cursor: none;
+  transition: background .4s, color .4s;
+}
+@media (hover:none) { body { cursor: auto; } }
+
+/* grain */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 999;
+  pointer-events: none; opacity: var(--noise);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px; transition: opacity .4s;
+}
+
+/* ═══════════════════════════════════
+   CURSOR
+═══════════════════════════════════ */
+#cur-dot {
+  position: fixed; z-index: 9999; pointer-events: none;
+  width: 6px; height: 6px; background: var(--cyan); border-radius: 50%;
+  transform: translate(-50%,-50%); transition: width .15s, height .15s;
+}
+#cur-ring {
+  position: fixed; z-index: 9998; pointer-events: none;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(0,229,255,0.4); border-radius: 50%;
+  transform: translate(-50%,-50%);
+  transition: width .25s, height .25s, border-color .25s;
+}
+[data-theme="light"] #cur-ring { border-color: rgba(0,119,170,0.35); }
+body.h #cur-dot  { width: 10px; height: 10px; }
+body.h #cur-ring { width: 46px; height: 46px; border-color: var(--cyan); }
+
+/* ═══════════════════════════════════
+   NAV
+═══════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 64px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 2.5rem;
+  background: var(--nav-bg); border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px); transition: background .4s, border-color .4s;
+}
+.nav-logo {
+  font-family: 'Unbounded', sans-serif; font-weight: 800;
+  font-size: 1rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg); text-decoration: none;
+  display: flex; align-items: center; gap: .5rem; transition: color .3s;
+}
+.nav-logo-accent { color: var(--cyan); }
+.nav-right { display: flex; align-items: center; gap: .75rem; }
+.nav-back {
+  font-family: 'Unbounded', sans-serif; font-weight: 600;
+  font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg2); text-decoration: none;
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: color .2s; margin-right: .5rem;
+}
+.nav-back::before { content: '←'; color: var(--cyan); }
+.nav-back:hover { color: var(--cyan); }
+.tog {
+  display: inline-flex; align-items: center;
+  background: transparent; color: var(--fg);
+  border: 1px solid var(--border); padding: .35rem .65rem;
+  font-family: 'Outfit', sans-serif; font-size: .65rem;
+  letter-spacing: .1em; cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+.tog:hover { border-color: var(--cyan); color: var(--cyan); }
+#langBtn  .l-zh { display:inline; } #langBtn  .l-en { display:none; }
+[data-lang="en"] #langBtn .l-zh { display:none; }
+[data-lang="en"] #langBtn .l-en { display:inline; }
+#themeBtn .t-dark { display:inline; } #themeBtn .t-light { display:none; }
+[data-theme="light"] #themeBtn .t-dark { display:none; }
+[data-theme="light"] #themeBtn .t-light { display:inline; }
+
+/* ═══════════════════════════════════
+   HERO — full bleed image
+═══════════════════════════════════ */
+.project-hero {
+  height: 100vh; position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.project-hero-img {
+  position: absolute; inset: 0;
+  background: var(--surface);  /* fallback before image loads */
+  /* REPLACE: background-image: url('../projects/pj01/hero.webp'); */
+  background-size: cover; background-position: center;
+}
+/* dark overlay so text is always readable */
+.project-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+}
+.project-hero-content {
+  position: relative; z-index: 2;
+  padding: 3rem 2.5rem; width: 100%;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  flex-wrap: wrap; gap: 2rem;
+}
+.project-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: clamp(2.2rem, 6vw, 5.5rem); line-height: 1;
+  color: #ffffff; letter-spacing: -.03em;
+}
+.project-title-zh {
+  font-family: 'Noto Sans TC', sans-serif; font-weight: 300;
+  font-size: clamp(1rem, 2vw, 1.5rem); color: rgba(255,255,255,0.6);
+  margin-top: .4rem; letter-spacing: .06em;
+}
+.project-meta {
+  display: flex; flex-direction: column; align-items: flex-end; gap: .6rem;
+  text-align: right;
+}
+.project-meta-row {
+  display: flex; gap: .8rem; align-items: center; flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.meta-tag {
+  font-family: 'Outfit', sans-serif; font-size: .65rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.2);
+  padding: .3rem .7rem;
+}
+.meta-tag.accent {
+  color: var(--cyan); border-color: var(--cyan);
+  background: rgba(0,229,255,0.08);
+}
+[data-theme="light"] .meta-tag.accent { color: #00e5ff; border-color: #00e5ff; }
+.project-year {
+  font-family: 'Unbounded', sans-serif; font-weight: 300;
+  font-size: .7rem; color: rgba(255,255,255,0.4); letter-spacing: .2em;
+}
+
+/* ═══════════════════════════════════
+   BODY CONTENT
+═══════════════════════════════════ */
+.project-body {
+  max-width: 1200px; margin: 0 auto;
+  padding: 6rem 2.5rem 4rem;
+}
+
+/* Brief + Outcome — two col */
+.project-write {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; margin-bottom: 5rem;
+  padding-bottom: 5rem; border-bottom: 1px solid var(--border);
+}
+.write-label {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: .6rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: .7rem;
+}
+.write-label::before { content:''; width:16px; height:1px; background:var(--cyan); display:block; }
+.write-heading {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: var(--fg);
+  line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -.01em;
+  transition: color .4s;
+}
+.write-body {
+  font-size: .92rem; line-height: 2; color: var(--fg2);
+  font-weight: 300; transition: color .4s;
+}
+.write-body p + p { margin-top: 1rem; }
+
+/* ═══════════════════════════════════
+   GALLERY
+═══════════════════════════════════ */
+.gallery-label {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: .6rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: .7rem;
+}
+.gallery-label::before { content:''; width:16px; height:1px; background:var(--cyan); display:block; }
+
+/* Gallery layout — first image full width, rest in 2-col grid */
+.gallery-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+}
+.gallery-item {
+  background: var(--surface);
+  aspect-ratio: 4/3; overflow: hidden;
+  position: relative;
+}
+.gallery-item.wide { grid-column: 1 / -1; aspect-ratio: 16/7; }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; transition: transform .6s ease;
+}
+.gallery-item:hover img { transform: scale(1.03); }
+/* placeholder when no image */
+.gallery-placeholder {
+  width: 100%; height: 100%;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Unbounded', sans-serif; font-size: .6rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fg3);
+}
+
+/* ═══════════════════════════════════
+   NEXT PROJECT + BACK NAV
+═══════════════════════════════════ */
+.project-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4rem 0 2rem; border-top: 1px solid var(--border);
+  margin-top: 5rem; flex-wrap: wrap; gap: 2rem;
+}
+.pnav-link {
+  display: flex; flex-direction: column; gap: .4rem;
+  text-decoration: none; transition: color .2s;
+}
+.pnav-label {
+  font-family: 'Unbounded', sans-serif; font-size: .55rem;
+  letter-spacing: .25em; text-transform: uppercase; color: var(--fg3);
+}
+.pnav-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 1rem; color: var(--fg); transition: color .2s;
+}
+.pnav-link:hover .pnav-title { color: var(--cyan); }
+.pnav-link.back-home {
+  flex-direction: row; align-items: center; gap: 1rem;
+}
+.pnav-link.back-home .pnav-label::before { content: '← '; }
+
+/* ═══════════════════════════════════
+   REVEAL
+═══════════════════════════════════ */
+.reveal { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+.reveal.will-animate { opacity: 0; transform: translateY(24px); }
+.reveal.will-animate.in { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════
+   MOBILE
+═══════════════════════════════════ */
+@media (max-width: 768px) {
+  nav { padding: 0 1.4rem; }
+  .project-hero-content { padding: 2rem 1.4rem; flex-direction: column; align-items: flex-start; }
+  .project-meta { align-items: flex-start; text-align: left; }
+  .project-meta-row { justify-content: flex-start; }
+  .project-body { padding: 4rem 1.4rem 3rem; }
+  .project-write { grid-template-columns: 1fr; gap: 2.5rem; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item.wide { aspect-ratio: 4/3; }
+  .tog { display: inline-flex !important; }
+}
+@media (max-width: 480px) {
+  .project-title { font-size: clamp(1.8rem, 10vw, 2.5rem); }
+  .project-nav { flex-direction: column; align-items: flex-start; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <span class="nav-logo-accent">鋅</span> STUDIO ZINC
+  </a>
+  <div class="nav-right">
+    <a href="../index.html" class="nav-back"
+      data-zh="返回作品集" data-en="Back to Portfolio">返回作品集</a>
+    <button class="tog" id="langBtn"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
+    <button class="tog" id="themeBtn"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<!-- INSTRUCTIONS:
+     Replace background-image in .project-hero-img with your WebP path.
+     Recommended size: 1440×900px, 85% quality WebP.
+     Example: style="background-image:url('../projects/pj01/hero.webp')"
+-->
+<div class="project-hero">
+  <div class="project-hero-img"
+       style="background-image: url('https://placehold.co/1440x900/111111/333333?text=HERO+IMAGE+1440×900');">
+  </div>
+  <div class="project-hero-overlay"></div>
+  <div class="project-hero-content">
+    <div>
+      <!-- EDIT: Project name in English and Chinese -->
+      <h1 class="project-title" data-zh="專案名稱" data-en="Project Name">專案名稱</h1>
+      <div class="project-title-zh" data-zh="Project Name" data-en="專案名稱">Project Name</div>
+    </div>
+    <div class="project-meta">
+      <div class="project-meta-row">
+        <!-- EDIT: Add service tags. Use class="meta-tag accent" for primary service -->
+        <span class="meta-tag accent" data-zh="品牌識別" data-en="Brand Identity">品牌識別</span>
+        <span class="meta-tag" data-zh="包裝設計" data-en="Packaging">包裝設計</span>
+        <span class="meta-tag" data-zh="網站設計" data-en="Web Design">網站設計</span>
+      </div>
+      <div class="project-meta-row">
+        <!-- EDIT: Client name and year -->
+        <span class="meta-tag" data-zh="客戶名稱" data-en="Client Name">客戶名稱</span>
+        <span class="project-year">2024</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BODY ═══ -->
+<div class="project-body">
+
+  <!-- Brief + Outcome -->
+  <div class="project-write">
+
+    <div class="reveal">
+      <div class="write-label" data-zh="專案背景" data-en="The Brief">專案背景</div>
+      <!-- EDIT: 2–3 sentences describing the client challenge / brief -->
+      <h2 class="write-heading"
+        data-zh="客戶面臨的挑戰是什麼？"
+        data-en="What was the client's challenge?">
+        客戶面臨的挑戰是什麼？
+      </h2>
+      <div class="write-body">
+        <!-- EDIT: Replace with your brief description -->
+        <p data-zh="在這裡描述客戶的背景與需求——他們是誰、想解決什麼問題、為何找上 Studio Zinc。"
+           data-en="Describe the client background and brief here — who they are, what problem they needed to solve, and why they came to Studio Zinc.">
+           在這裡描述客戶的背景與需求——他們是誰、想解決什麼問題、為何找上 Studio Zinc。
+        </p>
+        <p data-zh="第二段可以補充更多細節，例如：目標受眾、市場背景、或前一版設計的問題。"
+           data-en="A second paragraph can add further context — target audience, market background, or issues with the previous design.">
+           第二段可以補充更多細節，例如：目標受眾、市場背景、或前一版設計的問題。
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="write-label" data-zh="解決方案" data-en="The Outcome">解決方案</div>
+      <!-- EDIT: 2–3 sentences on what you did and the result -->
+      <h2 class="write-heading"
+        data-zh="我們如何解決它？"
+        data-en="How did we solve it?">
+        我們如何解決它？
+      </h2>
+      <div class="write-body">
+        <p data-zh="在這裡描述設計方向與執行過程——你做了什麼、為何這樣決策、成果如何。"
+           data-en="Describe your design direction and process here — what you made, why you made those decisions, and what the outcome was.">
+           在這裡描述設計方向與執行過程——你做了什麼、為何這樣決策、成果如何。
+        </p>
+        <p data-zh="第二段可以加上具體成效，例如：品牌上線後的反應、銷售提升、或客戶回饋。"
+           data-en="A second paragraph can include specific results — post-launch reception, sales impact, or client feedback.">
+           第二段可以加上具體成效，例如：品牌上線後的反應、銷售提升、或客戶回饋。
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Gallery -->
+  <!-- INSTRUCTIONS:
+       - Use .wide on the first item for a full-width hero image
+       - Add up to 6 .gallery-item divs total (1 wide + up to 5 regular)
+       - Replace placehold.co URLs with your actual WebP paths
+       - Recommended sizes:
+           wide: 1200×500px WebP at 80% quality
+           regular: 800×600px WebP at 80% quality
+  -->
+  <div class="gallery-label reveal" data-zh="作品圖集" data-en="Gallery">作品圖集</div>
+  <div class="gallery-grid">
+
+    <div class="gallery-item wide reveal">
+      <img src="https://placehold.co/1200x500/111111/333333?text=WIDE+IMAGE+1200×500"
+           alt="Project overview" loading="lazy">
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="https://placehold.co/800x600/141414/333333?text=DETAIL+800×600"
+           alt="Detail 1" loading="lazy">
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="https://placehold.co/800x600/181818/333333?text=DETAIL+800×600"
+           alt="Detail 2" loading="lazy">
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="https://placehold.co/800x600/1c1c1c/333333?text=DETAIL+800×600"
+           alt="Detail 3" loading="lazy">
+    </div>
+
+    <div class="gallery-item reveal">
+      <img src="https://placehold.co/800x600/202020/333333?text=DETAIL+800×600"
+           alt="Detail 4" loading="lazy">
+    </div>
+
+  </div>
+
+  <!-- Project nav -->
+  <div class="project-nav">
+    <a href="../index.html" class="pnav-link back-home">
+      <span class="pnav-label" data-zh="返回" data-en="Return">返回</span>
+      <span class="pnav-title" data-zh="所有作品" data-en="All Projects">所有作品</span>
+    </a>
+    <!-- EDIT: Link to next project -->
+    <a href="./pj02.html" class="pnav-link" style="text-align:right;">
+      <span class="pnav-label" data-zh="下一個專案" data-en="Next Project">下一個專案</span>
+      <span class="pnav-title" data-zh="下一個專案名稱" data-en="Next Project Name">下一個專案名稱</span>
+    </a>
+  </div>
+
+</div><!-- end project-body -->
+
+<script>
+// CURSOR
+const curDot  = document.getElementById('cur-dot');
+const curRing = document.getElementById('cur-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  curDot.style.left = mx + 'px';
+  curDot.style.top  = my + 'px';
+});
+(function ringLoop() {
+  rx += (mx - rx) * 0.1;
+  ry += (my - ry) * 0.1;
+  curRing.style.left = rx + 'px';
+  curRing.style.top  = ry + 'px';
+  requestAnimationFrame(ringLoop);
+})();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('h'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('h'));
+});
+
+// SCROLL REVEAL — safe by default
+document.querySelectorAll('.reveal').forEach(el => el.classList.add('will-animate'));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { root: null, threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// LANGUAGE TOGGLE
+function applyLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-TW' : 'en');
+  document.querySelectorAll('[data-zh][data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+  try { localStorage.setItem('studiozinc-lang', lang); } catch(e) {}
+}
+const langBtn = document.getElementById('langBtn');
+if (langBtn) langBtn.addEventListener('click', () => {
+  applyLang(document.documentElement.getAttribute('data-lang') === 'zh' ? 'en' : 'zh');
+});
+
+// THEME TOGGLE
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  try { localStorage.setItem('studiozinc-theme', t); } catch(e) {}
+}
+const themeBtn = document.getElementById('themeBtn');
+if (themeBtn) themeBtn.addEventListener('click', () => {
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+// Restore saved preferences
+try { const s = localStorage.getItem('studiozinc-theme'); if (s) applyTheme(s); } catch(e) {}
+try { const l = localStorage.getItem('studiozinc-lang');  if (l) applyLang(l);  } catch(e) {}
+</script>
+</body>
+</html>

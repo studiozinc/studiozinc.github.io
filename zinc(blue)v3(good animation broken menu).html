@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="light" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUDIO ZINC — Bilingual Design Studio Taipei</title>
+<meta name="description" content="Studio Zinc is a bilingual design studio based in Taipei, working across Taiwan and the USA. Brand identity, web design, print, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:       #080808;
+  --bg2:      #0f0f0f;
+  --surface:  #161616;
+  --lift:     #1e1e1e;
+  --border:   rgba(255,255,255,0.08);
+  --border2:  rgba(255,255,255,0.14);
+  --fg:       #f0f0f0;
+  --fg2:      #a0a0a0;
+  --fg3:      #505050;
+  --cyan:     #00e5ff;
+  --cyan-dim: rgba(0,229,255,0.12);
+  --nav-bg:   rgba(8,8,8,0.95);
+  --card-bg:  #111111;
+  --tog-bg:   #1e1e1e;
+  --noise:    0.025;
+}
+[data-theme="light"] {
+  --bg:       #f8f8f8;
+  --bg2:      #f0f0f0;
+  --surface:  #e8e8e8;
+  --lift:     #e0e0e0;
+  --border:   rgba(0,0,0,0.08);
+  --border2:  rgba(0,0,0,0.15);
+  --fg:       #0a0a0a;
+  --fg2:      #505050;
+  --fg3:      #a0a0a0;
+  --cyan:     #0077aa;
+  --cyan-dim: rgba(0,119,170,0.08);
+  --nav-bg:   rgba(248,248,248,0.96);
+  --card-bg:  #efefef;
+  --tog-bg:   #e0e0e0;
+  --noise:    0.012;
+}
+
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg); color: var(--fg);
+  overflow-x: hidden; cursor: none;
+  transition: background .4s, color .4s;
+}
+@media (hover:none) { body { cursor: auto; } }
+
+/* ═══════════════════════════════════════
+   GRAIN
+═══════════════════════════════════════ */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 999;
+  pointer-events: none;
+  opacity: var(--noise);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  transition: opacity .4s;
+}
+
+/* ═══════════════════════════════════════
+   CURSOR
+═══════════════════════════════════════ */
+#cur-dot {
+  position: fixed; z-index: 9999; pointer-events: none;
+  width: 6px; height: 6px; background: var(--cyan); border-radius: 50%;
+  transform: translate(-50%,-50%); transition: width .15s, height .15s;
+}
+#cur-ring {
+  position: fixed; z-index: 9998; pointer-events: none;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(0,229,255,0.4); border-radius: 50%;
+  transform: translate(-50%,-50%);
+  transition: width .25s, height .25s, border-color .25s;
+}
+[data-theme="light"] #cur-ring { border-color: rgba(0,119,170,0.35); }
+body.h #cur-dot  { width: 10px; height: 10px; }
+body.h #cur-ring { width: 46px; height: 46px; border-color: var(--cyan); }
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  transition: background .4s, border-color .4s;
+}
+.nav-logo {
+  font-family: 'Unbounded', sans-serif; font-weight: 800;
+  font-size: 1rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg); text-decoration: none;
+  display: flex; align-items: center; gap: .6rem;
+  transition: color .3s;
+}
+.nav-logo-accent { color: var(--cyan); }
+.nav-right { display: flex; align-items: center; gap: .75rem; }
+/* nav-links moved to drawer only */
+.btn-cta {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--bg); background: var(--cyan);
+  border: none; padding: .55rem 1.2rem;
+  cursor: pointer; text-decoration: none;
+  transition: opacity .2s, transform .15s;
+  display: inline-flex; align-items: center;
+}
+.btn-cta:hover { opacity: .85; transform: translateY(-1px); }
+.tog {
+  background: var(--tog-bg); color: var(--fg);
+  border: 1px solid var(--border); padding: .35rem .65rem;
+  font-family: 'Outfit', sans-serif; font-size: .65rem;
+  letter-spacing: .1em; cursor: pointer;
+  transition: border-color .2s, color .2s, background .4s;
+}
+.tog:hover { border-color: var(--cyan); color: var(--cyan); }
+#langBtn  .l-zh { display: inline; } #langBtn  .l-en { display: none; }
+[data-lang="en"] #langBtn .l-zh { display: none; }
+[data-lang="en"] #langBtn .l-en { display: inline; }
+#themeBtn .t-dark { display: inline; } #themeBtn .t-light { display: none; }
+[data-theme="light"] #themeBtn .t-dark { display: none; }
+[data-theme="light"] #themeBtn .t-light { display: inline; }
+/* hamburger */
+.nav-hamburger {
+  display: flex; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: .3rem;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--fg); transition: transform .3s, opacity .3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+/* drawer */
+.nav-drawer {
+  display: none; position: fixed; inset: 0; z-index: 490;
+  background: var(--bg); flex-direction: column;
+  padding: 90px 2.5rem 3rem; gap: 0;
+  transition: background .4s;
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 2.8rem; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--fg); text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding: 1.2rem 0; transition: color .2s;
+}
+.nav-drawer a:hover { color: var(--cyan); }
+.drawer-bottom { margin-top: auto; display: flex; gap: 1rem; align-items: center; }
+
+/* ═══════════════════════════════════════
+   SCROLL SNAP CONTAINER
+═══════════════════════════════════════ */
+.snap-container {
+  height: 100vh; overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+/* Each snap section */
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100vh; position: relative;
+  display: flex; flex-direction: column;
+}
+/* last section — contact — doesn't need fixed height */
+.snap-section.free {
+  height: auto; min-height: 100vh;
+  scroll-snap-align: start;
+  padding-bottom: 2rem;
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 0 2.5rem; position: relative; overflow: hidden;
+}
+/* Cyan grid lines — architectural feel */
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+[data-theme="light"] .hero-grid {
+  background-image:
+    linear-gradient(rgba(0,119,170,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,119,170,0.05) 1px, transparent 1px);
+}
+/* lava lamp blobs — pure CSS, zero JS */
+.hero-lava {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+/* Blob 1 — cyan, top-left, slow drift */
+.hero-lava::before {
+  content: '';
+  position: absolute;
+  width: 620px; height: 620px;
+  background: var(--cyan);
+  top: -120px; left: -120px;
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  filter: blur(90px);
+  animation: lava1 20s ease-in-out infinite alternate,
+             breathe1 7s ease-in-out infinite;
+}
+/* Blob 2 — warm amber, bottom-right, counter drift */
+.hero-lava::after {
+  content: '';
+  position: absolute;
+  width: 520px; height: 520px;
+  background: #ff8c42;
+  bottom: -100px; right: -100px;
+  border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
+  filter: blur(100px);
+  animation: lava2 25s ease-in-out infinite alternate,
+             breathe2 9s ease-in-out infinite;
+}
+/* Third blob — magenta accent, centre-ish, different timing */
+.hero-lava-3 {
+  position: absolute;
+  width: 400px; height: 400px;
+  background: #c84bff;
+  top: 30%; left: 40%;
+  border-radius: 45% 55% 50% 50% / 55% 45% 60% 40%;
+  filter: blur(110px);
+  animation: lava3 28s ease-in-out infinite alternate,
+             breathe3 11s ease-in-out infinite;
+}
+/* Light mode: softer opacities */
+.hero-lava::before  { opacity: 0.14; }
+.hero-lava::after   { opacity: 0.10; }
+.hero-lava-3        { opacity: 0.08; }
+/* Dark mode: richer opacities */
+[data-theme="dark"] .hero-lava::before { opacity: 0.22; }
+[data-theme="dark"] .hero-lava::after  { opacity: 0.16; }
+[data-theme="dark"] .hero-lava-3       { opacity: 0.13; }
+
+/* Drift keyframes */
+@keyframes lava1 {
+  0%   { transform: translate(0,0)      scale(1)    rotate(0deg);   border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  33%  { transform: translate(130px,90px)   scale(1.15) rotate(55deg);  border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; }
+  66%  { transform: translate(70px,170px)   scale(0.9)  rotate(120deg); border-radius: 55% 45% 60% 40% / 45% 55% 50% 50%; }
+  100% { transform: translate(190px,70px)   scale(1.1)  rotate(180deg); border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; }
+}
+@keyframes lava2 {
+  0%   { transform: translate(0,0)       scale(1)    rotate(0deg);    border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%; }
+  33%  { transform: translate(-110px,-70px)  scale(1.2)  rotate(-75deg);  border-radius: 60% 40% 50% 50% / 40% 60% 45% 55%; }
+  66%  { transform: translate(-70px,-140px)  scale(0.85) rotate(-155deg); border-radius: 40% 60% 55% 45% / 50% 50% 60% 40%; }
+  100% { transform: translate(-160px,-55px)  scale(1.05) rotate(-215deg); border-radius: 55% 45% 45% 55% / 60% 40% 55% 45%; }
+}
+@keyframes lava3 {
+  0%   { transform: translate(0,0)      scale(1)    rotate(0deg);   border-radius: 45% 55% 50% 50% / 55% 45% 60% 40%; }
+  25%  { transform: translate(-80px,60px)   scale(1.1)  rotate(40deg);  border-radius: 55% 45% 40% 60% / 45% 55% 50% 50%; }
+  50%  { transform: translate(60px,-80px)   scale(0.9)  rotate(90deg);  border-radius: 40% 60% 55% 45% / 60% 40% 45% 55%; }
+  75%  { transform: translate(100px,40px)   scale(1.15) rotate(140deg); border-radius: 60% 40% 45% 55% / 50% 50% 55% 45%; }
+  100% { transform: translate(-40px,100px)  scale(0.95) rotate(200deg); border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%; }
+}
+/* Breathing — slow opacity fade in/out, each blob on different cycle */
+@keyframes breathe1 {
+  0%,100% { opacity: 0.14; }
+  50%     { opacity: 0.22; }
+}
+@keyframes breathe2 {
+  0%,100% { opacity: 0.10; }
+  50%     { opacity: 0.18; }
+}
+@keyframes breathe3 {
+  0%,100% { opacity: 0.08; }
+  50%     { opacity: 0.14; }
+}
+[data-theme="dark"] .hero-lava::before  { animation: lava1 20s ease-in-out infinite alternate, breathe1dark 7s ease-in-out infinite; }
+[data-theme="dark"] .hero-lava::after   { animation: lava2 25s ease-in-out infinite alternate, breathe2dark 9s ease-in-out infinite; }
+[data-theme="dark"] .hero-lava-3        { animation: lava3 28s ease-in-out infinite alternate, breathe3dark 11s ease-in-out infinite; }
+@keyframes breathe1dark { 0%,100%{opacity:.22;} 50%{opacity:.35;} }
+@keyframes breathe2dark { 0%,100%{opacity:.16;} 50%{opacity:.26;} }
+@keyframes breathe3dark { 0%,100%{opacity:.13;} 50%{opacity:.22;} }
+
+/* hero service fade-swap */
+.hero-swap-wrap {
+  display: flex; align-items: baseline; gap: .6rem;
+  margin-bottom: 2rem;
+  font-family: 'Outfit', sans-serif; font-size: .8rem;
+  letter-spacing: .08em; color: var(--fg2);
+  height: 1.4em; overflow: hidden;
+}
+.hero-swap-label { flex-shrink: 0; }
+#hero-lang-text {
+  color: var(--cyan); font-weight: 600;
+  transition: opacity .4s ease;
+}
+/* hero content */
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+.hero-eyebrow {
+  font-family: 'Unbounded', sans-serif; font-size: .7rem;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 32px; height: 1px; background: var(--cyan);
+}
+/* Language swap headline */
+.hero-headline {
+  font-family: 'Unbounded', sans-serif; font-weight: 800;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1; letter-spacing: -.02em;
+  color: var(--fg); margin-bottom: 2rem;
+  min-height: 2.2em;
+  transition: color .4s;
+}
+.hero-headline .line { display: block; overflow: hidden; }
+.hero-headline .word {
+  display: inline-block;
+  animation: none;
+}
+/* The language swap text */
+#hero-lang-text {
+  color: var(--cyan);
+  display: inline-block;
+  position: relative;
+}
+.hero-sub {
+  font-size: clamp(.85rem, 1.5vw, 1rem);
+  color: var(--fg2); line-height: 1.8; max-width: 480px;
+  margin-bottom: 3rem; font-weight: 300;
+  transition: color .4s;
+}
+.hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.btn-primary {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--bg); background: var(--fg);
+  padding: .9rem 2rem; text-decoration: none;
+  display: inline-flex; align-items: center; gap: .75rem;
+  transition: background .2s, color .2s, transform .15s;
+  border: 1px solid var(--fg);
+}
+.btn-primary:hover { background: var(--cyan); border-color: var(--cyan); transform: translateY(-2px); }
+.btn-secondary {
+  font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg2); text-decoration: none; font-weight: 500;
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: color .2s;
+}
+.btn-secondary:hover { color: var(--cyan); }
+.btn-secondary::after { content: '↓'; }
+/* hero bottom bar */
+.hero-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 2.5rem;
+  border-top: 1px solid var(--border);
+  transition: border-color .4s;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: 'Unbounded', sans-serif; font-weight: 800;
+  font-size: 1.6rem; color: var(--fg); line-height: 1;
+  transition: color .4s;
+}
+.hero-stat-num span { color: var(--cyan); }
+.hero-stat-label {
+  font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--fg3); margin-top: .2rem; transition: color .4s;
+}
+.hero-avail {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fg2);
+}
+.pulse { width: 7px; height: 7px; background: #00e676; border-radius: 50%; animation: pulse 2s infinite; flex-shrink: 0; }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,230,118,.4);} 50%{box-shadow:0 0 0 5px rgba(0,230,118,0);} }
+
+/* ═══════════════════════════════════════
+   WORK SECTION
+═══════════════════════════════════════ */
+.work-section {
+  padding: 64px 2.5rem 2.5rem;
+  display: flex; flex-direction: column; height: 100vh; overflow: hidden;
+}
+.section-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 2.5rem; padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border); flex-shrink: 0;
+  transition: border-color .4s;
+}
+.section-label {
+  font-family: 'Unbounded', sans-serif; font-size: .65rem;
+  letter-spacing: .3em; text-transform: uppercase; color: var(--cyan);
+  display: flex; align-items: center; gap: .7rem; margin-bottom: .5rem;
+}
+.section-label::before { content: ''; width: 18px; height: 1px; background: var(--cyan); display: block; }
+.section-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--fg);
+  letter-spacing: -.02em; line-height: 1; transition: color .4s;
+}
+/* Work grid — 2 cols on desktop */
+.work-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  flex: 1; overflow: hidden;
+}
+.work-card {
+  background: var(--card-bg); position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.8rem; cursor: default;
+  transition: background .4s;
+}
+.work-card-vis {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Sans TC', sans-serif; font-weight: 300;
+  font-size: 6rem; color: var(--fg); opacity: .04;
+  transition: opacity .5s, transform .5s;
+}
+.work-card:hover .work-card-vis { opacity: .1; transform: scale(1.05); }
+.work-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--cyan); transform: scaleX(0); transform-origin: left;
+  transition: transform .4s ease;
+}
+.work-card:hover::after { transform: scaleX(1); }
+.work-card-body { position: relative; z-index: 2; }
+.work-card-type {
+  font-size: .58rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: .5rem;
+}
+.work-card-name {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 1.1rem; color: var(--fg); line-height: 1.2;
+  margin-bottom: .3rem; transition: color .4s;
+}
+.work-card-sub { font-size: .68rem; color: var(--fg2); transition: color .4s; }
+/* gradient overlays for cards */
+.wc1 { background: linear-gradient(135deg, #0a0c10, #101820); }
+.wc2 { background: linear-gradient(135deg, #0c0a08, #1a1208); }
+.wc3 { background: linear-gradient(135deg, #080c0a, #0c1810); }
+.wc4 { background: linear-gradient(135deg, #0a080c, #140c18); }
+.wc5 { background: linear-gradient(135deg, #0c0808, #180c0c); }
+[data-theme="light"] .wc1 { background: linear-gradient(135deg, #dde4f0, #c8d4e8); }
+[data-theme="light"] .wc2 { background: linear-gradient(135deg, #f0e8d8, #e0d0b8); }
+[data-theme="light"] .wc3 { background: linear-gradient(135deg, #d8f0e4, #b8e0cc); }
+[data-theme="light"] .wc4 { background: linear-gradient(135deg, #e8d8f0, #d0b8e4); }
+[data-theme="light"] .wc5 { background: linear-gradient(135deg, #f0d8d8, #e4b8b8); }
+
+/* ═══════════════════════════════════════
+   ABOUT SECTION
+═══════════════════════════════════════ */
+.about-section {
+  padding: 64px 2.5rem 2rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 100vh; overflow: visible; gap: 0;
+}
+.about-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 3rem 4rem 3rem 0;
+  border-right: 1px solid var(--border); transition: border-color .4s;
+}
+.about-quote {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.2;
+  color: var(--fg); margin-bottom: 2rem; letter-spacing: -.01em;
+  transition: color .4s;
+}
+.about-quote strong { color: var(--cyan); font-weight: 800; }
+.about-p {
+  font-size: .85rem; line-height: 1.9; color: var(--fg2);
+  margin-bottom: 1.2rem; font-weight: 300; transition: color .4s;
+}
+.about-p:last-of-type { margin-bottom: 2rem; }
+.about-closing {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 1rem; color: var(--fg); letter-spacing: .02em;
+  border-left: 3px solid var(--cyan); padding-left: 1rem;
+  transition: color .4s;
+}
+.about-right {
+  display: flex; flex-direction: column; justify-content: flex-start;
+  padding: 3rem 0 3rem 4rem;
+  overflow-y: auto;
+}
+.svc-header {
+  font-family: 'Unbounded', sans-serif; font-weight: 800;
+  font-size: .65rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: .7rem;
+}
+.svc-header::before { content: ''; width: 18px; height: 1px; background: var(--cyan); display: block; }
+.svc-list { display: flex; flex-direction: column; }
+.svc {
+  display: grid; grid-template-columns: 28px 1fr;
+  align-items: start; gap: .5rem 1rem;
+  padding: 1rem 0; border-bottom: 1px solid var(--border);
+  transition: border-color .4s;
+}
+.svc:hover .svc-name { color: var(--cyan); }
+.svc-n { font-family: 'Unbounded', sans-serif; font-size: .6rem; color: var(--cyan); font-weight: 700; padding-top:.3rem; }
+.svc-body { display: flex; flex-direction: column; gap: .25rem; }
+.svc-name { font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: .95rem; color: var(--fg); transition: color .2s; }
+.svc-desc { font-size: .85rem; color: var(--fg2); line-height: 1.5; transition: color .4s; }
+
+
+/* clients block inside about-right */
+.cli-block { margin-top: 0; }
+.cli-grid {
+  display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .8rem;
+}
+.cli-tag {
+  font-family: 'Outfit', sans-serif; font-size: .75rem;
+  letter-spacing: .12em; color: var(--fg2);
+  border: 1px solid var(--border2); padding: .4rem .9rem;
+  transition: border-color .2s, color .2s;
+}
+.cli-tag:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* ═══════════════════════════════════════
+   CONTACT SECTION
+═══════════════════════════════════════ */
+.contact-section {
+  padding: 64px 2.5rem 3rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 100vh; gap: 0;
+}
+.contact-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 3rem 4rem 3rem 0;
+  border-right: 1px solid var(--border); transition: border-color .4s;
+}
+.contact-headline {
+  font-family: 'Unbounded', sans-serif; font-weight: 800;
+  font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: 1;
+  color: var(--fg); letter-spacing: -.03em;
+  margin-bottom: 1.5rem; transition: color .4s;
+}
+.contact-headline span { color: var(--cyan); display: block; }
+.contact-sub {
+  font-size: .85rem; line-height: 1.9; color: var(--fg2);
+  max-width: 380px; margin-bottom: 2.5rem; font-weight: 300;
+  transition: color .4s;
+}
+
+.contact-email-block { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.contact-email-link {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: clamp(1rem, 2.2vw, 1.6rem);
+  color: var(--fg); text-decoration: none; letter-spacing: -.01em;
+  border-bottom: 2px solid var(--cyan); padding-bottom: .4rem;
+  display: inline-block; margin-bottom: 2rem;
+  transition: color .2s;
+}
+.contact-email-link:hover { color: var(--cyan); }
+.contact-email-note {
+  font-size: .8rem; line-height: 1.8; color: var(--fg2);
+  max-width: 360px; font-weight: 300; transition: color .4s;
+}
+.contact-mailto {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: .8rem; letter-spacing: .08em;
+  color: var(--fg2); text-decoration: none; transition: color .2s;
+}
+.contact-mailto::before { content: '→'; color: var(--cyan); }
+.contact-mailto:hover { color: var(--cyan); }
+.contact-info { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+.ci-label { font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; color: var(--cyan); margin-bottom: .4rem; }
+.ci-val { font-size: .75rem; color: var(--fg2); line-height: 1.7; transition: color .4s; }
+.contact-right {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 3rem 0 3rem 4rem;
+}
+/* Form */
+.form-field { border-bottom: 1px solid var(--border); margin-bottom: 0; transition: border-color .3s; }
+.form-field:focus-within { border-color: var(--cyan); }
+.form-field label {
+  display: block; font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--cyan); padding: 1.2rem 0 .4rem; transition: color .4s;
+}
+.form-field input, .form-field textarea {
+  display: block; width: 100%; background: transparent; border: none; outline: none;
+  font-family: 'Outfit', sans-serif; font-size: .9rem; color: var(--fg);
+  padding: 0 0 1.2rem; resize: none; transition: color .4s;
+}
+.form-field textarea { min-height: 80px; }
+.form-field input::placeholder, .form-field textarea::placeholder { color: var(--fg3); }
+.form-submit {
+  margin-top: 2rem;
+  font-family: 'Unbounded', sans-serif; font-weight: 800;
+  font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--bg); background: var(--cyan); border: none;
+  padding: 1rem 2.2rem; cursor: pointer;
+  display: inline-flex; align-items: center; gap: .8rem;
+  transition: opacity .2s, transform .15s;
+}
+.form-submit:hover { opacity: .85; transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════
+   FOOTER (inside contact snap)
+═══════════════════════════════════════ */
+.site-footer {
+  grid-column: 1 / -1;
+  padding: 3.5rem 0 2rem; margin-top: 3rem;
+  border-top: 2px solid var(--border); transition: border-color .4s;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+.footer-logo {
+  font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 1.3rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--fg);
+  transition: color .4s; line-height: 1.2; margin-bottom: 1rem; display: block;
+}
+.footer-logo span { color: var(--cyan); }
+.footer-tagline {
+  font-size: .92rem; color: var(--fg2); line-height: 1.8;
+  font-weight: 300; margin-bottom: 1.5rem; transition: color .4s;
+}
+.footer-copy {
+  font-size: .8rem; color: var(--fg3); letter-spacing: .06em;
+  margin-top: 1rem; transition: color .4s; display: block;
+}
+.footer-col-label {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 1.2rem; display: block;
+}
+.footer-links { display: flex; flex-direction: column; gap: 1rem; }
+.footer-links a {
+  font-size: .82rem; letter-spacing: .04em;
+  color: var(--fg2); text-decoration: none; transition: color .2s; font-weight: 400;
+}
+.footer-links a:hover { color: var(--cyan); }
+.footer-contact-val {
+  font-size: .82rem; color: var(--fg2); line-height: 1.9;
+  font-weight: 300; transition: color .4s;
+}
+.footer-contact-val a { color: var(--cyan); text-decoration: none; }
+@media (max-width: 768px) {
+  .site-footer { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2.5rem 0 1.5rem; }
+}
+@media (max-width: 480px) {
+  .site-footer { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════
+   REVEAL
+═══════════════════════════════════════ */
+/* Reveal system — content visible by default.
+   JS adds .will-animate on load to opt elements into entrance animation.
+   If JS fails or observer misfires, content stays visible. */
+.reveal { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+.reveal.will-animate { opacity: 0; transform: translateY(20px); }
+.reveal.will-animate.in { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════
+   MOBILE 768px
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  nav { padding: 0 1.4rem; }
+  .tog { display: inline-flex !important; }
+  .nav-hamburger { display: flex !important; }
+  /* nav unified — toggles + burger always visible */
+  .hero { padding: 0 1.4rem; }
+  .hero-headline { font-size: clamp(2.4rem, 12vw, 4rem); min-height: 2.6em; }
+  .hero-bottom { padding: 1rem 1.4rem; flex-wrap: wrap; gap: .8rem; }
+  .work-section { padding: 64px 1.4rem 1.4rem; }
+  .work-grid { grid-template-columns: 1fr; }
+  .about-section { grid-template-columns: 1fr; height: auto; min-height: 100vh; padding: 64px 1.4rem 2rem; }
+  .about-left { padding: 2rem 0; border-right: none; border-bottom: 1px solid var(--border); }
+  .about-right { padding: 2rem 0; }
+  .contact-section { grid-template-columns: 1fr; padding: 64px 1.4rem 2rem; }
+  .contact-left { padding: 2rem 0; border-right: none; border-bottom: 1px solid var(--border); }
+  .contact-right { padding: 2rem 0; }
+  .contact-headline { font-size: 2.4rem; }
+  .snap-container { scroll-snap-type: none; }
+  .snap-section { height: auto; min-height: 100vh; }
+}
+
+/* ═══════════════════════════════════════
+   MOBILE 480px
+═══════════════════════════════════════ */
+@media (max-width: 480px) {
+  .hero-headline { font-size: clamp(2rem, 13vw, 3rem); }
+  .about-quote { font-size: 1.4rem; }
+  .contact-headline { font-size: 2rem; }
+  .contact-info { grid-template-columns: 1fr; gap: 1.2rem; }
+  .hero-bottom { justify-content: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="drawer">
+  <a href="#work"    data-zh="作品"  data-en="Work"    onclick="closeDrawer()">Work</a>
+  <a href="#about"   data-zh="關於"  data-en="About"   onclick="closeDrawer()">About</a>
+  <a href="#contact" data-zh="聯絡"  data-en="Contact" onclick="closeDrawer()">Contact</a>
+  <div class="drawer-bottom">
+    <button class="tog" id="langBtn2"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
+    <button class="tog" id="themeBtn2"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
+    <a href="#contact" class="btn-cta" onclick="closeDrawer()" data-zh="預約諮詢" data-en="Book Consultation">預約諮詢</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-accent">鋅</span> STUDIO ZINC
+  </a>
+  <div class="nav-right">
+    <button class="tog" id="langBtn"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
+    <button class="tog" id="themeBtn"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════ SCROLL SNAP CONTAINER ═══════ -->
+<div class="snap-container" id="snapContainer">
+
+<!-- ── HERO ── -->
+<section class="snap-section hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-lava"><div class="hero-lava-3"></div></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-zh="台北 · 雙語設計工作室" data-en="Taipei · Bilingual Design Studio">台北 · 雙語設計工作室</div>
+    <h1 class="hero-headline">
+      <span class="line" data-zh="您的雙語" data-en="Your Bilingual">您的雙語</span>
+      <span class="line" data-zh="設計工作室" data-en="Design Studio">設計工作室</span>
+    </h1>
+    <div class="hero-swap-wrap">
+      <span class="hero-swap-label" data-zh="我們做：" data-en="We do:">我們做：</span>
+      <span id="hero-lang-text"></span>
+    </div>
+    <p class="hero-sub"
+      data-zh="十五年資歷，中英雙語服務——企業、新創與非營利都是我們的客戶。直接與設計師合作，沒有中間人。"
+      data-en="15 years of experience, serving clients in English and Chinese — corporations, startups, and nonprofits. Work directly with the designer, no agency overhead.">
+      十五年資歷，中英雙語服務——企業、新創與非營利都是我們的客戶。直接與設計師合作，沒有中間人。
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary" data-zh="查看作品 →" data-en="View Work →">查看作品 →</a>
+      <a href="#contact" class="btn-secondary" data-zh="聯絡我們" data-en="Get in Touch">聯絡我們</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-stat">
+      <div class="hero-stat-num">15<span>+</span></div>
+      <div class="hero-stat-label" data-zh="年資歷" data-en="Years Experience">年資歷</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">2</div>
+      <div class="hero-stat-label" data-zh="市場：台灣 ✕ 美國" data-en="Markets: Taiwan ✕ USA">市場：台灣 ✕ 美國</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>雙</span>語</div>
+      <div class="hero-stat-label" data-zh="中英雙語服務" data-en="EN + 中文">中英雙語服務</div>
+    </div>
+    <div class="hero-avail">
+      <div class="pulse"></div>
+      <span data-zh="目前接受新案" data-en="Available for Projects">目前接受新案</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORK ── -->
+<section class="snap-section" id="work">
+  <div class="work-section">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label" data-zh="精選作品" data-en="Selected Work">精選作品</div>
+        <h2 class="section-title" data-zh="近期項目" data-en="Recent Projects">近期項目</h2>
+      </div>
+    </div>
+    <div class="work-grid">
+      <div class="work-card wc1 reveal">
+        <div class="work-card-vis">茶</div>
+        <div class="work-card-body">
+          <div class="work-card-type" data-zh="品牌識別" data-en="Brand Identity">品牌識別</div>
+          <div class="work-card-name">SAMPLE</div>
+          <div class="work-card-sub" data-zh="SAMPLE" data-en="SAMPLE">SAMPLE</div>
+        </div>
+      </div>
+      <div class="work-card wc2 reveal">
+        <div class="work-card-vis">銀</div>
+        <div class="work-card-body">
+          <div class="work-card-type" data-zh="品牌＋包裝" data-en="Brand + Packaging">品牌＋包裝</div>
+          <div class="work-card-name">SAMPLE</div>
+          <div class="work-card-sub" data-zh="SAMPLE" data-en="SAMPLE">SAMPLE</div>
+        </div>
+      </div>
+      <div class="work-card wc3 reveal">
+        <div class="work-card-vis">波</div>
+        <div class="work-card-body">
+          <div class="work-card-type" data-zh="網站設計" data-en="Web Design">網站設計</div>
+          <div class="work-card-name">SAMPLE</div>
+          <div class="work-card-sub" data-zh="SAMPLE" data-en="SAMPLE">SAMPLE</div>
+        </div>
+      </div>
+      <div class="work-card wc4 reveal">
+        <div class="work-card-vis">山</div>
+        <div class="work-card-body">
+          <div class="work-card-type" data-zh="編輯設計" data-en="Editorial">編輯設計</div>
+          <div class="work-card-name">SAMPLE</div>
+          <div class="work-card-sub" data-zh="SAMPLE" data-en="SAMPLE">SAMPLE</div>
+        </div>
+      </div>
+      <div class="work-card wc5 reveal" style="grid-column: 1 / -1; flex-direction: row; align-items: flex-end; justify-content: space-between;">
+        <div class="work-card-vis" style="font-size:8rem;">光</div>
+        <div class="work-card-body">
+          <div class="work-card-type" data-zh="影片剪輯＋動態" data-en="Video + Motion">影片剪輯＋動態</div>
+          <div class="work-card-name">SAMPLE</div>
+          <div class="work-card-sub" data-zh="SAMPLE" data-en="SAMPLE">SAMPLE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="snap-section" id="about">
+  <div class="about-section">
+    <div class="about-left">
+      <div class="section-label reveal" data-zh="關於工作室" data-en="About the Studio">關於工作室</div>
+      <div class="about-quote reveal"
+        data-zh="懂市場。懂視覺。<strong>橫跨兩岸，為品牌打造真正有效的設計。</strong>"
+        data-en="Market-aware. Visually sharp. <strong>Building design that works across cultures.</strong>">
+        懂市場。懂視覺。<strong>橫跨兩岸，為品牌打造真正有效的設計。</strong>
+      </div>
+      <p class="about-p reveal"
+        data-zh="Studio Zinc 是一間雙語設計工作室，深根台灣、熟悉美國市場。過去十五年間，服務過跨國企業、新創公司與非營利組織——從品牌識別、海報、社群媒體視覺到網站設計，理解不同文化下的視覺語言，是最核心的能力。"
+        data-en="Studio Zinc is a bilingual design studio rooted in Taiwan with a firm grasp of the US market. Over 15 years working with corporations, startups, and nonprofits — across brand identity, poster design, social media graphics, and web.">
+        Studio Zinc 是一間雙語設計工作室，深根台灣、熟悉美國市場。過去十五年間，服務過跨國企業、新創公司與非營利組織——從品牌識別、海報、社群媒體視覺到網站設計，理解不同文化下的視覺語言，是最核心的能力。
+      </p>
+      <div class="about-closing reveal"
+        data-zh="好的設計不需要解釋。它直接被感受到。"
+        data-en="Good design doesn't need explaining. It's felt.">
+        好的設計不需要解釋。它直接被感受到。
+      </div>
+
+      <!-- 客戶與合作夥伴 -->
+      <div class="cli-block reveal">
+        <div class="svc-header" style="margin-top:2.5rem;"
+          data-zh="客戶與合作夥伴" data-en="Clients & Collaborators">客戶與合作夥伴</div>
+        <div class="cli-grid">
+          <div class="cli-tag">[ CLIENT 01 ]</div>
+          <div class="cli-tag">[ CLIENT 02 ]</div>
+          <div class="cli-tag">[ CLIENT 03 ]</div>
+          <div class="cli-tag">[ CLIENT 04 ]</div>
+          <div class="cli-tag">[ CLIENT 05 ]</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="svc-header reveal" data-zh="服務項目" data-en="Services">服務項目</div>
+      <div class="svc-list">
+        <div class="svc reveal"><span class="svc-n">01</span><div class="svc-body"><span class="svc-name" data-zh="品牌識別" data-en="Brand Identity">品牌識別</span><span class="svc-desc" data-zh="標誌 · 視覺系統" data-en="Logo · Visual System">標誌 · 視覺系統</span></div></div>
+        <div class="svc reveal"><span class="svc-n">02</span><div class="svc-body"><span class="svc-name" data-zh="網站設計" data-en="Web Design">網站設計</span><span class="svc-desc" data-zh="設計 · 建置 · 維護" data-en="Design · Build · Maintain">設計 · 建置 · 維護</span></div></div>
+        <div class="svc reveal"><span class="svc-n">03</span><div class="svc-body"><span class="svc-name" data-zh="印刷與編輯" data-en="Print & Editorial">印刷與編輯</span><span class="svc-desc" data-zh="雜誌 · 海報 · 書籍" data-en="Magazines · Posters">雜誌 · 海報 · 書籍</span></div></div>
+        <div class="svc reveal"><span class="svc-n">04</span><div class="svc-body"><span class="svc-name" data-zh="社群媒體視覺" data-en="Social Media">社群媒體視覺</span><span class="svc-desc" data-zh="圖像 · 模板 · 內容" data-en="Graphics · Templates">圖像 · 模板 · 內容</span></div></div>
+        <div class="svc reveal"><span class="svc-n">05</span><div class="svc-body"><span class="svc-name" data-zh="包裝設計" data-en="Packaging">包裝設計</span><span class="svc-desc" data-zh="結構 · 刀模 · 成品" data-en="Structure · Dieline">結構 · 刀模 · 成品</span></div></div>
+        <div class="svc reveal"><span class="svc-n">06</span><div class="svc-body"><span class="svc-name" data-zh="影片剪輯" data-en="Video Editing">影片剪輯</span><span class="svc-desc" data-zh="品牌影片 · 剪輯" data-en="Brand Film · Edit">品牌影片 · 剪輯</span></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="snap-section free" id="contact">
+  <div class="contact-section">
+    <div class="contact-left">
+      <div class="section-label reveal" data-zh="聯絡我們" data-en="Get in Touch">聯絡我們</div>
+      <h2 class="contact-headline reveal">
+        <span data-zh="一起打造" data-en="Let's build">一起打造</span>
+        <span data-zh="值得留存的設計。" data-en="something worth keeping.">值得留存的設計。</span>
+      </h2>
+      <p class="contact-sub reveal"
+        data-zh="目前接受新案。直接與設計師合作——沒有中間人、沒有業務，只有你和設計師。"
+        data-en="Currently accepting new projects. You work directly with the designer — no account managers, no middlemen.">
+        目前接受新案。直接與設計師合作——沒有中間人、沒有業務，只有你和設計師。
+      </p>
+      <a href="/cdn-cgi/l/email-protection#462e232a2a2906353233222f293c2f28256825292b" class="contact-mailto reveal"><span class="__cf_email__" data-cfemail="244c4148484b64575051404d4b5e4d4a470a474b49">[email&#160;protected]</span></a>
+      <div class="contact-info reveal">
+        <div>
+          <div class="ci-label" data-zh="地點" data-en="Location">地點</div>
+          <div class="ci-val">大安區，台北<br>Taipei, Taiwan</div>
+        </div>
+        <div>
+          <div class="ci-label" data-zh="時區" data-en="Time Zone">時區</div>
+          <div class="ci-val">GMT+8 CST<br>Mon–Fri 10–19h</div>
+        </div>
+        <div>
+          <div class="ci-label" data-zh="起始費用" data-en="Starting From">起始費用</div>
+          <div class="ci-val">NTD 60,000+<br><span data-zh="視範圍而定" data-en="Scope dependent">視範圍而定</span></div>
+        </div>
+        <div>
+          <div class="ci-label" data-zh="語言" data-en="Languages">語言</div>
+          <div class="ci-val">中文 · English<br>Bilingual</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="reveal contact-email-block">
+        <div class="ci-label" style="margin-bottom:1.2rem;" data-zh="直接寄信" data-en="Send a Message">直接寄信</div>
+        <a href="/cdn-cgi/l/email-protection#ff979a939390bf8c8b8a9b96908596919cd19c9092" class="contact-email-link"><span class="__cf_email__" data-cfemail="1b737e7777745b686f6e7f72746172757835787476">[email&#160;protected]</span></a>
+
+      </div>
+    </div>
+    <footer class="site-footer">
+      <!-- Col 1: Brand -->
+      <div>
+        <span class="footer-logo">鋅 <span>STUDIO ZINC</span></span>
+        <p class="footer-tagline"
+          data-zh="台北雙語設計工作室——中英文服務，橫跨台灣與美國。"
+          data-en="Bilingual design studio in Taipei — serving clients in English and Chinese, across Taiwan and the USA.">
+          台北雙語設計工作室——中英文服務，橫跨台灣與美國。
+        </p>
+        <span class="footer-copy" data-zh="© 2025 鋅工作室" data-en="© 2025 Studio Zinc">© 2025 鋅工作室</span>
+      </div>
+      <!-- Col 2: Navigation -->
+      <div>
+        <span class="footer-col-label" data-zh="頁面" data-en="Navigate">頁面</span>
+        <div class="footer-links">
+          <a href="#hero"    data-zh="首頁"  data-en="Home">首頁</a>
+          <a href="#work"    data-zh="作品"  data-en="Work">作品</a>
+          <a href="#about"   data-zh="關於"  data-en="About">關於</a>
+          <a href="#contact" data-zh="聯絡"  data-en="Contact">聯絡</a>
+        </div>
+      </div>
+      <!-- Col 3: Services -->
+      <div>
+        <span class="footer-col-label" data-zh="服務" data-en="Services">服務</span>
+        <div class="footer-links">
+          <a href="#about" data-zh="品牌識別" data-en="Brand Identity">品牌識別</a>
+          <a href="#about" data-zh="網站設計" data-en="Web Design">網站設計</a>
+          <a href="#about" data-zh="印刷設計" data-en="Print & Editorial">印刷設計</a>
+          <a href="#about" data-zh="社群媒體" data-en="Social Media">社群媒體</a>
+          <a href="#about" data-zh="影片剪輯" data-en="Video Editing">影片剪輯</a>
+        </div>
+      </div>
+      <!-- Col 4: Contact -->
+      <div>
+        <span class="footer-col-label" data-zh="聯絡" data-en="Contact">聯絡</span>
+        <div class="footer-contact-val">
+          <a href="/cdn-cgi/l/email-protection#167e737a7a7956656263727f796c7f78753875797b"><span class="__cf_email__" data-cfemail="a1c9c4cdcdcee1d2d5d4c5c8cedbc8cfc28fc2cecc">[email&#160;protected]</span></a><br><br>
+          大安區，台北<br>
+          Taipei, Taiwan<br><br>
+          <span data-zh="週一至週五 10:00–19:00" data-en="Mon–Fri 10:00–19:00">週一至週五 10:00–19:00</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</section>
+
+</div><!-- end snap-container -->
+<script>
+// CURSOR
+const curDot  = document.getElementById('cur-dot');
+const curRing = document.getElementById('cur-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  curDot.style.left = mx + 'px';
+  curDot.style.top  = my + 'px';
+});
+(function ringLoop() {
+  rx += (mx - rx) * 0.1;
+  ry += (my - ry) * 0.1;
+  curRing.style.left = rx + 'px';
+  curRing.style.top  = ry + 'px';
+  requestAnimationFrame(ringLoop);
+})();
+document.querySelectorAll('a, button, .work-card, .svc, .cli-tag').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('h'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('h'));
+});
+
+// HERO SERVICE FADE SWAP
+const services = [
+  'Brand Identity','Branding','Web Design',
+  'Print & Editorial','Social Media','Video Editing',
+  '品牌識別','品牌設計','網站設計',
+  '印刷設計','社群視覺','影片剪輯'
+];
+const swapEl = document.getElementById('hero-lang-text');
+let si = 0;
+if (swapEl) {
+  swapEl.textContent = services[0];
+  swapEl.style.opacity = '1';
+  setInterval(() => {
+    swapEl.style.opacity = '0';
+    setTimeout(() => {
+      si = (si + 1) % services.length;
+      swapEl.textContent = services[si];
+      swapEl.style.opacity = '1';
+    }, 400);
+  }, 1800);
+}
+
+// SCROLL REVEAL — safe by default
+// Content visible at opacity:1 without JS.
+// JS adds .will-animate to enable entrance animation.
+// root:null watches window — reliable in all layouts.
+document.querySelectorAll('.reveal').forEach(el => el.classList.add('will-animate'));
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { root: null, threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// LANGUAGE TOGGLE — saves to localStorage
+function applyLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-TW' : 'en');
+  document.querySelectorAll('[data-zh][data-en]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+  try { localStorage.setItem('studiozinc-lang', lang); } catch(e) {}
+}
+['langBtn','langBtn2'].forEach(id => {
+  const btn = document.getElementById(id);
+  if (btn) btn.addEventListener('click', () => {
+    applyLang(document.documentElement.getAttribute('data-lang') === 'zh' ? 'en' : 'zh');
+  });
+});
+
+// THEME TOGGLE — saves to localStorage
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  try { localStorage.setItem('studiozinc-theme', t); } catch(e) {}
+}
+['themeBtn','themeBtn2'].forEach(id => {
+  const btn = document.getElementById(id);
+  if (btn) btn.addEventListener('click', () => {
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+});
+
+// Restore saved theme + language on load
+try { const s = localStorage.getItem('studiozinc-theme'); if (s) applyTheme(s); } catch(e) {}
+try { const l = localStorage.getItem('studiozinc-lang');  if (l) applyLang(l);  } catch(e) {}
+
+// HAMBURGER
+const burger = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+function closeDrawer() {
+  if (!drawer || !burger) return;
+  drawer.classList.remove('open');
+  burger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+if (burger && drawer) {
+  burger.addEventListener('click', () => {
+    const open = drawer.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+}
+</script>
+</body>
+</html>
