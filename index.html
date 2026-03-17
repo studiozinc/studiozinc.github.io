@@ -4,23 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STUDIO ZINC | 台北中英雙語設計工作室 — Bilingual Design Studio Taipei</title>
+  <title>Taipei Bilingual Designer 台北雙語設計師 | STUDIO ZINC</title>
   <meta name="description"
-    content="Studio Zinc 是位於台北的專業中英雙語設計工作室，服務涵蓋台灣與美國。提供具國際視野的品牌設計、網頁開發與視覺溝通，助您跨越語言與文化隔閡。Bilingual design studio, we are up to date on the latest design practices, and are able to implement it in the local market.">
+    content="Studio Zinc: Taipei-based bilingual (English & Traditional Chinese) design studio. Get branding and web design without needing to hire an external translator. 位於台北的雙語設計師，提供中英雙語網站與品牌設計，為您省去外包翻譯溝通成本。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
-    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
     rel="stylesheet">
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "STUDIO ZINC",
-  "description": "Bilingual design studio in Taipei specializing in branding, web design, and visual communication. Bridging the gap between Taiwan and USA markets.",
+  "description": "Taipei-based bilingual designer (English & Traditional Chinese). We specialize in branding, graphic design, and web development. Our unique value proposition: Clients get native bilingual design without needing to hire an external translator.",
   "image": "https://studiozinc.com/path-to-logo.png",
+  "slogan": "Taipei designer that can do both languages without the client needing to hire an external translator.",
+  "knowsAbout": ["Bilingual Design", "Web Design", "Graphic Design", "Brand Identity", "Translation"],
   "@id": "https://studiozinc.com",
   "url": "https://studiozinc.com",
-  "telephone": "+886-XXXXXXXXX",
+  "telephone": "+886-0906112759",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Da'an District",
@@ -35,11 +37,11 @@
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "10:00",
+    "opens": "09:00",
     "closes": "19:00"
   },
   "knowsLanguage": ["Chinese", "English"],
-  "areaServed": ["Taiwan", "USA"],
+  "areaServed": ["Taiwan", "USA","Worldwide"],
   "sameAs": [
     "https://www.instagram.com/your-profile",
     "https://www.linkedin.com/in/your-profile"
@@ -106,7 +108,7 @@
     }
 
     body {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
       background: var(--bg);
       color: var(--fg);
       overflow-x: hidden;
@@ -424,10 +426,10 @@
       z-index: 0;
       pointer-events: none;
       overflow: hidden;
+      will-change: transform;
     }
 
-    .hero-lava::before {
-      content: '';
+    .hero-lava-1 {
       position: absolute;
       width: 620px;
       height: 620px;
@@ -437,11 +439,11 @@
       border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
       filter: blur(90px);
       opacity: 0.14;
-      animation: lava1 30s ease-in-out infinite alternate, breathe1 7s ease-in-out infinite alternate;
+      animation: lava1 18s ease-in-out infinite alternate, breathe1 5s ease-in-out infinite alternate;
+      will-change: transform;
     }
 
-    .hero-lava::after {
-      content: '';
+    .hero-lava-2 {
       position: absolute;
       width: 520px;
       height: 520px;
@@ -451,7 +453,8 @@
       border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
       filter: blur(100px);
       opacity: 0.10;
-      animation: lava2 38s ease-in-out infinite alternate, breathe2 9s ease-in-out infinite alternate;
+      animation: lava2 22s ease-in-out infinite alternate, breathe2 6s ease-in-out infinite alternate;
+      will-change: transform;
     }
 
     .hero-lava-3 {
@@ -464,14 +467,15 @@
       border-radius: 45% 55% 50% 50% / 55% 45% 60% 40%;
       filter: blur(110px);
       opacity: 0.08;
-      animation: lava3 42s ease-in-out infinite alternate, breathe3 11s ease-in-out infinite alternate;
+      animation: lava3 25s ease-in-out infinite alternate, breathe3 7s ease-in-out infinite alternate;
+      will-change: transform;
     }
 
-    [data-theme="dark"] .hero-lava::before {
+    [data-theme="dark"] .hero-lava-1 {
       opacity: 0.22;
     }
 
-    [data-theme="dark"] .hero-lava::after {
+    [data-theme="dark"] .hero-lava-2 {
       opacity: 0.16;
     }
 
@@ -482,22 +486,18 @@
     @keyframes lava1 {
       0% {
         transform: translate(0, 0) scale(1) rotate(0deg);
-        border-radius: 60% 40% 55% 45%/50% 60% 40% 50%;
       }
 
       33% {
-        transform: translate(130px, 90px) scale(1.15) rotate(55deg);
-        border-radius: 40% 60% 45% 55%/60% 40% 55% 45%;
+        transform: translate(25vw, 15vh) scale(1.2) rotate(60deg);
       }
 
       66% {
-        transform: translate(70px, 170px) scale(0.9) rotate(120deg);
-        border-radius: 55% 45% 60% 40%/45% 55% 50% 50%;
+        transform: translate(15vw, 30vh) scale(0.8) rotate(140deg);
       }
 
       100% {
-        transform: translate(190px, 70px) scale(1.1) rotate(180deg);
-        border-radius: 45% 55% 40% 60%/55% 45% 60% 40%;
+        transform: translate(45vw, 10vh) scale(1.1) rotate(220deg);
       }
     }
 
@@ -507,15 +507,15 @@
       }
 
       33% {
-        transform: translate(-110px, -70px) scale(1.2) rotate(-75deg);
+        transform: translate(-30vw, -20vh) scale(1.3) rotate(-85deg);
       }
 
       66% {
-        transform: translate(-70px, -140px) scale(0.85) rotate(-155deg);
+        transform: translate(-10vw, -45vh) scale(0.7) rotate(-165deg);
       }
 
       100% {
-        transform: translate(-160px, -55px) scale(1.05) rotate(-215deg);
+        transform: translate(-35vw, -15vh) scale(1.1) rotate(-245deg);
       }
     }
 
@@ -524,20 +524,16 @@
         transform: translate(0, 0) scale(1) rotate(0deg);
       }
 
-      25% {
-        transform: translate(-80px, 60px) scale(1.1) rotate(40deg);
+      33% {
+        transform: translate(-25vw, 25vh) scale(1.2) rotate(60deg);
       }
 
-      50% {
-        transform: translate(60px, -80px) scale(0.9) rotate(90deg);
-      }
-
-      75% {
-        transform: translate(100px, 40px) scale(1.15) rotate(140deg);
+      66% {
+        transform: translate(30vw, -20vh) scale(0.8) rotate(120deg);
       }
 
       100% {
-        transform: translate(-40px, 100px) scale(0.95) rotate(200deg);
+        transform: translate(-15vw, 30vh) scale(1.1) rotate(220deg);
       }
     }
 
@@ -591,8 +587,9 @@
     #hero-lang-text {
       color: var(--cyan);
       font-weight: 600;
-      transition: opacity .4s ease;
+      transition: opacity .3s ease, color .4s ease;
       display: inline-block;
+      will-change: opacity;
     }
 
     .hero-content {
@@ -622,19 +619,19 @@
     }
 
     .hero-headline {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'Unbounded', 'Noto Sans TC', sans-serif;
       font-weight: 800;
-      font-size: clamp(3rem, 8vw, 7.5rem);
-      line-height: 1;
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      line-height: 1.25;
       letter-spacing: -.02em;
       color: var(--fg);
       margin-bottom: 2rem;
-      min-height: 2.2em;
       transition: color .4s;
     }
 
     [data-lang="en"] .hero-headline {
-      font-size: clamp(2rem, 5vw, 5rem);
+      font-size: clamp(3.2rem, 7vw, 5rem);
+      line-height: 1.1;
     }
 
     .hero-headline .line {
@@ -643,13 +640,17 @@
     }
 
     .hero-sub {
-      font-size: clamp(.85rem, 1.5vw, 1rem);
+      font-size: clamp(.95rem, 1.6vw, 1.1rem);
       color: var(--fg2);
       line-height: 1.8;
       max-width: 480px;
       margin-bottom: 3rem;
       font-weight: 300;
       transition: color .4s;
+    }
+
+    [data-lang="en"] .hero-sub {
+      font-size: clamp(1rem, 1.65vw, 1.15rem);
     }
 
     .hero-actions {
@@ -660,7 +661,7 @@
     }
 
     .btn-primary {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'Unbounded', 'Noto Sans TC', sans-serif;
       font-weight: 700;
       font-size: .75rem;
       letter-spacing: .14em;
@@ -668,6 +669,8 @@
       color: var(--bg);
       background: var(--fg);
       padding: .9rem 2rem;
+      min-width: 200px;
+      justify-content: center;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
@@ -718,7 +721,7 @@
     }
 
     .hero-stat {
-      text-align: center;
+      text-align: left;
     }
 
     .hero-stat-num {
@@ -1388,8 +1391,7 @@
       }
 
       .hero-headline {
-        font-size: clamp(2.4rem, 12vw, 4rem);
-        min-height: 2.6em;
+        font-size: clamp(2rem, 8vw, 3rem);
       }
 
       .hero-bottom {
@@ -1455,7 +1457,7 @@
 
     @media (max-width: 480px) {
       .hero-headline {
-        font-size: clamp(2rem, 13vw, 3rem);
+        font-size: clamp(1.8rem, 10vw, 2.5rem);
       }
 
       .about-quote {
@@ -1745,22 +1747,26 @@
 */ -->
     <section class="snap-section hero" id="hero">
       <div class="hero-grid"></div>
-      <div class="hero-lava">
+      <div class="hero-lava" id="heroLava">
+        <div class="hero-lava-1"></div>
+        <div class="hero-lava-2"></div>
         <div class="hero-lava-3"></div>
       </div>
       <div class="hero-content">
-        <div class="hero-eyebrow" data-zh="台北 · 雙語設計工作室" data-en="Taipei · Bilingual Design Studio">台北 · 雙語設計工作室</div>
+        <div class="hero-eyebrow" data-zh="無須外聘翻譯" data-en="No Translator Needed">無須外聘翻譯
+        </div>
         <h1 class="hero-headline">
-          <span class="line" data-zh="你的願景，" data-en="Your vision,">你的願景，</span>
-          <span class="line" data-zh="我來實現." data-en="realized.">我來實現.</span>
+          <span class="line" data-zh="台北品牌識別與網頁設計" data-en="Taipei Graphic & Web Design">
+            台北品牌識別與網頁設計
+          </span>
         </h1>
         <div class="hero-swap-wrap">
           <span class="hero-swap-label" data-zh="我能做：" data-en="I can do:">我能做：</span>
           <span id="hero-lang-text"></span>
         </div>
-        <p class="hero-sub" data-zh="15年設計經驗，服務對象包括企業、新創與非營利組織，提供中英文服務。直接與設計師合作，沒有中間人。"
-          data-en="15 years of experience, serving clients in English and Chinese — corporations, startups, and nonprofits. Work directly with the designer, no agency overhead.">
-          15年設計經驗，服務對象包括企業、新創與非營利組織，提供中英文服務。直接與設計師合作，沒有中間人。
+        <p class="hero-sub" data-zh="15年設計經驗。幫你省下溝通成本，中英設計一手包辦。直接與設計師對接，沒有中間人。"
+          data-en="15 years of experience. I provide dual-language design (English & Traditional Chinese) directly. No agency overhead.">
+          15年設計經驗。幫你省下溝通成本，中英設計一手包辦。直接與設計師對接，沒有中間人。
         </p>
         <div class="hero-actions">
           <a href="#work" class="btn-primary" data-zh="查看作品 →" data-en="View Work →">查看作品 →</a>
@@ -1825,9 +1831,9 @@
       <div class="about-section">
         <div class="about-left">
           <div class="section-label reveal" data-zh="關於工作室" data-en="About the Studio">關於工作室</div>
-          <div class="about-quote reveal" data-zh="懂市場。懂視覺。<strong>橫跨兩岸，為品牌打造真正有效的設計。</strong>"
-            data-en="Market-aware. Visually sharp. <strong>Building design that works across cultures.</strong>">
-            懂市場。懂視覺。<strong>橫跨兩岸，為品牌打造真正有效的設計。</strong>
+          <div class="about-quote reveal" data-zh="懂市場。懂語境。<strong>橫跨台灣與美國市場，打造中英都有效的品牌與平面設計。</strong>"
+            data-en="Market-aware. Context-driven. <strong>Bilingual brand & graphic design that works in Taiwan and the US.</strong>">
+            懂市場。懂語境。<strong>橫跨台灣與美國市場，打造中英都有效的品牌與平面設計。</strong>
           </div>
           <p class="about-p reveal"
             data-zh="Studio Zinc 是一間雙語設計工作室，深根台灣、熟悉美國市場。過去十五年間，服務過跨國企業、新創公司與非營利組織——從品牌識別、海報、社群媒體視覺到網站設計，理解不同文化下的視覺語言，是最核心的能力。"
@@ -1845,19 +1851,23 @@
           <div class="svc-list">
             <div class="svc reveal"><span class="svc-n">01</span>
               <div class="svc-body"><span class="svc-name" data-zh="品牌識別" data-en="Brand Identity">品牌識別</span><span
-                  class="svc-desc" data-zh="標誌 · 視覺系統" data-en="Logo · Visual System">標誌 · 視覺系統</span></div>
+                  class="svc-desc" data-zh="標誌 · 視覺系統" data-en="Logo Design · Visual Identity System">標誌 · 視覺系統</span>
+              </div>
             </div>
             <div class="svc reveal"><span class="svc-n">02</span>
               <div class="svc-body"><span class="svc-name" data-zh="網站設計" data-en="Web Design">網站設計</span><span
-                  class="svc-desc" data-zh="設計 · 建置 · 維護" data-en="Design · Build · Maintain">設計 · 建置 · 維護</span></div>
+                  class="svc-desc" data-zh="設計 · 建置 · 維護" data-en="Web Design · Front-end Build · Ongoing Updates">設計 ·
+                  建置 · 維護</span></div>
             </div>
             <div class="svc reveal"><span class="svc-n">03</span>
               <div class="svc-body"><span class="svc-name" data-zh="印刷與編輯" data-en="Print & Editorial">印刷與編輯</span><span
-                  class="svc-desc" data-zh="雜誌 · 海報 · 書籍" data-en="Magazines · Posters">雜誌 · 海報 · 書籍</span></div>
+                  class="svc-desc" data-zh="雜誌封面 · 海報 · 書籍" data-en="Print Design · Editorial Layout · Posters">雜誌封面 ·
+                  海報 · 書籍</span></div>
             </div>
             <div class="svc reveal"><span class="svc-n">04</span>
               <div class="svc-body"><span class="svc-name" data-zh="社群媒體視覺" data-en="Social Media">社群媒體視覺</span><span
-                  class="svc-desc" data-zh="圖像 · 模板 · 內容" data-en="Graphics · Templates">圖像 · 模板 · 內容</span></div>
+                  class="svc-desc" data-zh="圖像 · 模板 · 內容"
+                  data-en="Social Graphics · Template Systems · Content Layout">圖像 · 模板 · 內容</span></div>
             </div>
             <div class="svc reveal"><span class="svc-n">05</span>
               <div class="svc-body"><span class="svc-name" data-zh="包裝設計" data-en="Packaging">包裝設計</span><span
@@ -1885,7 +1895,71 @@
         </div>
       </div>
     </section>
+    <section id="faq">
+      <div style="padding: 3rem 2.5rem; border-top: 1px solid var(--border);">
+        <div class="svc-header reveal" data-zh="常見問題" data-en="FAQ">常見問題</div>
 
+        <details class="reveal" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;"
+            data-zh="你提供英文溝通與中英雙語交付嗎？" data-en="Do you offer English communication and bilingual deliverables?">
+            你提供英文溝通與中英雙語交付嗎？
+          </summary>
+          <p class="about-p" style="margin-top:.8rem;"
+            data-zh="可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。"
+            data-en="Yes. I can run meetings and written comms in English, and deliver bilingual assets when needed (brand guidelines, deck templates, social kits, print specs).">
+            可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。
+          </p>
+        </details>
+
+        <details class="reveal" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;"
+            data-zh="你主要承接哪些類型的設計？（平面設計有做嗎？）" data-en="What do you specialize in? (Do you do graphic design?)">
+            你主要承接哪些類型的設計？（平面設計有做嗎？）
+          </summary>
+          <p class="about-p" style="margin-top:.8rem;"
+            data-zh="核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。"
+            data-en="My core is brand identity + graphic design: key visuals, posters, editorial/layout, campaign assets, and social graphics. I also do web design/build so the brand lands consistently online.">
+            核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。
+          </p>
+        </details>
+
+        <details class="reveal" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;" data-zh="專案流程怎麼走？"
+            data-en="What’s your process?">
+            專案流程怎麼走？
+          </summary>
+          <p class="about-p" style="margin-top:.8rem;"
+            data-zh="通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。我會在開始前先把里程碑與回合數寫清楚。"
+            data-en="Typically: kickoff (EN/中文) → direction → iterations → final handoff (with production/dev-ready specs). I’ll define milestones and revision rounds upfront.">
+            通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。我會在開始前先把里程碑與回合數寫清楚。
+          </p>
+        </details>
+
+        <details class="reveal" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;" data-zh="時程通常多久？"
+            data-en="What’s a typical timeline?">
+            時程通常多久？
+          </summary>
+          <p class="about-p" style="margin-top:.8rem;"
+            data-zh="依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。若有明確檔期也可以一起倒推排程。"
+            data-en="Depends on scope: single graphic assets often 3–10 days; brand identity usually 2–6 weeks; web design/build around 3–8 weeks. If you have a deadline, we can plan backwards.">
+            依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。若有明確檔期也可以一起倒推排程。
+          </p>
+        </details>
+
+        <details class="reveal" style="padding: 1rem 0;">
+          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;"
+            data-zh="我該怎麼開始？需要提供什麼？" data-en="How do we start? What do you need from me?">
+            我該怎麼開始？需要提供什麼？
+          </summary>
+          <p class="about-p" style="margin-top:.8rem;"
+            data-zh="寄信到 hello@studiozinc.com，簡單說明你的品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。"
+            data-en="Email hello@studiozinc.com with a quick overview: what you’re building, audience, deliverables, timeline, and budget range (if possible). I’ll reply with clarifying questions and a suggested scope/pricing approach.">
+            寄信到 hello@studiozinc.com，簡單說明你的品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。
+          </p>
+        </details>
+      </div>
+    </section>
 
     <!-- /*
   // ── CONTACT ─────────────────────────────────────────────────────────────────
@@ -1969,20 +2043,34 @@
   </div>
 
   <script>
-    // ── CURSOR ──────────────────────────────
+    // ── CURSOR & LAVA PARALLAX ──────────────────────────────
     const curDot = document.getElementById('cur-dot');
     const curRing = document.getElementById('cur-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
+    const lavaContainer = document.getElementById('heroLava');
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+
     document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
+      mx = e.clientX;
+      my = e.clientY;
       curDot.style.left = mx + 'px';
       curDot.style.top = my + 'px';
     });
+
     (function ringLoop() {
       rx += (mx - rx) * 0.1;
       ry += (my - ry) * 0.1;
       curRing.style.left = rx + 'px';
       curRing.style.top = ry + 'px';
+
+      // Calculate mouse offset from center of screen (-1 to 1)
+      const cx = (rx / window.innerWidth - 0.5) * 2;
+      const cy = (ry / window.innerHeight - 0.5) * 2;
+
+      // Apply subtle opposite drift to the lava container based on mouse position
+      if (lavaContainer) {
+        lavaContainer.style.transform = `translate(${cx * -40}px, ${cy * -40}px)`;
+      }
+
       requestAnimationFrame(ringLoop);
     })();
 
@@ -1997,14 +2085,19 @@
     if (swapEl) {
       swapEl.textContent = services[0];
       swapEl.style.opacity = '1';
+
+      // === ANIMATION TIMING VARIABLES (in milliseconds) ===
+      const displayTime = 1200; // How long the word stays visible before fading out
+      const fadeOutTime = 320;  // Slightly longer than CSS transition (300ms) to guarantee full fade to 0.
+
       setInterval(() => {
         swapEl.style.opacity = '0';
         setTimeout(() => {
           si = (si + 1) % services.length;
           swapEl.textContent = services[si];
           swapEl.style.opacity = '1';
-        }, 400);
-      }, 1800);
+        }, fadeOutTime);
+      }, displayTime);
     }
 
     // ── SCROLL REVEAL ───────────────────────
@@ -2024,8 +2117,8 @@
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-TW' : 'en');
       document.title = lang === 'zh'
-        ? 'STUDIO ZINC | 台北中英雙語設計工作室'
-        : 'STUDIO ZINC | Bilingual Design Studio Taipei';
+        ? '台北平面設計／品牌設計｜STUDIO ZINC 中英雙語設計工作室'
+        : 'Taipei Graphic & Brand Designer (Bilingual) | STUDIO ZINC';
       document.querySelectorAll('[data-zh][data-en]').forEach(el => {
         el.innerHTML = el.getAttribute('data-' + lang);
       });
