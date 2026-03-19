@@ -1,0 +1,10 @@
+Option B — Single logo, CSS filter to invert
+One file per logo, CSS flips it based on theme:
+
+[data-theme="light"] .cli-logo {
+  filter: invert(1);
+}
+
+Pro: one file, zero extra work
+Con: only works perfectly for black/white logos. Colored logos will look wrong when inverted
+Best for: purely black or purely white logos

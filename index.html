@@ -62,9 +62,9 @@
       --border2: rgba(255, 255, 255, 0.14);
       --fg: #f0f0f0;
       --fg2: #a0a0a0;
-      --fg3: #173877;
+      --fg3: #f0f0f0;
       --cyan: #00e5ff;
-      --cyan-dim: rgba(0, 229, 255, 0.12);
+      --cyan-dim: rgba(27, 31, 31, 0.12);
       --nav-bg: rgba(8, 8, 8, 0.95);
       --card-bg: #111111;
       --tog-bg: #1e1e1e;
@@ -80,7 +80,7 @@
       --border2: rgba(0, 0, 0, 0.15);
       --fg: #0a0a0a;
       --fg2: #505050;
-      --fg3: #a0a0a0;
+      --fg3: #000000;
       --cyan: #0077aa;
       --cyan-dim: rgba(0, 119, 170, 0.08);
       --nav-bg: rgba(248, 248, 248, 0.96);
@@ -784,6 +784,9 @@
       padding: 64px 2.5rem 4rem;
       display: flex;
       flex-direction: column;
+      max-width: 1920px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .section-header {
@@ -968,6 +971,9 @@
       min-height: 100vh;
       overflow: visible;
       gap: 0;
+      max-width: 1920px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .about-left {
@@ -1130,8 +1136,12 @@
       padding: 64px 2.5rem 3rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
+      align-content: space-between;
       gap: 0;
+      flex: 1;
+      max-width: 1920px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .contact-left {
@@ -1220,11 +1230,11 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      margin-top: 3rem;
+      margin-top: 1.5rem;
     }
 
     .ci-label {
-      font-size: .55rem;
+      font-size: .72rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--cyan);
@@ -1232,7 +1242,7 @@
     }
 
     .ci-val {
-      font-size: .75rem;
+      font-size: .92rem;
       color: var(--fg2);
       line-height: 1.7;
       transition: color .4s;
@@ -1246,17 +1256,95 @@
     }
 
     /* ═══════════════════════════════════════
+   CONTACT EMAIL DISPLAY
+═══════════════════════════════════════ */
+    .contact-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 3rem 0 3rem 4rem;
+    }
+
+    .contact-email-display {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.6rem, 3.2vw, 3rem);
+      line-height: 1.2;
+      letter-spacing: -.03em;
+      color: var(--fg);
+      text-decoration: none;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      display: block;
+      border-bottom: 2px solid var(--cyan);
+      padding-bottom: .5rem;
+      transition: color .3s;
+    }
+
+    .contact-email-display:hover {
+      color: var(--cyan);
+    }
+
+    /* ═══════════════════════════════════════
+   FOOTER LAVA
+═══════════════════════════════════════ */
+    .footer-lava {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .footer-lava-1 {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: var(--cyan);
+      left: -100px;
+      top: 0px;
+      border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+      filter: blur(90px);
+      opacity: 0.06;
+      animation: lava1 18s ease-in-out infinite alternate, breathe1 5s ease-in-out infinite alternate;
+    }
+
+    .footer-lava-2 {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: #ff8c42;
+      right: -80px;
+      bottom: -150px;
+      border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
+      filter: blur(80px);
+      opacity: 0.05;
+      animation: lava2 22s ease-in-out infinite alternate, breathe2 6s ease-in-out infinite alternate;
+    }
+
+    [data-theme="dark"] .footer-lava-1 {
+      opacity: 0.12;
+    }
+
+    [data-theme="dark"] .footer-lava-2 {
+      opacity: 0.09;
+    }
+
+    /* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
     .site-footer {
       grid-column: 1 / -1;
-      padding: 3.5rem 0 2rem;
-      margin-top: 3rem;
-      border-top: 2px solid var(--border);
+      padding: 2rem 0 0;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
       transition: border-color .4s;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 3rem;
+    }
+
+    .footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .footer-logo {
@@ -1753,24 +1841,22 @@
         <div class="hero-lava-3"></div>
       </div>
       <div class="hero-content">
-        <div class="hero-eyebrow" data-zh="跨文化，全球視野" data-en="Cross Culture & Global Ready">跨文化，全球視野
-        </div>
+        <!-- <div class="hero-eyebrow" data-zh="跨文化，全球視野" data-en="Cross Culture & Global Ready">跨文化，全球視野
+        </div> -->
         <h1 class="hero-headline">
-          <span class="line" data-zh="台北平面+網頁設計" data-en="Taipei Graphic & Web Design">
-            台北平面+網頁設計
-          </span>
+          <span class="line" data-zh="讓你的品牌，" data-en="Your brand,">讓你的品牌，</span>
+          <span class="line" data-zh="說國際語言。" data-en="international-ready.">說國際語言。</span>
         </h1>
-        <div class="hero-swap-wrap">
+        <!--<div class="hero-swap-wrap">
           <span class="hero-swap-label" data-zh="我能做：" data-en="I can do:">我能做：</span>
           <span id="hero-lang-text"></span>
         </div>
         <p class="hero-sub" data-zh="15年設計經驗。幫你省下溝通成本，中英設計一手包辦。直接與設計師對接，沒有中間人。"
           data-en="15 years of experience. I provide dual-language design (English & Traditional Chinese) directly. No agency overhead.">
           15年設計經驗。幫你省下溝通成本，中英設計一手包辦。直接與設計師對接，沒有中間人。
-        </p>
+        </p> -->
         <div class="hero-actions">
-          <a href="#work" class="btn-primary" data-zh="查看作品 →" data-en="View Work →">查看作品 →</a>
-          <a href="#contact" class="btn-secondary" data-zh="立即預約" data-en="Get in Touch">立即預約</a>
+          <a href="#work" class="btn-primary" data-zh="看作品 →" data-en="View Work →">看作品 →</a>
         </div>
       </div>
       <div class="hero-bottom">
@@ -1785,7 +1871,7 @@
 
         <div class="hero-avail">
           <div class="pulse"></div>
-          <span data-zh="目前接受新案" data-en="Available for Projects">目前接受新案</span>
+          <span data-zh="接受新案" data-en="Available for Projects">接受新案</span>
         </div>
       </div>
     </section>
@@ -1795,8 +1881,8 @@
       <div class="work-section">
         <div class="section-header reveal">
           <div>
-            <div class="section-label" data-zh="精選作品" data-en="Selected Work">精選作品</div>
-            <h2 class="section-title" data-zh="近期項目" data-en="Recent Projects">近期項目</h2>
+            <!-- <div class="section-label" data-zh="精選作品" data-en="Selected Work">精選作品</div>-->
+            <h2 class="section-title" data-zh="精選作品" data-en="Selected Work">精選作品</h2>
           </div>
         </div>
         <div class="work-grid" id="workGrid">
@@ -1971,22 +2057,21 @@
   //   ##       ##     ## ##  ####    ##    ######### ##          ##    
   //   ##    ## ##     ## ##   ###    ##    ##     ## ##    ##    ##    
   //    ######   #######  ##    ##    ##    ##     ##  ######     ##    
-  //
+  // and footer i guess
   // ────────────────────────────────────────────────────────────────────────────
 */ ── -->
-    <section class="snap-section free" id="contact">
-      <div class="contact-section">
+    <section class="snap-section free" id="contact" style="position:relative;">
+      <div class="footer-lava" aria-hidden="true">
+        <div class="footer-lava-1"></div>
+        <div class="footer-lava-2"></div>
+      </div>
+      <div class="contact-section" style="position:relative; z-index:1;">
         <div class="contact-left">
           <div class="section-label reveal" data-zh="聯絡我們" data-en="Get in Touch">聯絡我們</div>
           <h2 class="contact-headline reveal">
             <span data-zh="一起打造" data-en="Let's build">一起打造</span>
             <span data-zh="值得留存的設計。" data-en="something worth keeping.">值得留存的設計。</span>
           </h2>
-          <p class="contact-sub reveal" data-zh="目前接受新案。直接與設計師合作——沒有中間人、沒有業務，只有你和設計師。"
-            data-en="Currently accepting new projects. You work directly with the designer — no account managers, no middlemen.">
-            目前接受新案。直接與設計師合作——沒有中間人、沒有業務，只有你和設計師。
-          </p>
-          <a href="mailto:hello@studiozinc.com" class="contact-mailto reveal">hello@studiozinc.com</a>
           <div class="contact-info reveal">
             <div>
               <div class="ci-label" data-zh="地點" data-en="Location">地點</div>
@@ -1999,12 +2084,21 @@
           </div>
         </div>
         <div class="contact-right">
+          <a href="mailto:hello@studiozinc.com" class="contact-email-display reveal">hello@studiozinc.com</a>
+        </div>
+        <!--<div class="contact-right">
           <div class="reveal contact-email-block">
             <div class="ci-label" style="margin-bottom:1.2rem;" data-zh="直接寄信" data-en="Send a Message">直接寄信</div>
             <a href="mailto:hello@studiozinc.com" class="contact-email-link">hello@studiozinc.com</a>
           </div>
-        </div>
+        </div>-->
         <footer class="site-footer">
+          <div class="footer-bar">
+            <span class="footer-logo">鋅 <span>STUDIO ZINC</span></span>
+            <span class="footer-copy" data-zh="© 2026 鋅工作室" data-en="© 2026 Studio Zinc">© 2026 鋅工作室</span>
+          </div>
+        </footer>
+        <!--<footer class="site-footer">
           <div>
             <span class="footer-logo">鋅 <span>STUDIO ZINC</span></span>
             <p class="footer-tagline" data-zh="台北雙語設計工作室——中英文服務，服務世界各地。"
@@ -2030,7 +2124,7 @@
               台北市<br>Taipei, Taiwan
             </div>
           </div>
-        </footer>
+        </footer>-->
       </div>
     </section>
 
@@ -2074,7 +2168,7 @@
       requestAnimationFrame(ringLoop);
     })();
 
-    // ── HERO SERVICE SWAP ───────────────────
+    /* ── HERO SERVICE SWAP (this is not used in the current version) ───────────────────
     const services = [
       'Brand Identity', 'Branding', 'Web Design',
       'Print & Editorial', 'Social Media', 'Video Editing',
@@ -2099,7 +2193,7 @@
         }, fadeOutTime);
       }, displayTime);
     }
-
+  */
     // ── SCROLL REVEAL ───────────────────────
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('will-animate'));
     const revealObs = new IntersectionObserver(entries => {
