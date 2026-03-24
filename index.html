@@ -397,7 +397,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding: 0 2.5rem;
       position: relative;
       overflow: hidden;
@@ -596,6 +596,8 @@
       position: relative;
       z-index: 2;
       max-width: 900px;
+      width: 100%;
+      text-align: center;
     }
 
     .hero-eyebrow {
@@ -656,6 +658,7 @@
     .hero-actions {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 1.5rem;
       flex-wrap: wrap;
     }
@@ -721,7 +724,7 @@
     }
 
     .hero-stat {
-      text-align: left;
+      text-align: center;
     }
 
     .hero-stat-num {
@@ -905,7 +908,7 @@
 
     .work-card-type {
       /* this would be the project type */
-      font-size: .58rem;
+      font-size: 1rem;
       letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--cyan);
@@ -927,7 +930,7 @@
 
     .work-card-sub {
       /* this would be the client name */
-      font-size: .72rem;
+      font-size: .85rem;
       color: var(--fg2);
       margin-top: .1rem;
     }
@@ -948,16 +951,22 @@
     @media (max-width: 768px) {
       .work-card {
         grid-template-columns: 1fr;
-        /* stack */
       }
 
       .work-card-thumb {
         aspect-ratio: 16/9;
-        /* wider crop on mobile */
+        max-height: 220px;
       }
 
       .work-card-body {
-        padding: 1.5rem;
+        padding: 1rem 1.2rem 1.2rem;
+        justify-content: flex-start;
+        gap: .3rem;
+      }
+
+      .work-card-arrow {
+        font-size: 2rem;
+        margin-top: .4rem;
       }
     }
 
@@ -968,7 +977,6 @@
       padding: 64px 2.5rem 2rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
       overflow: visible;
       gap: 0;
       max-width: 1920px;
@@ -1037,22 +1045,12 @@
     .svc-header {
       font-family: 'Unbounded', sans-serif;
       font-weight: 800;
-      font-size: .65rem;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--cyan);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--fg);
+      letter-spacing: -.02em;
+      line-height: 1;
       margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: .7rem;
-    }
-
-    .svc-header::before {
-      content: '';
-      width: 18px;
-      height: 1px;
-      background: var(--cyan);
-      display: block;
+      transition: color .4s;
     }
 
     .svc-list {
@@ -1091,13 +1089,13 @@
     .svc-name {
       font-family: 'Unbounded', sans-serif;
       font-weight: 600;
-      font-size: .95rem;
+      font-size: 1.1rem;
       color: var(--fg);
       transition: color .2s;
     }
 
     .svc-desc {
-      font-size: .85rem;
+      font-size: .95rem;
       color: var(--fg2);
       line-height: 1.5;
       transition: color .4s;
@@ -1112,6 +1110,7 @@
       flex-wrap: wrap;
       gap: .6rem;
       margin-top: .8rem;
+      justify-content: center;
     }
 
     .cli-tag {
@@ -1136,9 +1135,7 @@
       padding: 64px 2.5rem 3rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-content: space-between;
       gap: 0;
-      flex: 1;
       max-width: 1920px;
       margin: 0 auto;
       width: 100%;
@@ -1256,6 +1253,121 @@
     }
 
     /* ═══════════════════════════════════════
+   CLIENTS
+═══════════════════════════════════════ */
+    .clients-inner {
+      padding: 2rem 2.5rem;
+      border-top: 1px solid var(--border);
+      max-width: 1920px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+      transition: border-color .4s;
+    }
+
+    .cli-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin-top: 2.5rem;
+    }
+
+    .cli-logo-img {
+      max-width: 150px;
+      max-height: 60px;
+      object-fit: contain;
+      opacity: 0.5;
+      transition: opacity .4s, filter .4s, transform .3s;
+      cursor: pointer;
+    }
+
+    .cli-logo-img:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    /* Assuming the base images are black. In dark mode, we invert them to white. */
+    [data-theme="dark"] .cli-logo-img {
+      filter: invert(1) brightness(1.5);
+    }
+
+    [data-theme="dark"] .cli-logo-img:hover {
+      filter: invert(1) brightness(2);
+    }
+
+    @media (max-width: 540px) {
+      .cli-grid {
+        gap: 2rem;
+      }
+
+      .cli-logo-img {
+        max-width: 120px;
+        max-height: 48px;
+      }
+    }
+
+    /* ═══════════════════════════════════════
+   FAQ
+═══════════════════════════════════════ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1.5rem;
+    }
+
+    .faq-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: border-color .4s;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-summary {
+      cursor: pointer;
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--fg);
+      list-style: none;
+      transition: color .2s;
+    }
+
+    .faq-summary:hover {
+      color: var(--cyan);
+    }
+
+    .faq-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-answer {
+      margin-top: .8rem;
+      margin-bottom: 0;
+    }
+
+    /* ═══════════════════════════════════════
+   FAQ BLOCK
+═══════════════════════════════════════ */
+    .faq-section {
+      max-width: 1920px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2.5rem 3rem;
+      border-top: 1px solid var(--border);
+      transition: border-color .4s;
+    }
+
+    .faq-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════
    CONTACT EMAIL DISPLAY
 ═══════════════════════════════════════ */
     .contact-right {
@@ -1268,13 +1380,12 @@
     .contact-email-display {
       font-family: 'Unbounded', sans-serif;
       font-weight: 900;
-      font-size: clamp(1.6rem, 3.2vw, 3rem);
+      font-size: clamp(1.2rem, 2.4vw, 2.4rem);
       line-height: 1.2;
       letter-spacing: -.03em;
       color: var(--fg);
       text-decoration: none;
-      word-break: break-word;
-      overflow-wrap: break-word;
+      white-space: nowrap;
       display: block;
       border-bottom: 2px solid var(--cyan);
       padding-bottom: .5rem;
@@ -1518,29 +1629,41 @@
         padding: 2rem 0;
         border-right: none;
         border-bottom: 1px solid var(--border);
+        text-align: center;
       }
 
       .contact-right {
-        padding: 2rem 0;
+        padding: 1.5rem 0 2rem;
+        justify-content: center;
       }
 
-      .contact-headline {
-        font-size: 2.4rem;
+      .contact-email-display {
+        font-size: clamp(1rem, 5vw, 1.6rem);
+        text-align: center;
+        white-space: normal;
+        word-break: break-word;
       }
 
-      html {
-        scroll-snap-type: none;
-      }
+      0;
+    }
 
-      .snap-section {
-        height: auto;
-        min-height: 100vh;
-      }
+    .contact-headline {
+      font-size: 2.4rem;
+    }
 
-      .work-grid {
-        max-width: 100%;
-        margin: 0;
-      }
+    html {
+      scroll-snap-type: none;
+    }
+
+    .snap-section {
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .work-grid {
+      max-width: 100%;
+      margin: 0;
+    }
     }
 
     @media (max-width: 480px) {
@@ -1844,8 +1967,8 @@
         <!-- <div class="hero-eyebrow" data-zh="跨文化，全球視野" data-en="Cross Culture & Global Ready">跨文化，全球視野
         </div> -->
         <h1 class="hero-headline">
-          <span class="line" data-zh="讓你的品牌，" data-en="Your brand,">讓你的品牌，</span>
-          <span class="line" data-zh="說國際語言。" data-en="international-ready.">說國際語言。</span>
+          <span class="line" data-zh="讓你的品牌" data-en="Your brand,">讓你的品牌</span>
+          <span class="line" data-zh="說國際語言" data-en="global-ready.">說國際語言</span>
         </h1>
         <!--<div class="hero-swap-wrap">
           <span class="hero-swap-label" data-zh="我能做：" data-en="I can do:">我能做：</span>
@@ -1913,10 +2036,10 @@
   -->
 
 
-    <section class="snap-section" id="about">
+    <section class="snap-section free" id="about">
       <div class="about-section">
         <div class="about-left">
-          <div class="section-label reveal" data-zh="關於工作室" data-en="About the Studio">關於工作室</div>
+          <div class="svc-header reveal" data-zh="關於工作室" data-en="About the Studio">關於工作室</div>
           <div class="about-quote reveal" data-zh="懂市場。懂語境。<strong>橫跨台灣與美國市場，打造中英都有效的品牌與平面設計。</strong>"
             data-en="Market-aware. Context-driven. <strong>Bilingual brand & graphic design that works in Taiwan and the US.</strong>">
             懂市場。懂語境。<strong>橫跨台灣與美國市場，打造中英都有效的品牌與平面設計。</strong>
@@ -1930,7 +2053,6 @@
             data-en="Good design doesn't need explaining. It's felt.">
             好的設計不需要解釋。它直接被感受到。
           </div>
-
         </div>
         <div class="about-right">
           <div class="svc-header reveal" data-zh="服務項目" data-en="Services">服務項目</div>
@@ -1953,7 +2075,8 @@
             <div class="svc reveal"><span class="svc-n">04</span>
               <div class="svc-body"><span class="svc-name" data-zh="社群媒體視覺" data-en="Social Media">社群媒體視覺</span><span
                   class="svc-desc" data-zh="圖像 · 模板 · 內容"
-                  data-en="Social Graphics · Template Systems · Content Layout">圖像 · 模板 · 內容</span></div>
+                  data-en="Social Graphics · Template Systems · Content Layout">圖像
+                  · 模板 · 內容</span></div>
             </div>
             <div class="svc reveal"><span class="svc-n">05</span>
               <div class="svc-body"><span class="svc-name" data-zh="包裝設計" data-en="Packaging">包裝設計</span><span
@@ -1967,111 +2090,95 @@
         </div>
 
       </div>
-    </section>
-    <!-- ── CLIENTS ── -->
-    <section id="clients">
-      <div style="padding: 1rem 1rem; border-top: 1px solid var(--border);">
-        <div class="svc-header reveal" data-zh="客戶與合作夥伴" data-en="Clients & Collaborators">客戶與合作夥伴</div>
-        <div class="cli-grid reveal">
-          <div class="cli-tag">[ CLIENT 01 ]</div>
-          <div class="cli-tag">[ CLIENT 02 ]</div>
-          <div class="cli-tag">[ CLIENT 03 ]</div>
-          <div class="cli-tag">[ CLIENT 04 ]</div>
-          <div class="cli-tag">[ CLIENT 05 ]</div>
+      <div class="faq-section">
+        <div class="faq-inner">
+          <div class="svc-header reveal" data-zh="常見問題" data-en="FAQ">常見問題</div>
+          <div class="faq-list">
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="你提供英文溝通與中英雙語交付嗎？"
+                data-en="Do you offer English communication and bilingual deliverables?">你提供英文溝通與中英雙語交付嗎？</summary>
+              <p class="about-p faq-answer" data-zh="可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。"
+                data-en="Yes. I offer English meetings and written communication, and can deliver bilingual assets when needed — brand guidelines, deck templates, social kits, print specs.">
+                可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="你主要承接哪些類型的設計？（平面設計有做嗎？）"
+                data-en="What do you specialize in? Do you do graphic design?">你主要承接哪些類型的設計？（平面設計有做嗎？）</summary>
+              <p class="about-p faq-answer" data-zh="核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。"
+                data-en="Core is brand identity and graphic design — key visuals, posters, editorial layout, campaign assets, social graphics. Web design and front-end build are also part of the offering, so the brand lands consistently online.">
+                核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="專案流程怎麼走？" data-en="What's your process?">專案流程怎麼走？</summary>
+              <p class="about-p faq-answer"
+                data-zh="通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。里程碑與修改回合數會在開始前寫清楚。"
+                data-en="Kickoff → direction → iterations → final handoff with production-ready specs. Milestones and revision rounds are defined upfront.">
+                通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。里程碑與修改回合數會在開始前寫清楚。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="時程通常多久？" data-en="What's a typical timeline?">時程通常多久？</summary>
+              <p class="about-p faq-answer"
+                data-zh="依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。有明確截止日期的話，可以一起倒推排程。"
+                data-en="Depends on scope. Single assets: 3–10 days. Brand identity: 2–6 weeks. Web design and build: 3–8 weeks. If you have a hard deadline, we work backwards from it.">
+                依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。有明確截止日期的話，可以一起倒推排程。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="我該怎麼開始？" data-en="How do we start?">我該怎麼開始？</summary>
+              <p class="about-p faq-answer"
+                data-zh="寄信到 hello@studiozinc.com，簡單說明品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。"
+                data-en="Email hello@studiozinc.com with a quick brief — what you're building, your audience, deliverables needed, timeline, and budget range if possible. I'll reply with a few clarifying questions and a suggested approach.">
+                寄信到 hello@studiozinc.com，簡單說明品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="你的作品有用到 AI 嗎？" data-en="Do you use AI in your work?">你的作品有用到 AI 嗎？
+              </summary>
+              <p class="about-p faq-answer"
+                data-zh="有，而且不迴避這件事。AI 用於輔助發想、研究，以及部分素材生成——讓時間花在真正需要設計判斷的地方。AI 素材的使用對客戶是透明的，不會用來虛報成果或誤導呈現。善用工具省下的時間，最終還是回饋到設計品質上。"
+                data-en="Yes, and I'm straightforward about it. AI assists with ideation, research, and certain asset generation — so time goes toward work that actually requires design judgment. Any AI-generated elements are disclosed to clients. It's not used to misrepresent deliverables. The time saved goes back into the work.">
+                有，而且不迴避這件事。AI 用於輔助發想、研究，以及部分素材生成——讓時間花在真正需要設計判斷的地方。AI 素材的使用對客戶是透明的，不會用來虛報成果或誤導呈現。善用工具省下的時間，最終還是回饋到設計品質上。
+              </p>
+            </details>
+          </div>
         </div>
       </div>
     </section>
-    <section id="faq">
-      <div style="padding: 3rem 2.5rem; border-top: 1px solid var(--border);">
-        <div class="svc-header reveal" data-zh="常見問題" data-en="FAQ">常見問題</div>
+    <!-- ── CLIENTS ── -->
+    <section id="clients">
+      <div class="clients-inner">
+        <div class="svc-header reveal" data-zh="客戶與合作夥伴" data-en="Clients & Collaborators">客戶與合作夥伴</div>
+        <div class="cli-grid reveal">
+          <img class="cli-logo-img" src="images/p_Bloomingdales_Logo.svg" alt="Bloomingdale's">
+          <img class="cli-logo-img" src="images/p_Booz_Allen_Hamilton_logo.svg" alt="Booz Allen Hamilton">
+          <img class="cli-logo-img" src="images/p_mcps_horiz_black.png" alt="MCPS">
 
-        <details class="reveal" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
-          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;"
-            data-zh="你提供英文溝通與中英雙語交付嗎？" data-en="Do you offer English communication and bilingual deliverables?">
-            你提供英文溝通與中英雙語交付嗎？
-          </summary>
-          <p class="about-p" style="margin-top:.8rem;"
-            data-zh="可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。"
-            data-en="Yes. I can run meetings and written comms in English, and deliver bilingual assets when needed (brand guidelines, deck templates, social kits, print specs).">
-            可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。
-          </p>
-        </details>
-
-        <details class="reveal" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
-          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;"
-            data-zh="你主要承接哪些類型的設計？（平面設計有做嗎？）" data-en="What do you specialize in? (Do you do graphic design?)">
-            你主要承接哪些類型的設計？（平面設計有做嗎？）
-          </summary>
-          <p class="about-p" style="margin-top:.8rem;"
-            data-zh="核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。"
-            data-en="My core is brand identity + graphic design: key visuals, posters, editorial/layout, campaign assets, and social graphics. I also do web design/build so the brand lands consistently online.">
-            核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。
-          </p>
-        </details>
-
-        <details class="reveal" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
-          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;" data-zh="專案流程怎麼走？"
-            data-en="What’s your process?">
-            專案流程怎麼走？
-          </summary>
-          <p class="about-p" style="margin-top:.8rem;"
-            data-zh="通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。我會在開始前先把里程碑與回合數寫清楚。"
-            data-en="Typically: kickoff (EN/中文) → direction → iterations → final handoff (with production/dev-ready specs). I’ll define milestones and revision rounds upfront.">
-            通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。我會在開始前先把里程碑與回合數寫清楚。
-          </p>
-        </details>
-
-        <details class="reveal" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
-          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;" data-zh="時程通常多久？"
-            data-en="What’s a typical timeline?">
-            時程通常多久？
-          </summary>
-          <p class="about-p" style="margin-top:.8rem;"
-            data-zh="依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。若有明確檔期也可以一起倒推排程。"
-            data-en="Depends on scope: single graphic assets often 3–10 days; brand identity usually 2–6 weeks; web design/build around 3–8 weeks. If you have a deadline, we can plan backwards.">
-            依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。若有明確檔期也可以一起倒推排程。
-          </p>
-        </details>
-
-        <details class="reveal" style="padding: 1rem 0;">
-          <summary style="cursor:pointer; font-family:'Unbounded', sans-serif; font-weight:700;"
-            data-zh="我該怎麼開始？需要提供什麼？" data-en="How do we start? What do you need from me?">
-            我該怎麼開始？需要提供什麼？
-          </summary>
-          <p class="about-p" style="margin-top:.8rem;"
-            data-zh="寄信到 hello@studiozinc.com，簡單說明你的品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。"
-            data-en="Email hello@studiozinc.com with a quick overview: what you’re building, audience, deliverables, timeline, and budget range (if possible). I’ll reply with clarifying questions and a suggested scope/pricing approach.">
-            寄信到 hello@studiozinc.com，簡單說明你的品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。
-          </p>
-        </details>
+        </div>
       </div>
     </section>
-
-    <!-- /*
-  // ── CONTACT ─────────────────────────────────────────────────────────────────
-  //
-  //    ######   #######  ##    ## ########    ###     ######  ######## 
-  //   ##    ## ##     ## ###   ##    ##      ## ##   ##    ##    ##    
-  //   ##       ##     ## ####  ##    ##     ##   ##  ##          ##    
-  //   ##       ##     ## ## ## ##    ##    ##     ## ##          ##    
-  //   ##       ##     ## ##  ####    ##    ######### ##          ##    
-  //   ##    ## ##     ## ##   ###    ##    ##     ## ##    ##    ##    
-  //    ######   #######  ##    ##    ##    ##     ##  ######     ##    
-  // and footer i guess
-  // ────────────────────────────────────────────────────────────────────────────
-*/ ── -->
+    <!-- 
+    /*
+    // ── CONTACT ─────────────────────────────────────────────────────────────────
+    //
+    // ###### ####### ## ## ######## ### ###### ########
+    // ## ## ## ## ### ## ## ## ## ## ## ##
+    // ## ## ## #### ## ## ## ## ## ##
+    // ## ## ## ## ## ## ## ## ## ## ##
+    // ## ## ## ## #### ## ######### ## ##
+    // ## ## ## ## ## ### ## ## ## ## ## ##
+    // ###### ####### ## ## ## ## ## ###### ##
+    // and footer i guess
+    // ────────────────────────────────────────────────────────────────────────────
+    */-->
     <section class="snap-section free" id="contact" style="position:relative;">
       <div class="footer-lava" aria-hidden="true">
         <div class="footer-lava-1"></div>
         <div class="footer-lava-2"></div>
       </div>
-      <div class="contact-section" style="position:relative; z-index:1;">
-        <div class="contact-left">
-          <div class="section-label reveal" data-zh="聯絡我們" data-en="Get in Touch">聯絡我們</div>
-          <h2 class="contact-headline reveal">
-            <span data-zh="一起打造" data-en="Let's build">一起打造</span>
-            <span data-zh="值得留存的設計。" data-en="something worth keeping.">值得留存的設計。</span>
-          </h2>
+      <div class="contact-section" style="position:relative; z-index:1; grid-template-columns: 1fr;">
+        <div class="contact-left" style="border-right: none;">
+          <h2 class="contact-headline reveal" data-zh="讓我們一起規劃你的下一個專案。"
+            data-en="Let's plan your next project together.">讓我們一起規劃你的下一個專案。</h2>
+          <a href="mailto:hello@studiozinc.com" class="contact-email-display reveal"
+            style="margin-bottom: 2.5rem;">hello@studiozinc.com</a>
           <div class="contact-info reveal">
             <div>
               <div class="ci-label" data-zh="地點" data-en="Location">地點</div>
@@ -2082,9 +2189,6 @@
               <div class="ci-val">GMT+8 CST</div>
             </div>
           </div>
-        </div>
-        <div class="contact-right">
-          <a href="mailto:hello@studiozinc.com" class="contact-email-display reveal">hello@studiozinc.com</a>
         </div>
         <!--<div class="contact-right">
           <div class="reveal contact-email-block">
@@ -2098,33 +2202,6 @@
             <span class="footer-copy" data-zh="© 2026 鋅工作室" data-en="© 2026 Studio Zinc">© 2026 鋅工作室</span>
           </div>
         </footer>
-        <!--<footer class="site-footer">
-          <div>
-            <span class="footer-logo">鋅 <span>STUDIO ZINC</span></span>
-            <p class="footer-tagline" data-zh="台北雙語設計工作室——中英文服務，服務世界各地。"
-              data-en="Bilingual design studio in Taipei — serving clients in English and Chinese, with clients all over the world.">
-              台北雙語設計工作室——中英文服務，服務世界各地。
-            </p>
-            <span class="footer-copy" data-zh="© 2026 鋅工作室" data-en="© 2026 Studio Zinc">© 2026 鋅工作室</span>
-          </div>
-          <div>
-            <span class="footer-col-label" data-zh="頁面" data-en="Navigate">頁面</span>
-            <div class="footer-links">
-              <a href="#hero" data-zh="首頁" data-en="Home">首頁</a>
-              <a href="#work" data-zh="作品" data-en="Work">作品</a>
-              <a href="#about" data-zh="關於" data-en="About">關於</a>
-              <a href="#contact" data-zh="聯絡" data-en="Contact">聯絡</a>
-            </div>
-          </div>
-          <div></div>
-          <div>
-            <span class="footer-col-label" data-zh="聯絡" data-en="Contact">聯絡</span>
-            <div class="footer-contact-val">
-              <a href="mailto:hello@studiozinc.com">hello@studiozinc.com</a><br><br>
-              台北市<br>Taipei, Taiwan
-            </div>
-          </div>
-        </footer>-->
       </div>
     </section>
 
@@ -2156,14 +2233,7 @@
       curRing.style.left = rx + 'px';
       curRing.style.top = ry + 'px';
 
-      // Calculate mouse offset from center of screen (-1 to 1)
-      const cx = (rx / window.innerWidth - 0.5) * 2;
-      const cy = (ry / window.innerHeight - 0.5) * 2;
 
-      // Apply subtle opposite drift to the lava container based on mouse position
-      if (lavaContainer) {
-        lavaContainer.style.transform = `translate(${cx * -40}px, ${cy * -40}px)`;
-      }
 
       requestAnimationFrame(ringLoop);
     })();
@@ -2340,20 +2410,20 @@
         hero: 'images/pj_4.webp', hero_char: '',
         imgs: ['images/pj_4_1.webp', 'images/pj_4_2.webp', 'images/pj_4_3.webp']
       }
-      /* UNCOMMENT TO ADD PROJECT 5:
-      ,{
+
+      , {
         id: 'pj05',
-        type_zh: '影片剪輯＋動態', type_en: 'Video + Motion',
-        title: 'PROJECT TITLE 05',
-        client_zh: '客戶名稱 · 2023', client_en: 'Client Name · 2023',
-        scope_zh: '在這裡填入專案簡介。',
-        scope_en: 'Write your project brief here.',
-        services_zh: ['影片剪輯', '動態設計', '品牌影片'],
-        services_en: ['Video Editing', 'Motion Design', 'Brand Film'],
-        hero: '', hero_char: '光',
+        type_zh: '平面設計', type_en: 'Graphic Design',
+        title: '封面和海報設計',
+        client_zh: '', client_en: 'Various Clients',
+        scope_zh: '',
+        scope_en: 'Designed covers and posters for various clients. Including book covers, social media content, and event posters.',
+        services_zh: ['平面設計', '海報設計', '封面設計'],
+        services_en: ['Graphic Design', 'Poster Design', 'Cover Design'],
+        hero: 'images/pj_5.webp', hero_char: '',
         imgs: ['', '', '']
       }
-      */
+
     ];
 
     // ── MODAL ENGINE ────────────────────────
