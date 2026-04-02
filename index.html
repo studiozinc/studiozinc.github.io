@@ -376,32 +376,6 @@
       requestAnimationFrame(ringLoop);
     })();
 
-    /* ── HERO SERVICE SWAP (this is not used in the current version) ───────────────────
-    const services = [
-      'Brand Identity', 'Branding', 'Web Design',
-      'Print & Editorial', 'Social Media', 'Video Editing',
-      '品牌識別', '品牌設計', '網站設計', '印刷設計', '社群視覺', '影片剪輯'
-    ];
-    const swapEl = document.getElementById('hero-lang-text');
-    let si = 0;
-    if (swapEl) {
-      swapEl.textContent = services[0];
-      swapEl.style.opacity = '1';
-
-      // === ANIMATION TIMING VARIABLES (in milliseconds) ===
-      const displayTime = 1200; // How long the word stays visible before fading out
-      const fadeOutTime = 320;  // Slightly longer than CSS transition (300ms) to guarantee full fade to 0.
-
-      setInterval(() => {
-        swapEl.style.opacity = '0';
-        setTimeout(() => {
-          si = (si + 1) % services.length;
-          swapEl.textContent = services[si];
-          swapEl.style.opacity = '1';
-        }, fadeOutTime);
-      }, displayTime);
-    }
-  */
     // ── SCROLL REVEAL ───────────────────────
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('will-animate'));
     const revealObs = new IntersectionObserver(entries => {
@@ -502,7 +476,7 @@
         title_zh: '大將開發',
         title_en: 'Tajiang Re-Branding and Website Design',
         client_zh: '', client_en: '',
-        scope_zh: '在這裡填入專案簡介。描述客戶背景、設計挑戰與你的解決方案。',
+        scope_zh: '為一個高端住宅開發的房地產公司重新設計品牌與網站。',
         scope_en: 'Tajiang is a real estate development company specializing in upscale residential properties in Taipei. The company is publicly listed on the Taiwan Stock Exchange. The logo design draws from the company\'s history as a textile manufacturer, featuring a building rendered with a distinctive woven texture. The newly developed website is faster, more secure, and mobile-friendly.',
         services_zh: ['網站設計', '標誌設計', '視覺系統'],
         services_en: ['Web Design and Development', 'Logo Design', 'Visual System'],
@@ -516,7 +490,7 @@
         title_en: 'ZERO/DAY/SHIRTS',
         client_zh: '', client_en: '',
         scope_zh: '為一個關注社會議題的服裝品牌設計網站與品牌識別。',
-        scope_en: 'Designed a shopify website and brand identity for a socially conscious clothing brand.',
+        scope_en: 'Designed a shopify website and brand identity for a socially conscious clothing brand. Adviced on screen printing and packaging.',
         services_zh: ['網站設計', '品牌識別', '平面設計', '印刷監製'],
         services_en: ['Web Design', 'Brand Identity', 'Graphic Design', 'Print Production'],
         hero: 'images/pj_2.webp', hero_char: '',
@@ -547,18 +521,29 @@
         services_en: ['Graphic Design', 'Merchandise Design', 'Print Production'],
         hero: 'images/pj_4.webp', hero_char: '',
         imgs: ['images/pj_4_1.webp', 'images/pj_4_2.webp', 'images/pj_4_3.webp']
-      }
-
-      , {
+      },
+      {
         id: 'pj05',
         type_zh: '平面設計', type_en: 'Graphic Design',
         title: '封面和海報設計',
-        client_zh: '', client_en: 'Various Clients',
+        client_zh: 'Freelance Clients', client_en: 'Various Clients',
         scope_zh: '',
         scope_en: 'Designed covers and posters for various clients. Including book covers, social media content, and event posters.',
         services_zh: ['平面設計', '海報設計', '封面設計'],
         services_en: ['Graphic Design', 'Poster Design', 'Cover Design'],
         hero: 'images/pj_5.webp', hero_char: '',
+        imgs: ['', '', '']
+      }
+      {
+        id: 'pj06',
+        type_zh: 'App 開發', type_en: 'App Development',
+        title: 'App 開發',
+        client_zh: 'Freelance Clients', client_en: 'Various Clients',
+        scope_zh: '為客戶設計移動應用程序，注重用戶體驗。',
+        scope_en: 'Designed mobie applications with user experience in mind.',
+        services_zh: ['App 開發', 'UX/UI 設計', 'Logo 設計'],
+        services_en: ['App Development', 'UX/UI Design', 'Logo Design'],
+        hero: 'images/pj_6.webp', hero_char: '',
         imgs: ['', '', '']
       }
 
