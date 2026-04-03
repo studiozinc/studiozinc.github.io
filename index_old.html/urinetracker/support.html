@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Urine Tracker | Studio Zinc</title>
+  <meta name="description"
+    content="Support and FAQ for Urine Tracker by Studio Zinc. Find answers to common questions or contact us directly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap">
+  </noscript>
+  <link rel="stylesheet" href="../apps.css">
+
+  <style>
+    .support-hero {
+      position: relative;
+      padding: 5rem 2.5rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .support-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .support-eyebrow {
+      font-family: 'Unbounded', sans-serif;
+      font-size: .6rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      margin-bottom: 1rem;
+    }
+
+    .support-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .support-hero h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -.03em;
+      color: var(--fg);
+      line-height: 1.2;
+      margin-bottom: .75rem;
+    }
+
+    .support-hero p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--fg2);
+      font-weight: 300;
+      max-width: 500px;
+    }
+
+    /* CONTACT CARD */
+    .contact-strip {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      transition: background .4s;
+    }
+
+    .contact-strip-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-strip-left h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -.01em;
+      color: var(--fg);
+      margin-bottom: .4rem;
+    }
+
+    .contact-strip-left p {
+      font-size: .9rem;
+      color: var(--fg2);
+      line-height: 1.6;
+    }
+
+    .contact-strip-left a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    .contact-strip-left a:hover {
+      text-decoration: underline;
+    }
+
+    /* SUPPORT BODY */
+    .support-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 6rem;
+    }
+
+    /* FAQ */
+    .faq-section-label {
+      font-family: 'Unbounded', sans-serif;
+      font-size: .65rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-section-label::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--cyan);
+      display: block;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    details.faq-item {
+      border-bottom: 1px solid var(--border);
+      transition: border-color .3s;
+    }
+
+    details.faq-item:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    summary.faq-q {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: -.01em;
+      color: var(--fg);
+      padding: 1.25rem 0;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color .2s;
+      user-select: none;
+    }
+
+    summary.faq-q::-webkit-details-marker {
+      display: none;
+    }
+
+    summary.faq-q:hover {
+      color: var(--cyan);
+    }
+
+    .faq-arrow {
+      font-size: 1rem;
+      color: var(--fg2);
+      transition: transform .25s, color .2s;
+      flex-shrink: 0;
+    }
+
+    details[open] .faq-arrow {
+      transform: rotate(45deg);
+      color: var(--cyan);
+    }
+
+    details[open] summary.faq-q {
+      color: var(--cyan);
+    }
+
+    .faq-answer {
+      font-size: .9rem;
+      line-height: 1.75;
+      color: var(--fg2);
+      padding: 0 0 1.5rem;
+      font-weight: 300;
+      max-width: 640px;
+    }
+
+    .faq-answer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    .faq-answer a:hover {
+      text-decoration: underline;
+    }
+
+    /* TIPS SECTION */
+    .tips-section {
+      margin-top: 3.5rem;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      margin-top: 1.5rem;
+    }
+
+    .tip-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+    }
+
+    .tip-icon {
+      font-size: 1.2rem;
+      margin-bottom: .5rem;
+    }
+
+    .tip-title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: .75rem;
+      color: var(--fg);
+      margin-bottom: .4rem;
+      letter-spacing: -.01em;
+    }
+
+    .tip-text {
+      font-size: .85rem;
+      line-height: 1.65;
+      color: var(--fg2);
+      font-weight: 300;
+    }
+
+    /* RESPONSE TIME NOTE */
+    .response-note {
+      margin-top: 2rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .response-note-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .response-note-text {
+      font-size: .85rem;
+      line-height: 1.65;
+      color: var(--fg2);
+    }
+
+    .response-note-text strong {
+      color: var(--fg);
+    }
+
+    @media (max-width: 768px) {
+      .support-hero {
+        padding: 4rem 1.25rem 2.5rem;
+      }
+
+      .contact-strip-inner {
+        padding: 2rem 1.25rem;
+      }
+
+      .support-body {
+        padding: 3rem 1.25rem 5rem;
+      }
+
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cur-dot"></div>
+  <div id="cur-ring"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-accent">鋅</span> STUDIO ZINC
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">← Urine Tracker</a>
+      <button class="tog" id="themeBtn">
+        <span class="t-dark">☀</span>
+        <span class="t-light">☾</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- HERO -->
+    <div class="support-hero">
+      <div class="support-hero-content">
+        <div class="support-eyebrow">Urine Tracker · Studio Zinc</div>
+        <h1>Support &amp; FAQ</h1>
+        <p>Find answers to common questions below. If you're still stuck, reach out directly — we're a small team and we
+          actually read every message.</p>
+      </div>
+    </div>
+
+    <!-- CONTACT STRIP -->
+    <div class="contact-strip">
+      <div class="contact-strip-inner">
+        <div class="contact-strip-left">
+          <h2>Can't find what you need?</h2>
+          <p>Email us directly: <a href="mailto:hello@studiozinc.com">hello@studiozinc.com</a><br>
+            We aim to reply within 5 business days (GMT+8).</p>
+        </div>
+        <a href="mailto:hello@studiozinc.com?subject=Urine Tracker Support" class="btn-cyan">Email Support</a>
+      </div>
+    </div>
+
+    <div class="support-body">
+
+      <!-- FAQ -->
+      <div class="faq-section-label reveal">Frequently Asked Questions</div>
+
+      <div class="faq-list">
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            How do I log a stream?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">Press and hold the large button on the tracker screen to time your urination duration.
+            When finished, you can optionally rate the color, add symptoms like urgency or pain, and attach an image.
+          </p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Can I set a custom daily goal?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">Yes. Go to <strong>Settings → Daily Goal</strong> and enter the volume that works for
+            you. The progress bar on the main screen will update to reflect your target. We do not suggest or impose any
+            default target — your goal is yours to decide.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Can I log my fluid intake too?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">Yes, tracking hydration context is helpful for a complete voiding diary. You can use the
+            quick-add buttons or watch app to log drink intake alongside your urine output.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Can I delete a log entry?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">Yes. On the main screen, long-press any log entry to reveal a delete option, or swipe
+            left on the entry. Deleted entries cannot be recovered.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Does the app sync across devices?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">No — and that's intentional. All data stays on your device only. There is no cloud sync,
+            no account, and no cross-device backup through our system. This is a core privacy decision, not a missing
+            feature.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Will I lose my data if I uninstall the app?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">Yes. Uninstalling the app removes all locally stored data. If your device uses Android
+            Auto Backup (a Google system feature), some data may be included in your device backup — but this is handled
+            by Google, not by us.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Does the app require an internet connection?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">No. Urine Tracker works completely offline. It never connects to the internet and
+            requires no internet permission at the system level.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            I found a bug. How do I report it?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">Please email <a
+              href="mailto:hello@studiozinc.com?subject=Urine Tracker Bug Report">hello@studiozinc.com</a> with the
+            subject line "Urine Tracker Bug Report." Include your Android version, device model, and a description of
+            what happened. Screenshots are always helpful.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Can I share my logs with a doctor?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">Yes. Navigate to your Stats screen and use the PDF export tool to generate a clear,
+            clinical-grade voiding diary report covering your chosen date range. You can print this or email it directly
+            to your urologist.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Is this app a medical tool?
+            <span class="faq-arrow">+</span>
+          </summary>
+          <p class="faq-answer">No. Urine Tracker is a personal logging utility for your own reference. It is not a
+            medical device and does not provide medical advice or recommendations. Always consult a healthcare
+            professional for guidance about your health or fluid intake needs. See our full <a
+              href="privacy.html">Privacy Policy</a> for details.</p>
+        </details>
+
+      </div>
+
+      <!-- TIPS -->
+      <div class="tips-section">
+        <div class="faq-section-label reveal">Quick Tips</div>
+        <div class="tips-grid">
+          <div class="tip-card reveal">
+            <div class="tip-icon">⚡</div>
+            <div class="tip-title">Watch Companion</div>
+            <div class="tip-text">Use the companion smartwatch app (if installed) to conveniently log your output and
+              intake directly from your wrist.</div>
+          </div>
+          <div class="tip-card reveal">
+            <div class="tip-icon">📅</div>
+            <div class="tip-title">View Past Days</div>
+            <div class="tip-text">Swipe left on the date heading to browse previous days' logs and track your patterns
+              over time.</div>
+          </div>
+          <div class="tip-card reveal">
+            <div class="tip-icon">🌓</div>
+            <div class="tip-title">Dark Mode</div>
+            <div class="tip-text">The app follows your system theme by default. You can override this in Settings →
+              Appearance.</div>
+          </div>
+          <div class="tip-card reveal">
+            <div class="tip-icon">🗑️</div>
+            <div class="tip-title">Clear Today's Log</div>
+            <div class="tip-text">To start fresh, go to Settings → Clear Today's Data. This affects only the current
+              day.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESPONSE NOTE -->
+      <div class="response-note reveal">
+        <div class="response-note-icon">📬</div>
+        <div class="response-note-text">
+          <strong>It's just me and my coding agent here.</strong> Emails are read and answered personally. Typically
+          within 5 business days (Monday–Friday, GMT+8). We do not use automated support ticketing systems.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-logo"><span>鋅</span> STUDIO ZINC</div>
+      <div class="footer-links">
+        <a href="index.html">Urine Tracker</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="/apps/">All Apps</a>
+        <a href="/">Portfolio</a>
+      </div>
+      <div class="footer-copy">© 2026 Studio Zinc, a subsidiary of ClickCircuit LLC.</div>
+    </footer>
+
+  </div>
+
+  <script>
+    const curDot = document.getElementById('cur-dot');
+    const curRing = document.getElementById('cur-ring');
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+    curDot.style.top = '0px'; curDot.style.left = '0px';
+    curRing.style.top = '0px'; curRing.style.left = '0px';
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      curDot.style.transform = `translate3d(${mx}px,${my}px,0) translate(-50%,-50%)`;
+    });
+    (function ringLoop() {
+      rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
+      curRing.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;
+      requestAnimationFrame(ringLoop);
+    })();
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+      }, { threshold: 0.06 });
+      obs.observe(el);
+    });
+
+    function applyTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      try { localStorage.setItem('studiozinc-theme', t); } catch (e) { }
+    }
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+    try { const s = localStorage.getItem('studiozinc-theme'); if (s) applyTheme(s); } catch (e) { }
+  </script>
+</body>
+
+</html>

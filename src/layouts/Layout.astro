@@ -1,0 +1,71 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Studio Zinc: Taipei-based bilingual (English & Traditional Chinese) design studio." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-TW" data-theme="light" data-lang="zh">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preload"
+			href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+			as="style">
+		<link rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+			media="print" onload="this.media='all'">
+		<noscript>
+			<link rel="stylesheet"
+				href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap">
+		</noscript>
+	</head>
+	<body>
+		<slot />
+		<style is:global>
+			/* We will move the contents of style.css here eventually or import it */
+			@import "/style.css";
+		</style>
+		<script>
+			// Global Scripts (Theme/Lang Restore)
+			function applyLang(lang: string) {
+				document.documentElement.setAttribute('data-lang', lang);
+				document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-TW' : 'en');
+				document.querySelectorAll('[data-zh][data-en]').forEach((el: any) => {
+					el.innerHTML = el.getAttribute('data-' + lang);
+				});
+				try { localStorage.setItem('studiozinc-lang', lang); } catch (e) { }
+			}
+
+			function applyTheme(t: string) {
+				document.documentElement.setAttribute('data-theme', t);
+				try { localStorage.setItem('studiozinc-theme', t); } catch (e) { }
+			}
+
+			// Restore saved prefs
+			try { const s = localStorage.getItem('studiozinc-theme'); if (s) applyTheme(s); } catch (e) { }
+			try { const l = localStorage.getItem('studiozinc-lang'); if (l) applyLang(l); } catch (e) { }
+
+			// Scroll Reveal
+			document.querySelectorAll('.reveal').forEach(el => el.classList.add('will-animate'));
+			const revealObs = new IntersectionObserver(entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('in');
+						revealObs.unobserve(entry.target);
+					}
+				});
+			}, { root: null, threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+			document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+		</script>
+	</body>
+</html>

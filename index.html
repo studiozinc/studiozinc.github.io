@@ -57,14 +57,11 @@
 }
 </script>
 
-  <link rel="stylesheet" href="style.min.css">
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
-
-  <div id="cur-dot"></div>
-  <div id="cur-ring"></div>
 
   <!-- MOBILE DRAWER -->
   <div class="nav-drawer" id="drawer">
@@ -220,8 +217,9 @@
             </div>
             <div class="svc reveal"><span class="svc-n">03</span>
               <div class="svc-body"><span class="svc-name" data-zh="印刷與編輯" data-en="Print & Editorial">印刷與編輯</span><span
-                  class="svc-desc" data-zh="雜誌封面 · 海報 · 書籍" data-en="Print Design · Editorial Layout · Posters">雜誌封面 ·
-                  海報 · 書籍</span></div>
+                  class="svc-desc" data-zh="雜誌封面 · 海報 · 書籍 · 服裝印刷諮詢"
+                  data-en="Print Design · Editorial Layout · Posters · TShirt Printing">雜誌封面 ·
+                  海報 · 書籍 · 服裝印刷諮詢</span></div>
             </div>
             <div class="svc reveal"><span class="svc-n">04</span>
               <div class="svc-body"><span class="svc-name" data-zh="社群媒體視覺" data-en="Social Media">社群媒體視覺</span><span
@@ -230,8 +228,9 @@
                   · 模板 · 內容</span></div>
             </div>
             <div class="svc reveal"><span class="svc-n">05</span>
-              <div class="svc-body"><span class="svc-name" data-zh="包裝設計" data-en="Packaging">包裝設計</span><span
-                  class="svc-desc" data-zh="結構 · 刀模 · 成品" data-en="Structure · Dieline">結構 · 刀模 · 成品</span></div>
+              <div class="svc-body"><span class="svc-name" data-zh="行動應用開發"
+                  data-en="Mobile App Development">行動應用開發</span><span class="svc-desc" data-zh="介面設計 · 應用程式"
+                  data-en="UI/UX Design · App Development">介面設計 · 應用程式</span></div>
             </div>
             <div class="svc reveal"><span class="svc-n">06</span>
               <div class="svc-body"><span class="svc-name" data-zh="影片剪輯" data-en="Video Editing">影片剪輯</span><span
@@ -309,7 +308,14 @@
     /*
     // ── CONTACT ─────────────────────────────────────────────────────────────────
     //
-     // ────────────────────────────────────────────────────────────────────────────
+    #####  ###   ###  ##### ##### ####    #  
+    #     #   # #   #   #   #     #   #   #  
+    #     #   # #   #   #   #     #   #   #  
+    ####  #   # #   #   #   ####  ####    #  
+    #     #   # #   #   #   #     # #     #  
+    #     #   # #   #   #   #     #  #       
+    #      ###   ###    #   ##### #   #   #  
+    // ────────────────────────────────────────────────────────────────────────────
     */-->
     <section class="snap-section free" id="contact" style="position:relative;">
       <div class="footer-lava" aria-hidden="true">
@@ -335,8 +341,17 @@
         </div>
         <footer class="site-footer">
           <div class="footer-bar">
-            <span class="footer-logo">鋅 <span>STUDIO ZINC</span></span>
-            <span class="footer-copy" data-zh="© 2026 鋅工作室 (ClickCircuit LLC 子公司)" data-en="© 2026 Studio Zinc, a subsidiary of ClickCircuit LLC.">© 2026 鋅工作室 (ClickCircuit LLC 子公司)</span>
+            <span class="footer-copy" data-zh="© 2026 鋅工作室 (ClickCircuit LLC 子公司)"
+              data-en="© 2026 Studio Zinc, a subsidiary of ClickCircuit LLC.">© 2026 鋅工作室 (ClickCircuit LLC
+              子公司)</span>
+            <svg class="footer-logo" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid meet"
+              style="width: 100%; height: auto; display: block; overflow: visible;">
+              <text x="0" y="105" textLength="1000" lengthAdjust="spacing" font-size="130" font-weight="900"
+                fill="currentColor">
+                STUDIO <tspan fill="var(--cyan)">ZINC</tspan>
+              </text>
+            </svg>
+
           </div>
         </footer>
       </div>
@@ -351,30 +366,6 @@
   </div>
 
   <script>
-    // ── CURSOR & LAVA PARALLAX ──────────────────────────────
-    const curDot = document.getElementById('cur-dot');
-    const curRing = document.getElementById('cur-ring');
-    const lavaContainer = document.getElementById('heroLava');
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
-
-    curDot.style.top = '0px';
-    curDot.style.left = '0px';
-    curRing.style.top = '0px';
-    curRing.style.left = '0px';
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX;
-      my = e.clientY;
-      curDot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
-    });
-
-    (function ringLoop() {
-      rx += (mx - rx) * 0.1;
-      ry += (my - ry) * 0.1;
-      curRing.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
-
-      requestAnimationFrame(ringLoop);
-    })();
 
     // ── SCROLL REVEAL ───────────────────────
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('will-animate'));
@@ -650,11 +641,6 @@
         revealObs.observe(el);
       });
 
-      // wire cursor hover on new cards
-      document.querySelectorAll('.work-card').forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('h'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('h'));
-      });
     }
 
     // ── RUN ─────────────────────────────────

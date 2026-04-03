@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Apps by Studio Zinc | Privacy-First Mobile Apps">
+	<Navbar />
+
+	<div class="page-wrap">
+		<!-- HUB HERO -->
+		<section class="hub-hero">
+			<div class="grid-bg"></div>
+			<div class="lava-bg">
+				<div class="lava-1"></div>
+				<div class="lava-2"></div>
+			</div>
+			<div class="hub-hero-content">
+				<div class="hub-hero-eyebrow">Studio Zinc Apps</div>
+				<h1>Tools that<br>respect <em>your</em> data.</h1>
+				<p>Simple, focused mobile apps built with privacy as the foundation. No accounts required. No data harvested. Just useful tools from me to you.</p>
+			</div>
+			<div class="hub-hero-bottom">
+				<span class="badge-pill">Android</span>
+				<span>Available on Google Play</span>
+			</div>
+		</section>
+
+		<!-- MANIFESTO STRIP -->
+		<div class="manifesto-strip">
+			<div class="manifesto-quote">
+				I build apps I'd actually use myself.<br>
+				That means <em>no surveillance</em>, no upsells, <em>no dark patterns</em>.
+			</div>
+			<div class="manifesto-pillars">
+				<div class="manifesto-pill">No Account Required</div>
+				<div class="manifesto-pill">No Data Leaves Your Device</div>
+				<div class="manifesto-pill">Because I'm bad at making money.</div>
+			</div>
+		</div>
+
+		<!-- APPS GRID -->
+		<section class="apps-section">
+			<div class="apps-grid-label reveal">Apps — Available Now &amp; Coming Soon</div>
+			<div class="apps-grid">
+				<!-- Urine Tracker -->
+				<a href="/apps/urinetracker" class="app-card reveal">
+					<div class="app-card-thumb">
+						<div class="app-card-thumb-bg"></div>
+						<img class="app-icon" src="/apps/urinetracker/icon.png" alt="Urine Tracker app icon" onerror="this.style.display='none'">
+					</div>
+					<div class="app-card-body">
+						<div class="app-card-platform">Android · Health &amp; Fitness</div>
+						<div class="app-card-name">Urine Tracker </div>
+						<div class="app-card-desc">A calm, private voiding log. Can export data and perform simple analytics for you to show your urologist. It's Urine Nice.</div>
+						<div class="app-card-footer">
+							<div class="app-card-status">
+								<div class="status-dot"></div>
+								Launching Soon
+							</div>
+							<div class="app-card-arrow">→</div>
+						</div>
+					</div>
+				</a>
+
+				<!-- Placeholder — Coming Soon -->
+				<div class="app-card coming-soon reveal">
+					<div class="app-card-thumb">
+						<div class="app-card-thumb-bg"></div>
+					</div>
+					<div class="app-card-body">
+						<div class="app-card-platform">Android · Coming Soon</div>
+						<div class="app-card-name">Next App</div>
+						<div class="app-card-desc">Another focused, privacy-first tool in development. Details coming soon.</div>
+						<div class="app-card-footer">
+							<div class="app-card-status">
+								<div class="status-dot soon"></div>
+								In Development
+							</div>
+							<div class="app-card-arrow">→</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Footer />
+	</div>
+
+	<style>
+		@import "/apps.css";
+	</style>
+</Layout>
