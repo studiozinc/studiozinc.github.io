@@ -57,14 +57,11 @@ body {
   background: var(--bg);
   color: var(--fg);
   overflow-x: hidden;
-  cursor: none;
   transition: background .4s, color .4s;
   min-height: 100%;
 }
 
-@media (hover: none) {
-  body { cursor: auto; }
-}
+
 
 /* GRAIN */
 body::before {
@@ -79,41 +76,7 @@ body::before {
   transition: opacity .4s;
 }
 
-/* CURSOR */
-#cur-dot {
-  position: fixed;
-  z-index: 9999;
-  pointer-events: none;
-  width: 6px;
-  height: 6px;
-  background: var(--cyan);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width .15s, height .15s;
-}
 
-#cur-ring {
-  position: fixed;
-  z-index: 9998;
-  pointer-events: none;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(0, 229, 255, 0.4);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width .25s, height .25s, border-color .25s;
-}
-
-[data-theme="light"] #cur-ring {
-  border-color: rgba(0, 119, 170, 0.35);
-}
-
-body.h #cur-dot { width: 10px; height: 10px; }
-body.h #cur-ring {
-  width: 46px;
-  height: 46px;
-  border-color: var(--cyan);
-}
 
 /* NAV */
 nav {
