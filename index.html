@@ -1,86 +1,703 @@
 <!DOCTYPE html>
-<html lang="zh-TW" data-theme="light" data-lang="zh">
+<html lang="en" data-theme="dark" data-lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taipei Bilingual Designer 台北雙語設計師 | STUDIO ZINC</title>
+  <title>STUDIO ZINC</title>
   <meta name="description"
-    content="Studio Zinc: Taipei-based bilingual (English & Traditional Chinese) design studio. Get branding, graphics design, and web design without needing to hire an external translator. 位於台北的雙語設計師，提供中英雙語網站與品牌設計，為您省去外包翻譯溝通成本。">
+    content="STUDIO ZINC — a personal digital lab by a designer and engineer in Taipei. Apps, experiments, and things that are fun to build.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
-    as="style">
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
-    media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap">
-  </noscript>
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "STUDIO ZINC",
-  "description": "Taipei-based bilingual designer (English & Traditional Chinese). We specialize in branding, graphic design, and web development. Our unique value proposition: Clients get native bilingual design without needing to hire an external translator.",
-  "image": "https://studiozinc.com/path-to-logo.png",
-  "slogan": "Taipei designer that can do both languages without the client needing to hire an external translator.",
-  "knowsAbout": ["Bilingual Design", "Web Design", "Graphic Design", "Brand Identity", "Translation"],
-  "@id": "https://studiozinc.com",
-  "url": "https://studiozinc.com",
-  "telephone": "+886-0906112759",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Da'an District",
-    "addressLocality": "Taipei City",
-    "addressCountry": "TW"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 25.0330,
-    "longitude": 121.5434
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "09:00",
-    "closes": "19:00"
-  },
-  "knowsLanguage": ["Chinese", "English"],
-  "areaServed": ["Taiwan", "USA","Worldwide"],
-  "sameAs": [
-    "https://www.instagram.com/your-profile",
-    "https://www.linkedin.com/in/your-profile"
-  ]
-}
-</script>
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ═══════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════ */
+    [data-theme="dark"] {
+      --bg: #0a0a0a;
+      --bg2: #0f0f0f;
+      --surface: #141414;
+      --lift: #1a1a1a;
+      --border: rgba(255, 255, 255, 0.06);
+      --border2: rgba(255, 255, 255, 0.12);
+      --fg: #e8e8e8;
+      --fg2: #777;
+      --fg3: #555;
+      --accent: #00e5ff;
+      --accent-dim: rgba(0, 229, 255, 0.06);
+      --nav-bg: rgba(10, 10, 10, 0.92);
+    }
 
+    [data-theme="light"] {
+      --bg: #fafafa;
+      --bg2: #f2f2f2;
+      --surface: #eaeaea;
+      --lift: #e0e0e0;
+      --border: rgba(0, 0, 0, 0.06);
+      --border2: rgba(0, 0, 0, 0.12);
+      --fg: #111;
+      --fg2: #666;
+      --fg3: #999;
+      --accent: #0077aa;
+      --accent-dim: rgba(0, 119, 170, 0.06);
+      --nav-bg: rgba(250, 250, 250, 0.92);
+    }
+
+    /* ═══════════════════════════════════════
+       RESET
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+      transition: background .4s, color .4s;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ═══════════════════════════════════════
+       GRAIN OVERLAY
+    ═══════════════════════════════════════ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.018;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background .4s;
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .nav-logo .accent { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .tog {
+      background: transparent;
+      color: var(--fg2);
+      border: 1px solid var(--border2);
+      padding: .3rem .55rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .08em;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+      border-radius: 2px;
+    }
+    .tog:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* lang/theme toggle visibility */
+    #langBtn .l-zh { display: inline; }
+    #langBtn .l-en { display: none; }
+    [data-lang="en"] #langBtn .l-zh { display: none; }
+    [data-lang="en"] #langBtn .l-en { display: inline; }
+    #themeBtn .t-dark { display: inline; }
+    #themeBtn .t-light { display: none; }
+    [data-theme="light"] #themeBtn .t-dark { display: none; }
+    [data-theme="light"] #themeBtn .t-light { display: inline; }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .3rem;
+    }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 1.5px;
+      background: var(--fg);
+      transition: transform .3s, opacity .3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--fg2);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed; inset: 0; z-index: 99;
+      background: var(--bg);
+      flex-direction: column;
+      padding: 80px 2rem 3rem;
+      gap: 0;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: .02em;
+      color: var(--fg);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+      transition: color .2s;
+    }
+    .nav-drawer a:hover { color: var(--accent); }
+    .drawer-bottom {
+      margin-top: auto;
+      display: flex;
+      gap: .75rem;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle grid */
+    .hero-grid {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    [data-theme="light"] .hero-grid {
+      background-image:
+        linear-gradient(rgba(0,119,170,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,119,170,0.04) 1px, transparent 1px);
+    }
+
+    /* lava blobs */
+    .hero-lava {
+      position: absolute; inset: 0; z-index: 0;
+      pointer-events: none; overflow: hidden;
+    }
+    .hero-lava div {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      will-change: transform;
+    }
+    .hero-lava-1 {
+      width: 500px; height: 500px;
+      background: var(--accent);
+      top: -10%; left: -5%;
+      opacity: 0.12;
+      animation: drift1 20s ease-in-out infinite alternate;
+    }
+    .hero-lava-2 {
+      width: 400px; height: 400px;
+      background: #ff6b35;
+      bottom: -10%; right: -5%;
+      opacity: 0.08;
+      animation: drift2 25s ease-in-out infinite alternate;
+    }
+    .hero-lava-3 {
+      width: 300px; height: 300px;
+      background: #a855f7;
+      top: 40%; left: 50%;
+      opacity: 0.06;
+      animation: drift3 22s ease-in-out infinite alternate;
+    }
+    [data-theme="light"] .hero-lava-1 { opacity: 0.07; }
+    [data-theme="light"] .hero-lava-2 { opacity: 0.05; }
+    [data-theme="light"] .hero-lava-3 { opacity: 0.04; }
+
+    @keyframes drift1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30vw, 20vh) scale(1.2); }
+    }
+    @keyframes drift2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-25vw, -15vh) scale(1.1); }
+    }
+    @keyframes drift3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-20vw, 20vh) scale(0.8); }
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .hero-label::before {
+      content: '//';
+      opacity: .5;
+    }
+
+    .hero-headline {
+      font-family: 'Unbounded', 'Noto Sans TC', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      color: var(--fg);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(.9rem, 1.4vw, 1.05rem);
+      line-height: 1.7;
+      color: var(--fg2);
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    .hero-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--fg2);
+    }
+    .pulse {
+      width: 6px; height: 6px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, .4); }
+      50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION SHARED
+    ═══════════════════════════════════════ */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .section-label::before {
+      content: '//';
+      opacity: .4;
+    }
+
+    /* ═══════════════════════════════════════
+       WORK / THE LAB
+    ═══════════════════════════════════════ */
+    .work-section {
+      padding: 6rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .work-card {
+      background: var(--bg);
+      cursor: pointer;
+      overflow: hidden;
+      transition: background .2s;
+    }
+    .work-card:hover { background: var(--surface); }
+
+    .work-card-thumb {
+      aspect-ratio: 16/10;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--surface);
+      transition: transform .4s;
+    }
+    .work-card:hover .work-card-thumb {
+      transform: scale(1.02);
+    }
+
+    .work-card-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .work-card-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+
+    .work-card-name {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--fg);
+      line-height: 1.3;
+      transition: color .2s;
+    }
+    .work-card:hover .work-card-name { color: var(--accent); }
+
+    .work-card-sub {
+      font-size: .75rem;
+      color: var(--fg3);
+      margin-top: .25rem;
+    }
+
+    /* ═══════════════════════════════════════
+       ABOUT (minimal)
+    ═══════════════════════════════════════ */
+    .about-section {
+      padding: 6rem 2rem;
+      max-width: 680px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-text {
+      font-size: clamp(.95rem, 1.5vw, 1.1rem);
+      line-height: 1.8;
+      color: var(--fg2);
+      font-weight: 300;
+    }
+    .about-text strong {
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════ */
+    .contact-section {
+      padding: 6rem 2rem 3rem;
+      max-width: 680px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-headline {
+      font-family: 'Unbounded', 'Noto Sans TC', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      color: var(--fg);
+      margin-bottom: 1.5rem;
+      letter-spacing: -.02em;
+    }
+
+    .contact-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(.85rem, 1.8vw, 1.1rem);
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: .3rem;
+      display: inline-block;
+      transition: opacity .2s;
+    }
+    .contact-email:hover { opacity: .7; }
+
+    .contact-meta {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2.5rem;
+    }
+    .contact-meta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .3rem;
+    }
+    .contact-meta-val {
+      font-size: .8rem;
+      color: var(--fg2);
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .1em;
+      color: var(--fg3);
+    }
+    .footer-mark {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      color: var(--fg3);
+    }
+    .footer-mark span { color: var(--accent); }
+
+    /* ═══════════════════════════════════════
+       REVEAL
+    ═══════════════════════════════════════ */
+    .reveal { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+    .reveal.will-animate { opacity: 0; transform: translateY(16px); }
+    .reveal.will-animate.in { opacity: 1; transform: translateY(0); }
+
+    /* ═══════════════════════════════════════
+       MODAL
+    ═══════════════════════════════════════ */
+    .pj-overlay {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(8px);
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .pj-overlay.open { opacity: 1; pointer-events: all; }
+
+    .pj-modal {
+      position: fixed;
+      top: 50%; left: 50%;
+      z-index: 801;
+      transform: translate(-50%, -48%) scale(0.97);
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      width: min(720px, 92vw);
+      max-height: 88vh;
+      overflow-y: auto;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+    }
+    .pj-modal.open {
+      opacity: 1; pointer-events: all;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .pj-modal::-webkit-scrollbar { width: 3px; }
+    .pj-modal::-webkit-scrollbar-thumb { background: var(--border2); }
+
+    .pj-close {
+      position: sticky; top: 0; float: right;
+      z-index: 10;
+      width: 36px; height: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--fg2);
+      font-size: .9rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+      margin-bottom: -36px;
+    }
+    .pj-close:hover { background: var(--accent); color: var(--bg); }
+
+    .pj-hero {
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover; display: block;
+      background: var(--surface);
+    }
+    .pj-body { padding: 1.5rem 2rem 2rem; }
+    .pj-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .55rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: .5rem;
+    }
+    .pj-title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: var(--fg); letter-spacing: -.02em;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pj-scope-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .55rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: .5rem;
+    }
+    .pj-scope-text {
+      font-size: .85rem; line-height: 1.8;
+      color: var(--fg2); font-weight: 300;
+      margin-bottom: 1.5rem; max-width: 560px;
+    }
+    .pj-services {
+      display: flex; flex-wrap: wrap;
+      gap: .4rem; margin-bottom: 2rem;
+    }
+    .pj-svc-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .55rem; letter-spacing: .08em;
+      color: var(--fg2);
+      border: 1px solid var(--border2);
+      padding: .25rem .6rem;
+    }
+    .pj-imgs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px; background: var(--border);
+    }
+    .pj-img {
+      aspect-ratio: 4/3; object-fit: cover;
+      display: block; width: 100%;
+      background: var(--surface);
+    }
+    .pj-img-placeholder {
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .5rem; letter-spacing: .15em;
+      color: var(--fg3); text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex !important; }
+
+      .hero { min-height: 85vh; padding: 0 1.5rem; }
+      .hero-headline { font-size: clamp(2rem, 9vw, 3.2rem); }
+      .hero-bottom { padding: 1rem 1.5rem; }
+
+      .work-section { padding: 4rem 1.5rem 3rem; }
+      .work-grid { grid-template-columns: 1fr; }
+
+      .about-section, .contact-section { padding: 4rem 1.5rem; }
+
+      .contact-meta { flex-direction: column; gap: 1.5rem; }
+
+      footer { flex-direction: column; gap: .5rem; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-headline { font-size: clamp(1.8rem, 10vw, 2.5rem); }
+    }
+  </style>
 </head>
 
 <body>
 
   <!-- MOBILE DRAWER -->
   <div class="nav-drawer" id="drawer">
-    <a href="#work" data-zh="作品" data-en="Work" onclick="closeDrawer()">作品</a>
-    <a href="#about" data-zh="關於" data-en="About" onclick="closeDrawer()">關於</a>
-    <a href="#contact" data-zh="聯絡" data-en="Contact" onclick="closeDrawer()">聯絡</a>
+    <a href="#work" data-zh="作品" data-en="Work" onclick="closeDrawer()">Work</a>
+    <a href="#about" data-zh="關於" data-en="About" onclick="closeDrawer()">About</a>
+    <a href="#contact" data-zh="聯絡" data-en="Contact" onclick="closeDrawer()">Contact</a>
     <div class="drawer-bottom">
       <button class="tog" id="langBtn2"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
       <button class="tog" id="themeBtn2"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
-      <a href="#contact" class="btn-cta" onclick="closeDrawer()" data-zh="預約諮詢" data-en="Book Consultation">預約諮詢</a>
     </div>
   </div>
 
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">
-      <span class="nav-logo-accent">鋅</span> STUDIO ZINC
+      <span class="accent">鋅</span> studio zinc
     </a>
     <div class="nav-right">
+      <div class="nav-links">
+        <a href="#work" data-zh="作品" data-en="Work">Work</a>
+        <a href="#about" data-zh="關於" data-en="About">About</a>
+        <a href="#contact" data-zh="聯絡" data-en="Contact">Contact</a>
+      </div>
       <button class="tog" id="langBtn"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
       <button class="tog" id="themeBtn"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu">
@@ -89,276 +706,78 @@
     </div>
   </nav>
 
-  <div class="snap-container" id="snapContainer">
-
-    <!--
-  // ── HERO ──────────────────────────────────────────────────────────────────
-  //
-  //   ##     ## ######## ########   #######  
-  //   ##     ## ##       ##     ## ##     ## 
-  //   ##     ## ##       ##     ## ##     ## 
-  //   ######### ######   ########  ##     ## 
-  //   ##     ## ##       ##   ##   ##     ## 
-  //   ##     ## ##       ##    ##  ##     ## 
-  //   ##     ## ######## ##     ##  #######  
-  //
-  // ──────────────────────────────────────────────────────────────────────────
-*/ -->
-    <section class="snap-section hero" id="hero">
-      <div class="hero-grid"></div>
-      <div class="hero-lava" id="heroLava">
-        <div class="hero-lava-1"></div>
-        <div class="hero-lava-2"></div>
-        <div class="hero-lava-3"></div>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-lava">
+      <div class="hero-lava-1"></div>
+      <div class="hero-lava-2"></div>
+      <div class="hero-lava-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-label" data-zh="數位實驗室" data-en="Digital Lab">Digital Lab</div>
+      <h1 class="hero-headline" data-zh="設計、寫碼、<br>做有趣的東西。" data-en="Design, code,<br>build fun things.">Design, code,<br>build fun things.</h1>
+      <p class="hero-sub" data-zh="一個在台北的工程師兼設計師的個人數位工作台。專注於有道德的 App 開發和實驗性專案。"
+        data-en="A personal digital workbench by a designer & engineer in Taipei. Ethical apps, experiments, and things worth making.">
+        A personal digital workbench by a designer & engineer in Taipei. Ethical apps, experiments, and things worth making.
+      </p>
+    </div>
+    <div class="hero-bottom">
+      <div class="status-pill">
+        <div class="pulse"></div>
+        <span data-zh="開放合作" data-en="Open for collaboration">Open for collaboration</span>
       </div>
-      <div class="hero-content">
-        <!-- <div class="hero-eyebrow" data-zh="跨文化，全球視野" data-en="Cross Culture & Global Ready">跨文化，全球視野
-        </div> -->
-        <h1 class="hero-headline">
-          <span class="line" data-zh="讓你的品牌" data-en="Your brand,">讓你的品牌</span>
-          <span class="line" data-zh="說國際語言" data-en="global-ready.">說國際語言</span>
-        </h1>
-        <!--<div class="hero-swap-wrap">
-          <span class="hero-swap-label" data-zh="我能做：" data-en="I can do:">我能做：</span>
-          <span id="hero-lang-text"></span>
-        </div>
-        <p class="hero-sub" data-zh="15年設計經驗。幫你省下溝通成本，中英設計一手包辦。直接與設計師對接，沒有中間人。"
-          data-en="15 years of experience. I provide dual-language design (English & Traditional Chinese) directly. No agency overhead.">
-          15年設計經驗。幫你省下溝通成本，中英設計一手包辦。直接與設計師對接，沒有中間人。
-        </p> -->
-        <div class="hero-actions">
-          <a href="#work" class="btn-primary" data-zh="看作品 →" data-en="View Work →">看作品 →</a>
-        </div>
-      </div>
-      <div class="hero-bottom">
-        <div class="hero-stat">
-          <div class="hero-stat-num">15<span>+</span></div>
-          <div class="hero-stat-label" data-zh="年資歷" data-en="Years Experience">年資歷</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">50<span>+</span></div>
-          <div class="hero-stat-label" data-zh="成功專案" data-en="Projects Delivered">成功專案</div>
-        </div>
+    </div>
+  </section>
 
-        <div class="hero-avail">
-          <div class="pulse"></div>
-          <span data-zh="接受新案" data-en="Available for Projects">接受新案</span>
-        </div>
+  <!-- WORK -->
+  <section id="work">
+    <div class="work-section">
+      <div class="section-label reveal" data-zh="作品與實驗" data-en="Work & Experiments">Work & Experiments</div>
+      <div class="work-grid" id="workGrid">
+        <!-- injected by JS -->
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ── WORK ── -->
-    <section class="snap-section free" id="work">
-      <div class="work-section">
-        <div class="section-header reveal">
-          <div>
-            <!-- <div class="section-label" data-zh="精選作品" data-en="Selected Work">精選作品</div>-->
-            <h2 class="section-title" data-zh="精選作品" data-en="Selected Work">精選作品</h2>
-          </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-section">
+      <div class="section-label reveal" data-zh="關於" data-en="About">About</div>
+      <div class="about-text reveal"
+        data-zh="我是一個工程師出身的設計師，待在台北。先搞工程，後來開印刷店，最後走上設計這條路。我喜歡把東西從無到有做出來——不管是 App、品牌、還是網站。<br><br>現在主要做<strong>不偷你資料的 App</strong>，以及各種覺得好玩的專案。偶爾也接設計案。"
+        data-en="Engineer turned designer, based in Taipei. Started in engineering, ran a print shop, ended up in design. I like building things from scratch — apps, brands, websites, whatever.<br><br>Currently making <strong>apps that don't steal your data</strong>, and whatever else seems worth building. Open for design work too.">
+        Engineer turned designer, based in Taipei. Started in engineering, ran a print shop, ended up in design. I like building things from scratch — apps, brands, websites, whatever.<br><br>Currently making <strong>apps that don't steal your data</strong>, and whatever else seems worth building. Open for design work too.
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-section">
+      <div class="section-label reveal" data-zh="聯絡" data-en="Say Hello">Say Hello</div>
+      <h2 class="contact-headline reveal" data-zh="想合作？聊聊。" data-en="Want to collaborate?<br>Let's talk.">Want to collaborate?<br>Let's talk.</h2>
+      <a href="mailto:hello@studiozinc.com" class="contact-email reveal">hello@studiozinc.com</a>
+      <div class="contact-meta reveal">
+        <div>
+          <div class="contact-meta-label" data-zh="地點" data-en="Location">Location</div>
+          <div class="contact-meta-val">Taipei, Taiwan</div>
         </div>
-        <div class="work-grid" id="workGrid">
-          <!-- injected by JS -->
+        <div>
+          <div class="contact-meta-label" data-zh="時區" data-en="Timezone">Timezone</div>
+          <div class="contact-meta-val">GMT+8</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!--
-  // ── ABOUT SECTION COPY ──────────────────────────────────────────────────────
-  //
-  //      ###    ########   #######  ##     ## ######## 
-  //     ## ##   ##     ## ##     ## ##     ##    ##    
-  //    ##   ##  ##     ## ##     ## ##     ##    ##    
-  //   ##     ## ########  ##     ## ##     ##    ##    
-  //   ######### ##     ## ##     ## ##     ##    ##    
-  //   ##     ## ##     ## ##     ## ##     ##    ##    
-  //   ##     ## ########   #######   #######     ##    
-  //
-  //    ######  ########  ######  ######## ####  #######  ##    ## 
-  //   ##    ## ##       ##    ##    ##     ##  ##     ## ###   ## 
-  //   ##       ##       ##          ##     ##  ##     ## ####  ## 
-  //    ######  ######   ##          ##     ##  ##     ## ## ## ## 
-  //         ## ##       ##          ##     ##  ##     ## ##  #### 
-  //   ##    ## ##       ##    ##    ##     ##  ##     ## ##   ### 
-  //    ######  ########  ######     ##    ####  #######  ##    ## 
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy" data-zh="© 2026 Studio Zinc (ClickCircuit LLC)" data-en="© 2026 Studio Zinc (ClickCircuit LLC)">© 2026 Studio Zinc (ClickCircuit LLC)</span>
+    <span class="footer-mark">STUDIO <span>ZINC</span></span>
+  </footer>
 
-  -->
-
-
-    <section class="snap-section free" id="about">
-      <div class="about-section">
-        <div class="about-left">
-          <div class="svc-header reveal" data-zh="關於我" data-en="About Me">關於我</div>
-          <div class="about-quote reveal" data-zh="工程師出身，印刷起家。<strong>我用解決問題的腦袋做設計，用做過生產的雙手交付作品。</strong>"
-            data-en="Engineer turned designer. <strong>I bring a problem-solver's mind and a maker's hands to every project.</strong>">
-            工程師出身，印刷起家。<strong>我用解決問題的腦袋做設計，用做過生產的雙手交付作品。</strong>
-          </div>
-          <p class="about-p reveal"
-            data-zh="我的設計之路不是從美術系開始的——而是從一間印刷工作室。在那之前，我是一名工程師。正是這段經歷讓我理解：好的設計不只是好看，它要能落地、能印刷、能在螢幕上跑、能幫客戶解決真正的問題。十五年來，我服務過跨國企業、本地小店、新創公司和非營利組織。無論規模大小，每個案子我都當成自己的事來做。"
-            data-en="I didn't start in design school — I started in engineering. Then I ran a print shop, where I learned that great design means nothing if it can't be produced, delivered, and put to work. That hands-on foundation shaped everything I do today. Over fifteen years, I've worked with Fortune 500 companies, local businesses, startups, and nonprofits. Big or small, every project gets the same level of care — because your brand is your livelihood, and I don't take that lightly.">
-            我的設計之路不是從美術系開始的——而是從一間印刷工作室。在那之前，我是一名工程師。正是這段經歷讓我理解：好的設計不只是好看，它要能落地、能印刷、能在螢幕上跑、能幫客戶解決真正的問題。十五年來，我服務過跨國企業、本地小店、新創公司和非營利組織。無論規模大小，每個案子我都當成自己的事來做。
-          </p>
-          <div class="about-closing reveal" data-zh="你不只是在找一個設計師——你在找一個真正在乎成果的人。"
-            data-en="You're not just hiring a designer — you're getting someone who genuinely cares how it turns out.">
-            你不只是在找一個設計師——你在找一個真正在乎成果的人。
-          </div>
-        </div>
-        <div class="about-right">
-          <div class="svc-header reveal" data-zh="服務項目" data-en="Services">服務項目</div>
-          <div class="svc-list">
-            <div class="svc reveal"><span class="svc-n">01</span>
-              <div class="svc-body"><span class="svc-name" data-zh="品牌識別" data-en="Brand Identity">品牌識別</span><span
-                  class="svc-desc" data-zh="標誌 · 視覺系統" data-en="Logo Design · Visual Identity System">標誌 · 視覺系統</span>
-              </div>
-            </div>
-            <div class="svc reveal"><span class="svc-n">02</span>
-              <div class="svc-body"><span class="svc-name" data-zh="網站設計" data-en="Web Design">網站設計</span><span
-                  class="svc-desc" data-zh="設計 · 建置 · 維護" data-en="Web Design · Front-end Build · Ongoing Updates">設計 ·
-                  建置 · 維護</span></div>
-            </div>
-            <div class="svc reveal"><span class="svc-n">03</span>
-              <div class="svc-body"><span class="svc-name" data-zh="印刷與編輯" data-en="Print & Editorial">印刷與編輯</span><span
-                  class="svc-desc" data-zh="雜誌封面 · 海報 · 書籍 · 服裝印刷諮詢"
-                  data-en="Print Design · Editorial Layout · Posters · TShirt Printing">雜誌封面 ·
-                  海報 · 書籍 · 服裝印刷諮詢</span></div>
-            </div>
-            <div class="svc reveal"><span class="svc-n">04</span>
-              <div class="svc-body"><span class="svc-name" data-zh="社群媒體視覺" data-en="Social Media">社群媒體視覺</span><span
-                  class="svc-desc" data-zh="圖像 · 模板 · 內容"
-                  data-en="Social Graphics · Template Systems · Content Layout">圖像
-                  · 模板 · 內容</span></div>
-            </div>
-            <div class="svc reveal"><span class="svc-n">05</span>
-              <div class="svc-body"><span class="svc-name" data-zh="行動應用開發"
-                  data-en="Mobile App Development">行動應用開發</span><span class="svc-desc" data-zh="介面設計 · 應用程式"
-                  data-en="UI/UX Design · App Development">介面設計 · 應用程式</span></div>
-            </div>
-            <div class="svc reveal"><span class="svc-n">06</span>
-              <div class="svc-body"><span class="svc-name" data-zh="影片剪輯" data-en="Video Editing">影片剪輯</span><span
-                  class="svc-desc" data-zh="品牌影片 · 剪輯" data-en="Brand Film · Edit">品牌影片 · 剪輯</span></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="faq-section">
-        <div class="faq-inner">
-          <div class="svc-header reveal" data-zh="常見問題" data-en="FAQ">常見問題</div>
-          <div class="faq-list">
-            <details class="faq-item reveal">
-              <summary class="faq-summary" data-zh="你提供英文溝通與中英雙語交付嗎？"
-                data-en="Do you offer English communication and bilingual deliverables?">你提供英文溝通與中英雙語交付嗎？</summary>
-              <p class="about-p faq-answer" data-zh="可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。"
-                data-en="Yes. I offer English meetings and written communication, and can deliver bilingual assets when needed — brand guidelines, deck templates, social kits, print specs.">
-                可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。</p>
-            </details>
-            <details class="faq-item reveal">
-              <summary class="faq-summary" data-zh="你主要承接哪些類型的設計？（平面設計有做嗎？）"
-                data-en="What do you specialize in? Do you do graphic design?">你主要承接哪些類型的設計？（平面設計有做嗎？）</summary>
-              <p class="about-p faq-answer" data-zh="核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。"
-                data-en="Core is brand identity and graphic design — key visuals, posters, editorial layout, campaign assets, social graphics. Web design and front-end build are also part of the offering, so the brand lands consistently online.">
-                核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。</p>
-            </details>
-            <details class="faq-item reveal">
-              <summary class="faq-summary" data-zh="專案流程怎麼走？" data-en="What's your process?">專案流程怎麼走？</summary>
-              <p class="about-p faq-answer"
-                data-zh="通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。里程碑與修改回合數會在開始前寫清楚。"
-                data-en="Kickoff → direction → iterations → final handoff with production-ready specs. Milestones and revision rounds are defined upfront.">
-                通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。里程碑與修改回合數會在開始前寫清楚。</p>
-            </details>
-            <details class="faq-item reveal">
-              <summary class="faq-summary" data-zh="時程通常多久？" data-en="What's a typical timeline?">時程通常多久？</summary>
-              <p class="about-p faq-answer"
-                data-zh="依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。有明確截止日期的話，可以一起倒推排程。"
-                data-en="Depends on scope. Single assets: 3–10 days. Brand identity: 2–6 weeks. Web design and build: 3–8 weeks. If you have a hard deadline, we work backwards from it.">
-                依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。有明確截止日期的話，可以一起倒推排程。</p>
-            </details>
-            <details class="faq-item reveal">
-              <summary class="faq-summary" data-zh="我該怎麼開始？" data-en="How do we start?">我該怎麼開始？</summary>
-              <p class="about-p faq-answer"
-                data-zh="寄信到 hello@studiozinc.com，簡單說明品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。"
-                data-en="Email hello@studiozinc.com with a quick brief — what you're building, your audience, deliverables needed, timeline, and budget range if possible. I'll reply with a few clarifying questions and a suggested approach.">
-                寄信到 hello@studiozinc.com，簡單說明品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。</p>
-            </details>
-            <details class="faq-item reveal">
-              <summary class="faq-summary" data-zh="你的作品有用到 AI 嗎？" data-en="Do you use AI in your work?">你的作品有用到 AI 嗎？
-              </summary>
-              <p class="about-p faq-answer"
-                data-zh="有，而且不迴避這件事。AI 用於輔助發想、研究，以及部分素材生成——讓時間花在真正需要設計判斷的地方。AI 素材的使用對客戶是透明的，不會用來虛報成果或誤導呈現。善用工具省下的時間，最終還是回饋到設計品質上。"
-                data-en="Yes, and I'm straightforward about it. AI assists with ideation, research, and certain asset generation — so time goes toward work that actually requires design judgment. Any AI-generated elements are disclosed to clients. It's not used to misrepresent deliverables. The time saved goes back into the work.">
-                有，而且不迴避這件事。AI 用於輔助發想、研究，以及部分素材生成——讓時間花在真正需要設計判斷的地方。AI 素材的使用對客戶是透明的，不會用來虛報成果或誤導呈現。善用工具省下的時間，最終還是回饋到設計品質上。
-              </p>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ── CLIENTS ── -->
-    <section id="clients">
-      <div class="clients-inner">
-        <div class="svc-header reveal" data-zh="客戶與合作夥伴" data-en="Clients & Collaborators">客戶與合作夥伴</div>
-        <div class="cli-grid reveal">
-          <img class="cli-logo-img" src="images/p_Bloomingdales_Logo.svg" alt="Bloomingdale's">
-          <img class="cli-logo-img" src="images/p_Booz_Allen_Hamilton_logo.svg" alt="Booz Allen Hamilton">
-          <img class="cli-logo-img" src="images/p_mcps_horiz_black.png" alt="MCPS">
-
-        </div>
-      </div>
-    </section>
-    <!-- 
-    /*
-    // ── CONTACT ─────────────────────────────────────────────────────────────────
-    //
-    #####  ###   ###  ##### ##### ####    #  
-    #     #   # #   #   #   #     #   #   #  
-    #     #   # #   #   #   #     #   #   #  
-    ####  #   # #   #   #   ####  ####    #  
-    #     #   # #   #   #   #     # #     #  
-    #     #   # #   #   #   #     #  #       
-    #      ###   ###    #   ##### #   #   #  
-    // ────────────────────────────────────────────────────────────────────────────
-    */-->
-    <section class="snap-section free" id="contact" style="position:relative;">
-      <div class="footer-lava" aria-hidden="true">
-        <div class="footer-lava-1"></div>
-        <div class="footer-lava-2"></div>
-      </div>
-      <div class="contact-section" style="position:relative; z-index:1; grid-template-columns: 1fr;">
-        <div class="contact-left" style="border-right: none;">
-          <h2 class="contact-headline reveal" data-zh="讓我們一起規劃你的下一個專案。"
-            data-en="Let's plan your next project together.">讓我們一起規劃你的下一個專案。</h2>
-          <a href="mailto:hello@studiozinc.com" class="contact-email-display reveal"
-            style="margin-bottom: 2.5rem;">hello@studiozinc.com</a>
-          <div class="contact-info reveal">
-            <div>
-              <div class="ci-label" data-zh="地點" data-en="Location">地點</div>
-              <div class="ci-val">大安區，台北<br>Taipei, Taiwan</div>
-            </div>
-            <div>
-              <div class="ci-label" data-zh="時區" data-en="Time Zone">時區</div>
-              <div class="ci-val">GMT+8 CST</div>
-            </div>
-          </div>
-        </div>
-        <footer class="site-footer">
-          <div class="footer-bar">
-            <span class="footer-copy" data-zh="© 2026 鋅工作室 (ClickCircuit LLC 子公司)"
-              data-en="© 2026 Studio Zinc, a subsidiary of ClickCircuit LLC.">© 2026 鋅工作室 (ClickCircuit LLC
-              子公司)</span>
-            <svg class="footer-logo" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid meet"
-              style="width: 100%; height: auto; display: block; overflow: visible;">
-              <text x="0" y="105" textLength="1000" lengthAdjust="spacing" font-size="130" font-weight="900"
-                fill="currentColor">
-                STUDIO <tspan fill="var(--cyan)">ZINC</tspan>
-              </text>
-            </svg>
-
-          </div>
-        </footer>
-      </div>
-    </section>
-
-  </div><!-- end snap-container -->
-
+  <!-- MODAL -->
   <div class="pj-overlay" id="pjOverlay"></div>
   <div class="pj-modal" id="pjModal" role="dialog" aria-modal="true">
     <button class="pj-close" id="pjClose" aria-label="Close">✕</button>
@@ -366,7 +785,6 @@
   </div>
 
   <script>
-
     // ── SCROLL REVEAL ───────────────────────
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('will-animate'));
     const revealObs = new IntersectionObserver(entries => {
@@ -376,16 +794,14 @@
           revealObs.unobserve(entry.target);
         }
       });
-    }, { root: null, threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
     // ── LANGUAGE TOGGLE ─────────────────────
     function applyLang(lang) {
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-TW' : 'en');
-      document.title = lang === 'zh'
-        ? '台北平面設計／品牌/網站設計｜中英雙語設計工作室 | 鋅工作室'
-        : 'Taipei Graphic & Brand & Web Designer | STUDIO ZINC';
+      document.title = lang === 'zh' ? 'STUDIO ZINC | 數位實驗室' : 'STUDIO ZINC';
       document.querySelectorAll('[data-zh][data-en]').forEach(el => {
         el.innerHTML = el.getAttribute('data-' + lang);
       });
@@ -431,123 +847,96 @@
       });
     }
 
-    /*
-      // ── PROJECT DATA ALRIGHTTT ──────────────────────────────────────────────────
-      //
-      //   ########  ########   #######        ## ########  ######  ######## 
-      //   ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
-      //   ##     ## ##     ## ##     ##       ## ##       ##          ##    
-      //   ########  ########  ##     ##       ## ######   ##          ##    
-      //   ##        ##   ##   ##     ## ##    ## ##       ##          ##    
-      //   ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
-      //   ##        ##     ##  #######   ######  ########  ######     ##    
-      //
-      //   ########     ###    ########    ###             
-      //   ##     ##   ## ##      ##      ## ##            
-      //   ##     ##  ##   ##     ##     ##   ##           
-      //   ##     ## ##     ##    ##    ##     ##          
-      //   ##     ## #########    ##    #########          
-      //   ##     ## ##     ##    ##    ##     ##          
-      //   ##     ## ##     ##    ##    ##     ##          
-      //
-      //      ###    ##       ########  ####  ######   ##     ## ######## ######## ######## 
-      //     ## ##   ##       ##     ##  ##  ##    ##  ##     ##    ##       ##       ##    
-      //    ##   ##  ##       ##     ##  ##  ##        ##     ##    ##       ##       ##    
-      //   ##     ## ##       ########   ##  ##   #### ##########    ##       ##       ##    
-      //   ######### ##       ##   ##    ##  ##    ##  ##     ##    ##       ##       ##    
-      //   ##     ## ##       ##    ##   ##  ##    ##  ##     ##    ##       ##       ##    
-      //   ##     ## ######## ##     ## ####  ######   ##     ##    ##       ##       ##    
-      //
-      // ────────────────────────────────────────────────────────────────────────────
-    */
+    // ── PROJECT DATA ────────────────────────
     const PROJECT_DATA = [
       {
         id: 'pj01',
-        type_zh: '網站設計 + 品牌識別', type_en: 'Web Design + Brand Identity',
+        type_zh: '網站 + 品牌', type_en: 'Web + Brand',
         title_zh: '大將開發',
-        title_en: 'Tajiang Re-Branding and Website Design',
+        title_en: 'Tajiang Rebrand & Website',
         client_zh: '', client_en: '',
-        scope_zh: '為一個高端住宅開發的房地產公司重新設計品牌與網站。',
-        scope_en: 'Tajiang is a real estate development company specializing in upscale residential properties in Taipei. The company is publicly listed on the Taiwan Stock Exchange. The logo design draws from the company\'s history as a textile manufacturer, featuring a building rendered with a distinctive woven texture. The newly developed website is faster, more secure, and mobile-friendly.',
+        scope_zh: '為高端住宅開發公司重新設計品牌與網站。',
+        scope_en: 'Rebrand and website redesign for a publicly listed real estate developer in Taipei. Logo references their textile manufacturing heritage. New site is faster, secure, and mobile-first.',
         services_zh: ['網站設計', '標誌設計', '視覺系統'],
-        services_en: ['Web Design and Development', 'Logo Design', 'Visual System'],
-        hero: 'images/pj_1.webp', hero_char: '',
+        services_en: ['Web Dev', 'Logo', 'Visual System'],
+        hero: 'images/pj_1.webp',
         imgs: ['images/pj_1_1.webp', 'images/pj_1_2.webp', 'images/pj_1_3.webp']
       },
       {
         id: 'pj02',
-        type_zh: '網站設計 + 品牌識別', type_en: 'Web Design + Brand Identity',
+        type_zh: '網站 + 品牌', type_en: 'Web + Brand',
         title_zh: 'ZERO/DAY/SHIRTS',
         title_en: 'ZERO/DAY/SHIRTS',
         client_zh: '', client_en: '',
-        scope_zh: '為一個關注社會議題的服裝品牌設計網站與品牌識別。',
-        scope_en: 'Designed a shopify website and brand identity for a socially conscious clothing brand. Adviced on screen printing and packaging.',
-        services_zh: ['網站設計', '品牌識別', '平面設計', '印刷監製'],
-        services_en: ['Web Design', 'Brand Identity', 'Graphic Design', 'Print Production'],
-        hero: 'images/pj_2.webp', hero_char: '',
+        scope_zh: '為社會議題服裝品牌設計網站與品牌識別。',
+        scope_en: 'Shopify site and brand identity for a socially conscious clothing brand. Advised on screen printing and packaging.',
+        services_zh: ['網站', '品牌', '印刷'],
+        services_en: ['Web', 'Brand', 'Print'],
+        hero: 'images/pj_2.webp',
         imgs: ['images/pj_2_1.webp', 'images/pj_2_2.webp', 'images/pj_2_3.webp']
       },
       {
         id: 'pj03',
-        type_zh: '網站設計 + 平面設計', type_en: 'Web Design + Graphic Design',
-        title_zh: '加密貨幣與 NFT 網站',
-        title_en: 'Cryptocurrency and NFT Website',
+        type_zh: '網站 + 設計', type_en: 'Web + Design',
+        title_zh: '加密貨幣 & NFT 網站',
+        title_en: 'Crypto & NFT Website',
         client_zh: '', client_en: '',
-        scope_zh: '為一個加密貨幣與 NFT 項目設計網站與插畫。',
-        scope_en: 'Designed a website and illustrations for a cryptocurrency and NFT project.',
-        services_zh: ['網站設計', '前端開發', '平面設計'],
-        services_en: ['Web Design', 'Front-end Development', 'Graphic Design'],
-        hero: 'images/pj_3.webp', hero_char: '',
+        scope_zh: '加密貨幣與 NFT 項目的網站與插畫設計。',
+        scope_en: 'Website and illustrations for a cryptocurrency and NFT project.',
+        services_zh: ['網站', '前端', '設計'],
+        services_en: ['Web', 'Front-end', 'Design'],
+        hero: 'images/pj_3.webp',
         imgs: ['images/pj_3_1.webp', 'images/pj_3_2.webp', 'images/pj_3_3.webp']
       },
       {
         id: 'pj04',
-        type_zh: '平面設計 + 銷售', type_en: 'Graphic Design + Merchandising',
-        title_zh: 'NPO 教育推廣計畫',
-        title_en: 'NPO Educational Project',
+        type_zh: '設計 + 商品', type_en: 'Design + Merch',
+        title_zh: 'NPO 教育專案',
+        title_en: 'NPO Education Project',
         client_zh: '', client_en: '',
-        scope_zh: '為推廣化學教育，我們為 NPO 設計並印製了一系列文宣品與商品。',
-        scope_en: 'To promote Chemistry education, we designed and printed a series of promotional materials and merchandise for an NPO.',
-        services_zh: ['平面設計', '商品設計', '印刷監製'],
-        services_en: ['Graphic Design', 'Merchandise Design', 'Print Production'],
-        hero: 'images/pj_4.webp', hero_char: '',
+        scope_zh: '為化學教育 NPO 設計文宣與商品。',
+        scope_en: 'Promotional materials and merchandise design for a chemistry education NPO.',
+        services_zh: ['設計', '商品', '印刷'],
+        services_en: ['Design', 'Merch', 'Print'],
+        hero: 'images/pj_4.webp',
         imgs: ['images/pj_4_1.webp', 'images/pj_4_2.webp', 'images/pj_4_3.webp']
       },
       {
         id: 'pj05',
-        type_zh: '平面設計', type_en: 'Graphic Design',
-        title: '封面和海報設計',
-        client_zh: 'Freelance Clients', client_en: 'Various Clients',
-        scope_zh: '',
-        scope_en: 'Designed covers and posters for various clients. Including book covers, social media content, and event posters.',
-        services_zh: ['平面設計', '海報設計', '封面設計'],
-        services_en: ['Graphic Design', 'Poster Design', 'Cover Design'],
-        hero: 'images/pj_5.webp', hero_char: '',
-        imgs: ['', '', '']
+        type_zh: '設計', type_en: 'Design',
+        title_zh: '封面 & 海報',
+        title_en: 'Covers & Posters',
+        client_zh: '', client_en: '',
+        scope_zh: '書籍封面、社群內容、活動海報。',
+        scope_en: 'Book covers, social media content, and event posters for various clients.',
+        services_zh: ['設計', '海報', '封面'],
+        services_en: ['Design', 'Posters', 'Covers'],
+        hero: 'images/pj_5.webp',
+        imgs: []
       },
       {
         id: 'pj06',
-        type_zh: 'App 開發', type_en: 'App Development',
-        title: 'App 開發',
-        client_zh: 'Freelance Clients', client_en: 'Various Clients',
-        scope_zh: '為客戶設計移動應用程序，注重用戶體驗。',
-        scope_en: 'Designed mobie applications with user experience in mind.',
-        services_zh: ['App 開發', 'UX/UI 設計', 'Logo 設計'],
-        services_en: ['App Development', 'UX/UI Design', 'Logo Design'],
-        hero: 'images/pj_6.webp', hero_char: '',
-        imgs: ['', '', '']
+        type_zh: 'App 開發', type_en: 'App Dev',
+        title_zh: 'App 專案',
+        title_en: 'App Projects',
+        client_zh: '', client_en: '',
+        scope_zh: '注重隱私與用戶體驗的行動應用開發。',
+        scope_en: 'Privacy-first mobile apps built with user experience in mind.',
+        services_zh: ['App', 'UX/UI', 'Logo'],
+        services_en: ['App Dev', 'UX/UI', 'Logo'],
+        hero: 'images/pj_6.webp',
+        imgs: []
       }
-
     ];
 
-    // ── MODAL ENGINE ────────────────────────
+    // ── MODAL ────────────────────────────
     const overlay = document.getElementById('pjOverlay');
     const modal = document.getElementById('pjModal');
     const closeBtn = document.getElementById('pjClose');
-    const content = document.getElementById('pjContent');
+    const pjContent = document.getElementById('pjContent');
 
     function getLang() {
-      return document.documentElement.getAttribute('data-lang') || 'zh';
+      return document.documentElement.getAttribute('data-lang') || 'en';
     }
 
     function openProject(index) {
@@ -555,28 +944,25 @@
       const lng = getLang();
 
       const heroHTML = p.hero
-        ? `<img class="pj-hero" src="${p.hero}" alt="${p.title_zh}" loading="lazy">`
-        : `<div class="pj-hero-placeholder">${p.hero_char}</div>`;
+        ? `<img class="pj-hero" src="${p.hero}" alt="${lng === 'zh' ? p.title_zh : p.title_en}" loading="lazy">`
+        : '';
 
       const tags = (lng === 'zh' ? p.services_zh : p.services_en)
         .map(s => `<span class="pj-svc-tag">${s}</span>`).join('');
 
-      const detailImgs = p.imgs.map((src, i) =>
-        src
-          ? `<img class="pj-img" src="${src}" alt="${p.title_zh} detail ${i + 1}" loading="lazy">`
-          : `<div class="pj-img-placeholder">IMAGE ${i + 1}</div>`
+      const detailImgs = (p.imgs || []).filter(Boolean).map((src, i) =>
+        `<img class="pj-img" src="${src}" alt="detail ${i + 1}" loading="lazy">`
       ).join('');
 
-      content.innerHTML = `
+      pjContent.innerHTML = `
         ${heroHTML}
         <div class="pj-body">
           <div class="pj-type">${lng === 'zh' ? p.type_zh : p.type_en}</div>
           <div class="pj-title">${lng === 'zh' ? p.title_zh : p.title_en}</div>
-          <div class="pj-meta">${lng === 'zh' ? p.client_zh : p.client_en}</div>
-          <div class="pj-scope-label">${lng === 'zh' ? '專案簡介' : 'Project Brief'}</div>
+          <div class="pj-scope-label">${lng === 'zh' ? '簡介' : 'Brief'}</div>
           <p class="pj-scope-text">${lng === 'zh' ? p.scope_zh : p.scope_en}</p>
           <div class="pj-services">${tags}</div>
-          <div class="pj-imgs">${detailImgs}</div>
+          ${detailImgs ? `<div class="pj-imgs">${detailImgs}</div>` : ''}
         </div>
       `;
 
@@ -597,37 +983,24 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
     // ── RENDER CARDS ────────────────────────
-    // Builds each row card from PROJECT_DATA.
-    // Structure: [thumbnail left] [text right]
-    // On mobile: stacks vertically.
     function renderCards() {
       const grid = document.getElementById('workGrid');
       const lng = getLang();
       PROJECT_DATA.forEach((p, i) => {
         const card = document.createElement('div');
         card.className = 'work-card reveal';
-        card.setAttribute('data-pj', i);
 
-        // thumbnail background
-        const thumbStyle = p.hero
-          ? `background-image: url('${p.hero}');`
-          : '';
+        const thumbStyle = p.hero ? `background-image: url('${p.hero}');` : '';
 
         card.innerHTML = `
-          <div class="work-card-thumb" style="${thumbStyle}">
-            <div class="work-card-vis">${p.hero_char}</div>
-          </div>
+          <div class="work-card-thumb" style="${thumbStyle}"></div>
           <div class="work-card-body">
-     <div class="work-card-type"
-       data-zh="${p.type_zh}"
-       data-en="${p.type_en}">${lng === 'zh' ? p.type_zh : p.type_en}</div>
-  <div class="work-card-name"
-       data-zh="${p.title_zh}"
-       data-en="${p.title_en}">${lng === 'zh' ? p.title_zh : p.title_en}</div>
-  <div class="work-card-sub"
-       data-zh="${p.client_zh}"
-       data-en="${p.client_en}">${lng === 'zh' ? p.client_zh : p.client_en}</div>
-            <div class="work-card-arrow">→</div>
+            <div class="work-card-type"
+              data-zh="${p.type_zh}"
+              data-en="${p.type_en}">${lng === 'zh' ? p.type_zh : p.type_en}</div>
+            <div class="work-card-name"
+              data-zh="${p.title_zh}"
+              data-en="${p.title_en}">${lng === 'zh' ? p.title_zh : p.title_en}</div>
           </div>
         `;
 
@@ -635,17 +1008,13 @@
         grid.appendChild(card);
       });
 
-      // wire reveal on new cards
       document.querySelectorAll('.work-card.reveal').forEach(el => {
         el.classList.add('will-animate');
         revealObs.observe(el);
       });
-
     }
 
-    // ── RUN ─────────────────────────────────
     renderCards();
-
   </script>
 
 </body>

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="light" data-lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taipei Bilingual Designer 台北雙語設計師 | STUDIO ZINC</title>
+  <meta name="description"
+    content="Studio Zinc: Taipei-based bilingual (English & Traditional Chinese) design studio. Get branding, graphics design, and web design without needing to hire an external translator. 位於台北的雙語設計師，提供中英雙語網站與品牌設計，為您省去外包翻譯溝通成本。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+    as="style">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Outfit:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap">
+  </noscript>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "STUDIO ZINC",
+  "description": "Taipei-based bilingual designer (English & Traditional Chinese). We specialize in branding, graphic design, and web development. Our unique value proposition: Clients get native bilingual design without needing to hire an external translator.",
+  "image": "https://studiozinc.com/path-to-logo.png",
+  "slogan": "Taipei designer that can do both languages without the client needing to hire an external translator.",
+  "knowsAbout": ["Bilingual Design", "Web Design", "Graphic Design", "Brand Identity", "Translation"],
+  "@id": "https://studiozinc.com",
+  "url": "https://studiozinc.com",
+  "telephone": "+886-0906112759",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Da'an District",
+    "addressLocality": "Taipei City",
+    "addressCountry": "TW"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 25.0330,
+    "longitude": 121.5434
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "19:00"
+  },
+  "knowsLanguage": ["Chinese", "English"],
+  "areaServed": ["Taiwan", "USA","Worldwide"],
+  "sameAs": [
+    "https://www.instagram.com/your-profile",
+    "https://www.linkedin.com/in/your-profile"
+  ]
+}
+</script>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-drawer" id="drawer">
+    <a href="#work" data-zh="作品" data-en="Work" onclick="closeDrawer()">作品</a>
+    <a href="#about" data-zh="關於" data-en="About" onclick="closeDrawer()">關於</a>
+    <a href="#contact" data-zh="聯絡" data-en="Contact" onclick="closeDrawer()">聯絡</a>
+    <div class="drawer-bottom">
+      <button class="tog" id="langBtn2"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
+      <button class="tog" id="themeBtn2"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
+      <a href="#contact" class="btn-cta" onclick="closeDrawer()" data-zh="預約諮詢" data-en="Book Consultation">預約諮詢</a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-accent">鋅</span> STUDIO ZINC
+    </a>
+    <div class="nav-right">
+      <button class="tog" id="langBtn"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
+      <button class="tog" id="themeBtn"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="snap-container" id="snapContainer">
+
+    <!--
+  // ── HERO ──────────────────────────────────────────────────────────────────
+  //
+  //   ##     ## ######## ########   #######  
+  //   ##     ## ##       ##     ## ##     ## 
+  //   ##     ## ##       ##     ## ##     ## 
+  //   ######### ######   ########  ##     ## 
+  //   ##     ## ##       ##   ##   ##     ## 
+  //   ##     ## ##       ##    ##  ##     ## 
+  //   ##     ## ######## ##     ##  #######  
+  //
+  // ──────────────────────────────────────────────────────────────────────────
+*/ -->
+    <section class="snap-section hero" id="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-lava" id="heroLava">
+        <div class="hero-lava-1"></div>
+        <div class="hero-lava-2"></div>
+        <div class="hero-lava-3"></div>
+      </div>
+      <div class="hero-content">
+        <!-- <div class="hero-eyebrow" data-zh="跨文化，全球視野" data-en="Cross Culture & Global Ready">跨文化，全球視野
+        </div> -->
+        <h1 class="hero-headline">
+          <span class="line" data-zh="讓你的品牌" data-en="Your brand,">讓你的品牌</span>
+          <span class="line" data-zh="說國際語言" data-en="global-ready.">說國際語言</span>
+        </h1>
+        <!--<div class="hero-swap-wrap">
+          <span class="hero-swap-label" data-zh="我能做：" data-en="I can do:">我能做：</span>
+          <span id="hero-lang-text"></span>
+        </div>
+        <p class="hero-sub" data-zh="15年設計經驗。幫你省下溝通成本，中英設計一手包辦。直接與設計師對接，沒有中間人。"
+          data-en="15 years of experience. I provide dual-language design (English & Traditional Chinese) directly. No agency overhead.">
+          15年設計經驗。幫你省下溝通成本，中英設計一手包辦。直接與設計師對接，沒有中間人。
+        </p> -->
+        <div class="hero-actions">
+          <a href="#work" class="btn-primary" data-zh="看作品 →" data-en="View Work →">看作品 →</a>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-stat">
+          <div class="hero-stat-num">15<span>+</span></div>
+          <div class="hero-stat-label" data-zh="年資歷" data-en="Years Experience">年資歷</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">50<span>+</span></div>
+          <div class="hero-stat-label" data-zh="成功專案" data-en="Projects Delivered">成功專案</div>
+        </div>
+
+        <div class="hero-avail">
+          <div class="pulse"></div>
+          <span data-zh="接受新案" data-en="Available for Projects">接受新案</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WORK ── -->
+    <section class="snap-section free" id="work">
+      <div class="work-section">
+        <div class="section-header reveal">
+          <div>
+            <!-- <div class="section-label" data-zh="精選作品" data-en="Selected Work">精選作品</div>-->
+            <h2 class="section-title" data-zh="精選作品" data-en="Selected Work">精選作品</h2>
+          </div>
+        </div>
+        <div class="work-grid" id="workGrid">
+          <!-- injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!--
+  // ── ABOUT SECTION COPY ──────────────────────────────────────────────────────
+  //
+  //      ###    ########   #######  ##     ## ######## 
+  //     ## ##   ##     ## ##     ## ##     ##    ##    
+  //    ##   ##  ##     ## ##     ## ##     ##    ##    
+  //   ##     ## ########  ##     ## ##     ##    ##    
+  //   ######### ##     ## ##     ## ##     ##    ##    
+  //   ##     ## ##     ## ##     ## ##     ##    ##    
+  //   ##     ## ########   #######   #######     ##    
+  //
+  //    ######  ########  ######  ######## ####  #######  ##    ## 
+  //   ##    ## ##       ##    ##    ##     ##  ##     ## ###   ## 
+  //   ##       ##       ##          ##     ##  ##     ## ####  ## 
+  //    ######  ######   ##          ##     ##  ##     ## ## ## ## 
+  //         ## ##       ##          ##     ##  ##     ## ##  #### 
+  //   ##    ## ##       ##    ##    ##     ##  ##     ## ##   ### 
+  //    ######  ########  ######     ##    ####  #######  ##    ## 
+
+  -->
+
+
+    <section class="snap-section free" id="about">
+      <div class="about-section">
+        <div class="about-left">
+          <div class="svc-header reveal" data-zh="關於我" data-en="About Me">關於我</div>
+          <div class="about-quote reveal" data-zh="工程師出身，印刷起家。<strong>我用解決問題的腦袋做設計，用做過生產的雙手交付作品。</strong>"
+            data-en="Engineer turned designer. <strong>I bring a problem-solver's mind and a maker's hands to every project.</strong>">
+            工程師出身，印刷起家。<strong>我用解決問題的腦袋做設計，用做過生產的雙手交付作品。</strong>
+          </div>
+          <p class="about-p reveal"
+            data-zh="我的設計之路不是從美術系開始的——而是從一間印刷工作室。在那之前，我是一名工程師。正是這段經歷讓我理解：好的設計不只是好看，它要能落地、能印刷、能在螢幕上跑、能幫客戶解決真正的問題。十五年來，我服務過跨國企業、本地小店、新創公司和非營利組織。無論規模大小，每個案子我都當成自己的事來做。"
+            data-en="I didn't start in design school — I started in engineering. Then I ran a print shop, where I learned that great design means nothing if it can't be produced, delivered, and put to work. That hands-on foundation shaped everything I do today. Over fifteen years, I've worked with Fortune 500 companies, local businesses, startups, and nonprofits. Big or small, every project gets the same level of care — because your brand is your livelihood, and I don't take that lightly.">
+            我的設計之路不是從美術系開始的——而是從一間印刷工作室。在那之前，我是一名工程師。正是這段經歷讓我理解：好的設計不只是好看，它要能落地、能印刷、能在螢幕上跑、能幫客戶解決真正的問題。十五年來，我服務過跨國企業、本地小店、新創公司和非營利組織。無論規模大小，每個案子我都當成自己的事來做。
+          </p>
+          <div class="about-closing reveal" data-zh="你不只是在找一個設計師——你在找一個真正在乎成果的人。"
+            data-en="You're not just hiring a designer — you're getting someone who genuinely cares how it turns out.">
+            你不只是在找一個設計師——你在找一個真正在乎成果的人。
+          </div>
+        </div>
+        <div class="about-right">
+          <div class="svc-header reveal" data-zh="服務項目" data-en="Services">服務項目</div>
+          <div class="svc-list">
+            <div class="svc reveal"><span class="svc-n">01</span>
+              <div class="svc-body"><span class="svc-name" data-zh="品牌識別" data-en="Brand Identity">品牌識別</span><span
+                  class="svc-desc" data-zh="標誌 · 視覺系統" data-en="Logo Design · Visual Identity System">標誌 · 視覺系統</span>
+              </div>
+            </div>
+            <div class="svc reveal"><span class="svc-n">02</span>
+              <div class="svc-body"><span class="svc-name" data-zh="網站設計" data-en="Web Design">網站設計</span><span
+                  class="svc-desc" data-zh="設計 · 建置 · 維護" data-en="Web Design · Front-end Build · Ongoing Updates">設計 ·
+                  建置 · 維護</span></div>
+            </div>
+            <div class="svc reveal"><span class="svc-n">03</span>
+              <div class="svc-body"><span class="svc-name" data-zh="印刷與編輯" data-en="Print & Editorial">印刷與編輯</span><span
+                  class="svc-desc" data-zh="雜誌封面 · 海報 · 書籍 · 服裝印刷諮詢"
+                  data-en="Print Design · Editorial Layout · Posters · TShirt Printing">雜誌封面 ·
+                  海報 · 書籍 · 服裝印刷諮詢</span></div>
+            </div>
+            <div class="svc reveal"><span class="svc-n">04</span>
+              <div class="svc-body"><span class="svc-name" data-zh="社群媒體視覺" data-en="Social Media">社群媒體視覺</span><span
+                  class="svc-desc" data-zh="圖像 · 模板 · 內容"
+                  data-en="Social Graphics · Template Systems · Content Layout">圖像
+                  · 模板 · 內容</span></div>
+            </div>
+            <div class="svc reveal"><span class="svc-n">05</span>
+              <div class="svc-body"><span class="svc-name" data-zh="行動應用開發"
+                  data-en="Mobile App Development">行動應用開發</span><span class="svc-desc" data-zh="介面設計 · 應用程式"
+                  data-en="UI/UX Design · App Development">介面設計 · 應用程式</span></div>
+            </div>
+            <div class="svc reveal"><span class="svc-n">06</span>
+              <div class="svc-body"><span class="svc-name" data-zh="影片剪輯" data-en="Video Editing">影片剪輯</span><span
+                  class="svc-desc" data-zh="品牌影片 · 剪輯" data-en="Brand Film · Edit">品牌影片 · 剪輯</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="faq-section">
+        <div class="faq-inner">
+          <div class="svc-header reveal" data-zh="常見問題" data-en="FAQ">常見問題</div>
+          <div class="faq-list">
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="你提供英文溝通與中英雙語交付嗎？"
+                data-en="Do you offer English communication and bilingual deliverables?">你提供英文溝通與中英雙語交付嗎？</summary>
+              <p class="about-p faq-answer" data-zh="可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。"
+                data-en="Yes. I offer English meetings and written communication, and can deliver bilingual assets when needed — brand guidelines, deck templates, social kits, print specs.">
+                可以。我提供英文會議與書面溝通，並可交付中英雙語版本的設計檔與文件（例如品牌指南、簡報版型、社群模板、印刷規格）。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="你主要承接哪些類型的設計？（平面設計有做嗎？）"
+                data-en="What do you specialize in? Do you do graphic design?">你主要承接哪些類型的設計？（平面設計有做嗎？）</summary>
+              <p class="about-p faq-answer" data-zh="核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。"
+                data-en="Core is brand identity and graphic design — key visuals, posters, editorial layout, campaign assets, social graphics. Web design and front-end build are also part of the offering, so the brand lands consistently online.">
+                核心是品牌識別與平面設計：主視覺、海報、型錄/編排、活動物料、社群視覺；也承接網站設計與前端建置，確保品牌在數位端一致落地。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="專案流程怎麼走？" data-en="What's your process?">專案流程怎麼走？</summary>
+              <p class="about-p faq-answer"
+                data-zh="通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。里程碑與修改回合數會在開始前寫清楚。"
+                data-en="Kickoff → direction → iterations → final handoff with production-ready specs. Milestones and revision rounds are defined upfront.">
+                通常包含：需求釐清（中/英皆可）→ 方向提案 → 設計迭代 → 定稿交付（含可直接交給印刷/工程的規格）。里程碑與修改回合數會在開始前寫清楚。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="時程通常多久？" data-en="What's a typical timeline?">時程通常多久？</summary>
+              <p class="about-p faq-answer"
+                data-zh="依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。有明確截止日期的話，可以一起倒推排程。"
+                data-en="Depends on scope. Single assets: 3–10 days. Brand identity: 2–6 weeks. Web design and build: 3–8 weeks. If you have a hard deadline, we work backwards from it.">
+                依範圍而定：單一平面物料通常 3–10 天；品牌識別多為 2–6 週；網站設計/建置約 3–8 週。有明確截止日期的話，可以一起倒推排程。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="我該怎麼開始？" data-en="How do we start?">我該怎麼開始？</summary>
+              <p class="about-p faq-answer"
+                data-zh="寄信到 hello@studiozinc.com，簡單說明品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。"
+                data-en="Email hello@studiozinc.com with a quick brief — what you're building, your audience, deliverables needed, timeline, and budget range if possible. I'll reply with a few clarifying questions and a suggested approach.">
+                寄信到 hello@studiozinc.com，簡單說明品牌/產品、目標受眾、需要的項目、時程與預算範圍（若方便）。我會回覆幾個釐清問題，接著提供建議範圍與報價方式。</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary class="faq-summary" data-zh="你的作品有用到 AI 嗎？" data-en="Do you use AI in your work?">你的作品有用到 AI 嗎？
+              </summary>
+              <p class="about-p faq-answer"
+                data-zh="有，而且不迴避這件事。AI 用於輔助發想、研究，以及部分素材生成——讓時間花在真正需要設計判斷的地方。AI 素材的使用對客戶是透明的，不會用來虛報成果或誤導呈現。善用工具省下的時間，最終還是回饋到設計品質上。"
+                data-en="Yes, and I'm straightforward about it. AI assists with ideation, research, and certain asset generation — so time goes toward work that actually requires design judgment. Any AI-generated elements are disclosed to clients. It's not used to misrepresent deliverables. The time saved goes back into the work.">
+                有，而且不迴避這件事。AI 用於輔助發想、研究，以及部分素材生成——讓時間花在真正需要設計判斷的地方。AI 素材的使用對客戶是透明的，不會用來虛報成果或誤導呈現。善用工具省下的時間，最終還是回饋到設計品質上。
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ── CLIENTS ── -->
+    <section id="clients">
+      <div class="clients-inner">
+        <div class="svc-header reveal" data-zh="客戶與合作夥伴" data-en="Clients & Collaborators">客戶與合作夥伴</div>
+        <div class="cli-grid reveal">
+          <img class="cli-logo-img" src="images/p_Bloomingdales_Logo.svg" alt="Bloomingdale's">
+          <img class="cli-logo-img" src="images/p_Booz_Allen_Hamilton_logo.svg" alt="Booz Allen Hamilton">
+          <img class="cli-logo-img" src="images/p_mcps_horiz_black.png" alt="MCPS">
+
+        </div>
+      </div>
+    </section>
+    <!-- 
+    /*
+    // ── CONTACT ─────────────────────────────────────────────────────────────────
+    //
+    #####  ###   ###  ##### ##### ####    #  
+    #     #   # #   #   #   #     #   #   #  
+    #     #   # #   #   #   #     #   #   #  
+    ####  #   # #   #   #   ####  ####    #  
+    #     #   # #   #   #   #     # #     #  
+    #     #   # #   #   #   #     #  #       
+    #      ###   ###    #   ##### #   #   #  
+    // ────────────────────────────────────────────────────────────────────────────
+    */-->
+    <section class="snap-section free" id="contact" style="position:relative;">
+      <div class="footer-lava" aria-hidden="true">
+        <div class="footer-lava-1"></div>
+        <div class="footer-lava-2"></div>
+      </div>
+      <div class="contact-section" style="position:relative; z-index:1; grid-template-columns: 1fr;">
+        <div class="contact-left" style="border-right: none;">
+          <h2 class="contact-headline reveal" data-zh="讓我們一起規劃你的下一個專案。"
+            data-en="Let's plan your next project together.">讓我們一起規劃你的下一個專案。</h2>
+          <a href="mailto:hello@studiozinc.com" class="contact-email-display reveal"
+            style="margin-bottom: 2.5rem;">hello@studiozinc.com</a>
+          <div class="contact-info reveal">
+            <div>
+              <div class="ci-label" data-zh="地點" data-en="Location">地點</div>
+              <div class="ci-val">大安區，台北<br>Taipei, Taiwan</div>
+            </div>
+            <div>
+              <div class="ci-label" data-zh="時區" data-en="Time Zone">時區</div>
+              <div class="ci-val">GMT+8 CST</div>
+            </div>
+          </div>
+        </div>
+        <footer class="site-footer">
+          <div class="footer-bar">
+            <span class="footer-copy" data-zh="© 2026 鋅工作室 (ClickCircuit LLC 子公司)"
+              data-en="© 2026 Studio Zinc, a subsidiary of ClickCircuit LLC.">© 2026 鋅工作室 (ClickCircuit LLC
+              子公司)</span>
+            <svg class="footer-logo" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid meet"
+              style="width: 100%; height: auto; display: block; overflow: visible;">
+              <text x="0" y="105" textLength="1000" lengthAdjust="spacing" font-size="130" font-weight="900"
+                fill="currentColor">
+                STUDIO <tspan fill="var(--cyan)">ZINC</tspan>
+              </text>
+            </svg>
+
+          </div>
+        </footer>
+      </div>
+    </section>
+
+  </div><!-- end snap-container -->
+
+  <div class="pj-overlay" id="pjOverlay"></div>
+  <div class="pj-modal" id="pjModal" role="dialog" aria-modal="true">
+    <button class="pj-close" id="pjClose" aria-label="Close">✕</button>
+    <div id="pjContent"></div>
+  </div>
+
+  <script>
+
+    // ── SCROLL REVEAL ───────────────────────
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('will-animate'));
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { root: null, threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ── LANGUAGE TOGGLE ─────────────────────
+    function applyLang(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-TW' : 'en');
+      document.title = lang === 'zh'
+        ? '台北平面設計／品牌/網站設計｜中英雙語設計工作室 | 鋅工作室'
+        : 'Taipei Graphic & Brand & Web Designer | STUDIO ZINC';
+      document.querySelectorAll('[data-zh][data-en]').forEach(el => {
+        el.innerHTML = el.getAttribute('data-' + lang);
+      });
+      try { localStorage.setItem('studiozinc-lang', lang); } catch (e) { }
+    }
+    ['langBtn', 'langBtn2'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', () => {
+        applyLang(document.documentElement.getAttribute('data-lang') === 'zh' ? 'en' : 'zh');
+      });
+    });
+
+    // ── THEME TOGGLE ────────────────────────
+    function applyTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      try { localStorage.setItem('studiozinc-theme', t); } catch (e) { }
+    }
+    ['themeBtn', 'themeBtn2'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', () => {
+        applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+    });
+
+    // Restore saved prefs
+    try { const s = localStorage.getItem('studiozinc-theme'); if (s) applyTheme(s); } catch (e) { }
+    try { const l = localStorage.getItem('studiozinc-lang'); if (l) applyLang(l); } catch (e) { }
+
+    // ── HAMBURGER ───────────────────────────
+    const burger = document.getElementById('hamburger');
+    const drawer = document.getElementById('drawer');
+    function closeDrawer() {
+      if (!drawer || !burger) return;
+      drawer.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    if (burger && drawer) {
+      burger.addEventListener('click', () => {
+        const open = drawer.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+    }
+
+    /*
+      // ── PROJECT DATA ALRIGHTTT ──────────────────────────────────────────────────
+      //
+      //   ########  ########   #######        ## ########  ######  ######## 
+      //   ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
+      //   ##     ## ##     ## ##     ##       ## ##       ##          ##    
+      //   ########  ########  ##     ##       ## ######   ##          ##    
+      //   ##        ##   ##   ##     ## ##    ## ##       ##          ##    
+      //   ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
+      //   ##        ##     ##  #######   ######  ########  ######     ##    
+      //
+      //   ########     ###    ########    ###             
+      //   ##     ##   ## ##      ##      ## ##            
+      //   ##     ##  ##   ##     ##     ##   ##           
+      //   ##     ## ##     ##    ##    ##     ##          
+      //   ##     ## #########    ##    #########          
+      //   ##     ## ##     ##    ##    ##     ##          
+      //   ##     ## ##     ##    ##    ##     ##          
+      //
+      //      ###    ##       ########  ####  ######   ##     ## ######## ######## ######## 
+      //     ## ##   ##       ##     ##  ##  ##    ##  ##     ##    ##       ##       ##    
+      //    ##   ##  ##       ##     ##  ##  ##        ##     ##    ##       ##       ##    
+      //   ##     ## ##       ########   ##  ##   #### ##########    ##       ##       ##    
+      //   ######### ##       ##   ##    ##  ##    ##  ##     ##    ##       ##       ##    
+      //   ##     ## ##       ##    ##   ##  ##    ##  ##     ##    ##       ##       ##    
+      //   ##     ## ######## ##     ## ####  ######   ##     ##    ##       ##       ##    
+      //
+      // ────────────────────────────────────────────────────────────────────────────
+    */
+    const PROJECT_DATA = [
+      {
+        id: 'pj01',
+        type_zh: '網站設計 + 品牌識別', type_en: 'Web Design + Brand Identity',
+        title_zh: '大將開發',
+        title_en: 'Tajiang Re-Branding and Website Design',
+        client_zh: '', client_en: '',
+        scope_zh: '為一個高端住宅開發的房地產公司重新設計品牌與網站。',
+        scope_en: 'Tajiang is a real estate development company specializing in upscale residential properties in Taipei. The company is publicly listed on the Taiwan Stock Exchange. The logo design draws from the company\'s history as a textile manufacturer, featuring a building rendered with a distinctive woven texture. The newly developed website is faster, more secure, and mobile-friendly.',
+        services_zh: ['網站設計', '標誌設計', '視覺系統'],
+        services_en: ['Web Design and Development', 'Logo Design', 'Visual System'],
+        hero: 'images/pj_1.webp', hero_char: '',
+        imgs: ['images/pj_1_1.webp', 'images/pj_1_2.webp', 'images/pj_1_3.webp']
+      },
+      {
+        id: 'pj02',
+        type_zh: '網站設計 + 品牌識別', type_en: 'Web Design + Brand Identity',
+        title_zh: 'ZERO/DAY/SHIRTS',
+        title_en: 'ZERO/DAY/SHIRTS',
+        client_zh: '', client_en: '',
+        scope_zh: '為一個關注社會議題的服裝品牌設計網站與品牌識別。',
+        scope_en: 'Designed a shopify website and brand identity for a socially conscious clothing brand. Adviced on screen printing and packaging.',
+        services_zh: ['網站設計', '品牌識別', '平面設計', '印刷監製'],
+        services_en: ['Web Design', 'Brand Identity', 'Graphic Design', 'Print Production'],
+        hero: 'images/pj_2.webp', hero_char: '',
+        imgs: ['images/pj_2_1.webp', 'images/pj_2_2.webp', 'images/pj_2_3.webp']
+      },
+      {
+        id: 'pj03',
+        type_zh: '網站設計 + 平面設計', type_en: 'Web Design + Graphic Design',
+        title_zh: '加密貨幣與 NFT 網站',
+        title_en: 'Cryptocurrency and NFT Website',
+        client_zh: '', client_en: '',
+        scope_zh: '為一個加密貨幣與 NFT 項目設計網站與插畫。',
+        scope_en: 'Designed a website and illustrations for a cryptocurrency and NFT project.',
+        services_zh: ['網站設計', '前端開發', '平面設計'],
+        services_en: ['Web Design', 'Front-end Development', 'Graphic Design'],
+        hero: 'images/pj_3.webp', hero_char: '',
+        imgs: ['images/pj_3_1.webp', 'images/pj_3_2.webp', 'images/pj_3_3.webp']
+      },
+      {
+        id: 'pj04',
+        type_zh: '平面設計 + 銷售', type_en: 'Graphic Design + Merchandising',
+        title_zh: 'NPO 教育推廣計畫',
+        title_en: 'NPO Educational Project',
+        client_zh: '', client_en: '',
+        scope_zh: '為推廣化學教育，我們為 NPO 設計並印製了一系列文宣品與商品。',
+        scope_en: 'To promote Chemistry education, we designed and printed a series of promotional materials and merchandise for an NPO.',
+        services_zh: ['平面設計', '商品設計', '印刷監製'],
+        services_en: ['Graphic Design', 'Merchandise Design', 'Print Production'],
+        hero: 'images/pj_4.webp', hero_char: '',
+        imgs: ['images/pj_4_1.webp', 'images/pj_4_2.webp', 'images/pj_4_3.webp']
+      },
+      {
+        id: 'pj05',
+        type_zh: '平面設計', type_en: 'Graphic Design',
+        title: '封面和海報設計',
+        client_zh: 'Freelance Clients', client_en: 'Various Clients',
+        scope_zh: '',
+        scope_en: 'Designed covers and posters for various clients. Including book covers, social media content, and event posters.',
+        services_zh: ['平面設計', '海報設計', '封面設計'],
+        services_en: ['Graphic Design', 'Poster Design', 'Cover Design'],
+        hero: 'images/pj_5.webp', hero_char: '',
+        imgs: ['', '', '']
+      },
+      {
+        id: 'pj06',
+        type_zh: 'App 開發', type_en: 'App Development',
+        title: 'App 開發',
+        client_zh: 'Freelance Clients', client_en: 'Various Clients',
+        scope_zh: '為客戶設計移動應用程序，注重用戶體驗。',
+        scope_en: 'Designed mobie applications with user experience in mind.',
+        services_zh: ['App 開發', 'UX/UI 設計', 'Logo 設計'],
+        services_en: ['App Development', 'UX/UI Design', 'Logo Design'],
+        hero: 'images/pj_6.webp', hero_char: '',
+        imgs: ['', '', '']
+      }
+
+    ];
+
+    // ── MODAL ENGINE ────────────────────────
+    const overlay = document.getElementById('pjOverlay');
+    const modal = document.getElementById('pjModal');
+    const closeBtn = document.getElementById('pjClose');
+    const content = document.getElementById('pjContent');
+
+    function getLang() {
+      return document.documentElement.getAttribute('data-lang') || 'zh';
+    }
+
+    function openProject(index) {
+      const p = PROJECT_DATA[index];
+      const lng = getLang();
+
+      const heroHTML = p.hero
+        ? `<img class="pj-hero" src="${p.hero}" alt="${p.title_zh}" loading="lazy">`
+        : `<div class="pj-hero-placeholder">${p.hero_char}</div>`;
+
+      const tags = (lng === 'zh' ? p.services_zh : p.services_en)
+        .map(s => `<span class="pj-svc-tag">${s}</span>`).join('');
+
+      const detailImgs = p.imgs.map((src, i) =>
+        src
+          ? `<img class="pj-img" src="${src}" alt="${p.title_zh} detail ${i + 1}" loading="lazy">`
+          : `<div class="pj-img-placeholder">IMAGE ${i + 1}</div>`
+      ).join('');
+
+      content.innerHTML = `
+        ${heroHTML}
+        <div class="pj-body">
+          <div class="pj-type">${lng === 'zh' ? p.type_zh : p.type_en}</div>
+          <div class="pj-title">${lng === 'zh' ? p.title_zh : p.title_en}</div>
+          <div class="pj-meta">${lng === 'zh' ? p.client_zh : p.client_en}</div>
+          <div class="pj-scope-label">${lng === 'zh' ? '專案簡介' : 'Project Brief'}</div>
+          <p class="pj-scope-text">${lng === 'zh' ? p.scope_zh : p.scope_en}</p>
+          <div class="pj-services">${tags}</div>
+          <div class="pj-imgs">${detailImgs}</div>
+        </div>
+      `;
+
+      modal.scrollTop = 0;
+      overlay.classList.add('open');
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // ── RENDER CARDS ────────────────────────
+    // Builds each row card from PROJECT_DATA.
+    // Structure: [thumbnail left] [text right]
+    // On mobile: stacks vertically.
+    function renderCards() {
+      const grid = document.getElementById('workGrid');
+      const lng = getLang();
+      PROJECT_DATA.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'work-card reveal';
+        card.setAttribute('data-pj', i);
+
+        // thumbnail background
+        const thumbStyle = p.hero
+          ? `background-image: url('${p.hero}');`
+          : '';
+
+        card.innerHTML = `
+          <div class="work-card-thumb" style="${thumbStyle}">
+            <div class="work-card-vis">${p.hero_char}</div>
+          </div>
+          <div class="work-card-body">
+     <div class="work-card-type"
+       data-zh="${p.type_zh}"
+       data-en="${p.type_en}">${lng === 'zh' ? p.type_zh : p.type_en}</div>
+  <div class="work-card-name"
+       data-zh="${p.title_zh}"
+       data-en="${p.title_en}">${lng === 'zh' ? p.title_zh : p.title_en}</div>
+  <div class="work-card-sub"
+       data-zh="${p.client_zh}"
+       data-en="${p.client_en}">${lng === 'zh' ? p.client_zh : p.client_en}</div>
+            <div class="work-card-arrow">→</div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => openProject(i));
+        grid.appendChild(card);
+      });
+
+      // wire reveal on new cards
+      document.querySelectorAll('.work-card.reveal').forEach(el => {
+        el.classList.add('will-animate');
+        revealObs.observe(el);
+      });
+
+    }
+
+    // ── RUN ─────────────────────────────────
+    renderCards();
+
+  </script>
+
+</body>
+
+</html>
