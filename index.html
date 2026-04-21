@@ -295,24 +295,29 @@
       z-index: 10;
       text-align: center;
       pointer-events: none;
+      padding: 0 1rem;
+      width: 100%;
     }
 
     .hero-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(9rem, 3vw, 1.4rem);
-      letter-spacing: 0.5em;
+      font-size: clamp(2.5rem, 8vw, 9rem);
+      letter-spacing: 0.1em;
       color: rgba(232, 232, 224, 0.9);
       font-weight: 400;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
+      line-height: 1.1;
+      word-break: break-word; /* allow long words to wrap on very small screens */
     }
 
     .hero-sub {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(4.65rem, 1.5vw, 0.75rem);
-      letter-spacing: 0.3em;
+      font-size: clamp(1rem, 2.5vw, 2rem);
+      letter-spacing: 0.2em;
       color: var(--fg2);
       text-transform: uppercase;
+      line-height: 1.4;
     }
 
     .scroll-hint {
