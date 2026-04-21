@@ -299,20 +299,27 @@
 
     .hero-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(9rem, 3vw, 1.4rem);
-      letter-spacing: 0.5em;
-      color: rgba(232, 232, 224, 0.9);
-      font-weight: 400;
+      font-size: clamp(2.8rem, 10vw, 5.5rem);
+      line-height: .95;
+      letter-spacing: 0.15em;
+      color: #fff;
+      font-weight: 500;
       text-transform: uppercase;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      transition: color .4s;
+    }
+
+    [data-theme="light"] .hero-title {
+      color: #000;
     }
 
     .hero-sub {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(4.65rem, 1.5vw, 0.75rem);
-      letter-spacing: 0.3em;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      letter-spacing: 0.4em;
       color: var(--fg2);
       text-transform: uppercase;
+      opacity: 0.8;
     }
 
     .scroll-hint {
@@ -357,7 +364,7 @@
     ═══════════════════════════════════════ */
     .section-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: .6rem;
+      font-size: 1rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--accent);
@@ -419,7 +426,7 @@
 
     .work-card-type {
       font-family: 'JetBrains Mono', monospace;
-      font-size: .55rem;
+      font-size: 1rem;
       letter-spacing: .15em;
       text-transform: uppercase;
       color: var(--accent);
@@ -440,7 +447,7 @@
     }
 
     .work-card-sub {
-      font-size: .75rem;
+      font-size: 1rem;
       color: var(--fg3);
       margin-top: .25rem;
     }
@@ -460,6 +467,34 @@
       line-height: 1.8;
       color: var(--fg2);
       font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .about-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .about-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: var(--fg2);
+    }
+
+    .about-item::before {
+      content: '→';
+      color: var(--accent);
+    }
+
+    .about-item strong {
+      color: var(--fg);
+      font-weight: 400;
     }
 
     .about-text strong {
@@ -489,7 +524,7 @@
 
     .contact-email {
       font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(.85rem, 1.8vw, 1.1rem);
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
       color: var(--accent);
       border-bottom: 1px solid var(--accent);
       padding-bottom: .3rem;
@@ -802,7 +837,7 @@
   <section id="hero">
     <canvas id="grid-canvas"></canvas>
     <div class="hero-text">
-      <div class="hero-title" data-zh="Studio Zinc" data-en="Studio Zinc">STUDIO ZINC</div>
+      <div class="hero-title" data-zh="Studio<br>Zinc" data-en="Studio<br>Zinc">STUDIO<br>ZINC</div>
       <div class="hero-sub" data-zh="數位實驗室" data-en="Digital Lab">Digital Lab</div>
     </div>
     <div class="scroll-hint">
@@ -826,32 +861,36 @@
     <div class="about-section">
       <div class="section-label reveal" data-zh="關於" data-en="About">About</div>
       <div class="about-text reveal"
-        data-zh="哈嘍，我是DOLAN這是我的數位遊樂場。<br><br>現在主要做<strong>注重隱私權的App</strong>，以及各種覺得好玩的專案。偶爾也接設計案。"
-        data-en="Hi, it's your boy Dolan, this is my digital playground. <br><br>Currently making <strong>privacy-focused apps</strong>, filming walking videos in Taiwan, and designing stuff for fun.">
-        Engineer turned designer, based in Taipei. Started in engineering, ran a print shop, ended up in design. I like
-        building things from scratch — apps, brands, websites, whatever.<br><br>Currently making <strong>apps that don't
-          steal your data</strong>, and whatever else seems worth building. Open for design work too.
+        data-zh="哈嘍，我是 Dolan，這是我的數位實驗室。<br><br>目前我正在："
+        data-en="Hi, it's Dolan, this is my digital playground.<br><br>Currently:">
+        Hi, it's Dolan, this is my digital playground.<br><br>Currently:
+      </div>
+      <div class="about-list reveal">
+        <div class="about-item" data-zh="開發注重<strong>隱私與體驗</strong>的實用 App" data-en="Building helpful apps with <strong>privacy</strong> in mind">Building helpful apps with <strong>privacy</strong> in mind</div>
+        <div class="about-item" data-zh="在台灣各地拍攝<strong>步巡影片</strong> (Walking Videos)" data-en="Filming <strong>walking videos</strong> in Taiwan">Filming <strong>walking videos</strong> in Taiwan</div>
+        <div class="about-item" data-zh="從事<strong>品牌、印刷與網頁</strong>設計" data-en="Designing stuff for <strong>print and web</strong>">Designing stuff for <strong>print and web</strong></div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <div class="contact-section">
-      <div class="section-label reveal" data-zh="聯絡" data-en="Say Hello">Say Hello</div>
-      <h2 class="contact-headline reveal" data-zh="想合作？聊聊。" data-en="Here's my contact<br>">Here's my contact<br></h2>
-      <a href="mailto:hello@studiozinc.com" class="contact-email reveal">hello@studiozinc.com</a>
-      <div class="contact-meta reveal">
-        <div>
-          <div class="contact-meta-label" data-zh="地點" data-en="Location">Location</div>
-          <div class="contact-meta-val">Taipei, Taiwan</div>
+        <div class="contact-section">
+          <div class="section-label reveal" data-zh="聯絡" data-en="Say Hello">Say Hello</div>
+          <h2 class="contact-headline reveal" data-zh="想合作？聊聊。" data-en="Here's my contact<br>">Here's my contact<br>
+          </h2>
+          <a href="mailto:hello@studiozinc.com" class="contact-email reveal">hello@studiozinc.com</a>
+          <div class="contact-meta reveal">
+            <div>
+              <div class="contact-meta-label" data-zh="地點" data-en="Location">Location</div>
+              <div class="contact-meta-val">Taipei, Taiwan</div>
+            </div>
+            <div>
+              <div class="contact-meta-label" data-zh="時區" data-en="Timezone">Timezone</div>
+              <div class="contact-meta-val">GMT+8</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="contact-meta-label" data-zh="時區" data-en="Timezone">Timezone</div>
-          <div class="contact-meta-val">GMT+8</div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- FOOTER -->
@@ -1268,6 +1307,20 @@
 
       window.addEventListener('resize', () => { gridResize(); });
       gridResize(); drawGrid();
+
+      // Scroll transition for hero
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const fadeLimit = window.innerHeight * 0.8;
+        const opacity = Math.max(0, 1 - scrolled / fadeLimit);
+
+        if (gridCanvas) gridCanvas.style.opacity = opacity;
+        const heroText = document.querySelector('.hero-text');
+        if (heroText) {
+          heroText.style.opacity = opacity;
+          heroText.style.transform = `translateY(${scrolled * 0.2}px)`; // Subtle parallax
+        }
+      });
     }
   </script>
 
