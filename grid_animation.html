@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUDIO ZINC</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --pink: #ff2d78; --cyan: #00e5ff; --yellow: #ffe600; --green: #00ff9f;
+    --bg: #060608; --text: #e8e8e0; --muted: rgba(232,232,224,0.35);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 2.5rem;
+  }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--text); }
+
+  #hero { position: relative; width: 100%; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  #grid-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .hero-text { position: relative; z-index: 10; text-align: center; pointer-events: none; }
+  .hero-title { font-family: 'Space Mono', monospace; font-size: clamp(1rem, 3vw, 1.4rem); letter-spacing: 0.5em; color: rgba(232,232,224,0.9); font-weight: 400; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .hero-sub { font-size: clamp(0.65rem, 1.5vw, 0.75rem); letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; }
+
+  .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(.6)} }
+
+  #projects { padding: 8rem 2.5rem 6rem; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; margin-bottom: 3rem; display: flex; align-items: center; gap: 1.5rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(232,232,224,0.08); }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; }
+  .project-card { position: relative; aspect-ratio: 4/3; background: #0a0a0d; overflow: hidden; cursor: pointer; }
+  .project-card::before { content: ''; position: absolute; inset: 0; border: 1px solid rgba(232,232,224,0.04); z-index: 2; transition: border-color 0.4s; }
+  .project-card:hover::before { border-color: rgba(232,232,224,0.15); }
+  .card-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; transition: opacity 0.4s; }
+  .project-card:hover .card-canvas { opacity: 0.9; }
+  .card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; z-index: 3; background: linear-gradient(to top, rgba(6,6,8,0.92) 0%, transparent 100%); transform: translateY(6px); transition: transform 0.4s; }
+  .project-card:hover .card-info { transform: translateY(0); }
+  .card-num { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.2em; margin-bottom: 0.4rem; }
+  .card-title { font-family: 'Space Mono', monospace; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--text); }
+  .card-tag { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-top: 0.3rem; }
+
+  #about { padding: 6rem 2.5rem 8rem; max-width: 1200px; margin: 0 auto; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-headline { font-family: 'Space Mono', monospace; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; font-weight: 400; color: var(--text); }
+  .about-headline span { color: transparent; -webkit-text-stroke: 1px rgba(232,232,224,0.25); }
+  .about-body { font-size: 0.9rem; line-height: 1.85; color: var(--muted); margin-top: 0.5rem; }
+  .about-body p + p { margin-top: 1rem; }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+  .tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--muted); border: 1px solid rgba(232,232,224,0.1); padding: 0.4rem 0.8rem; text-transform: uppercase; }
+
+  footer { border-top: 1px solid rgba(232,232,224,0.06); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 680px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    #projects { padding: 5rem 1.5rem 4rem; }
+    #about { padding: 4rem 1.5rem 5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Studio Zinc</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <canvas id="grid-canvas"></canvas>
+  <div class="hero-text">
+    <div class="hero-title">Studio Zinc</div>
+    <div class="hero-sub">Digital Lab</div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">Selected Work</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <canvas class="card-canvas" data-hue="195"></canvas>
+      <div class="card-info">
+        <div class="card-num">001</div>
+        <div class="card-title">Project Title</div>
+        <div class="card-tag">Category &mdash; Year</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <canvas class="card-canvas" data-hue="320"></canvas>
+      <div class="card-info">
+        <div class="card-num">002</div>
+        <div class="card-title">Project Title</div>
+        <div class="card-tag">Category &mdash; Year</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <canvas class="card-canvas" data-hue="55"></canvas>
+      <div class="card-info">
+        <div class="card-num">003</div>
+        <div class="card-title">Project Title</div>
+        <div class="card-tag">Category &mdash; Year</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-headline">
+      Building things at the<br><span>intersection</span><br>of design &amp; code.
+    </div>
+    <div>
+      <div class="about-body">
+        <p>Studio Zinc is a digital lab exploring the edges of interactive design, generative systems, and experimental interfaces.</p>
+        <p>Add your bio here — a sentence or two about your background, focus, and what makes your work distinct.</p>
+      </div>
+      <div class="about-tags">
+        <span class="tag">Creative Dev</span>
+        <span class="tag">Generative Art</span>
+        <span class="tag">UI Design</span>
+        <span class="tag">Motion</span>
+        <span class="tag">WebGL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Studio Zinc &mdash; Digital Lab</div>
+  <div class="footer-links">
+    <a href="#">Twitter</a>
+    <a href="#">GitHub</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+const COLORS = [
+  {r:255,g:45,b:120},
+  {r:0,g:229,b:255},
+  {r:255,g:230,b:0},
+  {r:0,g:255,b:159},
+];
+
+function rnd(a,b){return a+Math.random()*(b-a);}
+function rndCol(){return COLORS[Math.floor(Math.random()*COLORS.length)];}
+
+// ── HERO ──
+const canvas = document.getElementById('grid-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, lines;
+const dpr = window.devicePixelRatio||1;
+
+function resize(){
+  W = canvas.offsetWidth; H = canvas.offsetHeight;
+  canvas.width = W*dpr; canvas.height = H*dpr;
+  ctx.scale(dpr,dpr);
+  buildLines();
+}
+
+function buildLines(){
+  lines = [];
+  const vc = Math.floor(W/32)+6;
+  const hc = Math.floor(H/50)+6;
+  for(let i=0;i<vc;i++){
+    const c=rndCol();
+    lines.push({type:'v',x:rnd(0,W),w:rnd(.4,2),c,tA:rnd(.06,.6),spd:rnd(.002,.016),ph:Math.random()*Math.PI*2,gw:rnd(4,14),pm:rnd(.3,.7)});
+  }
+  for(let i=0;i<hc;i++){
+    const c=rndCol();
+    lines.push({type:'h',y:rnd(0,H),w:rnd(.3,1.4),c,tA:rnd(.04,.3),spd:rnd(.002,.01),ph:Math.random()*Math.PI*2,gw:rnd(2,10),pm:rnd(.2,.6)});
+  }
+  for(let i=0;i<22;i++){
+    const c=rndCol();
+    const sv=Math.random()>.45;
+    lines.push({type:sv?'sv':'sh',pos:rnd(0,sv?W:H),tr:rnd(0,sv?H:W),spd:rnd(.7,3.2)*(Math.random()>.5?1:-1),tl:rnd(40,200),w:rnd(.5,1.8),c,a:rnd(.45,1),lim:sv?H:W});
+  }
+  // intersection sparkles
+  lines._sparks = [];
+  for(let i=0;i<40;i++){
+    lines._sparks.push({x:rnd(0,W),y:rnd(0,H),a:0,ta:rnd(.2,.8),spd:rnd(.003,.02),ph:Math.random()*Math.PI*2,r:rnd(.8,2.5),c:rndCol()});
+  }
+}
+
+let t=0;
+function draw(){
+  ctx.clearRect(0,0,W,H);
+
+  // dot grid
+  ctx.fillStyle='rgba(232,232,224,0.025)';
+  for(let x=48;x<W;x+=48) for(let y=48;y<H;y+=48){
+    ctx.beginPath(); ctx.arc(x,y,.5,0,Math.PI*2); ctx.fill();
+  }
+
+  for(const l of lines){
+    if(l.type==='v'){
+      const pulse=Math.sin(t*l.spd*60+l.ph);
+      const a=l.tA*(l.pm*(0.5+0.5*pulse)+(1-l.pm)*0.65);
+      const {r,g,b}=l.c;
+      const gr=ctx.createLinearGradient(l.x-l.gw,0,l.x+l.gw,0);
+      gr.addColorStop(0,`rgba(${r},${g},${b},0)`);
+      gr.addColorStop(0.5,`rgba(${r},${g},${b},${a*.18})`);
+      gr.addColorStop(1,`rgba(${r},${g},${b},0)`);
+      ctx.fillStyle=gr; ctx.fillRect(l.x-l.gw,0,l.gw*2,H);
+      ctx.strokeStyle=`rgba(${r},${g},${b},${a})`; ctx.lineWidth=l.w;
+      ctx.beginPath(); ctx.moveTo(l.x,0); ctx.lineTo(l.x,H); ctx.stroke();
+    } else if(l.type==='h'){
+      const pulse=Math.sin(t*l.spd*60+l.ph);
+      const a=l.tA*(l.pm*(0.5+0.5*pulse)+(1-l.pm)*0.65);
+      const {r,g,b}=l.c;
+      const gr=ctx.createLinearGradient(0,l.y-l.gw,0,l.y+l.gw);
+      gr.addColorStop(0,`rgba(${r},${g},${b},0)`);
+      gr.addColorStop(0.5,`rgba(${r},${g},${b},${a*.14})`);
+      gr.addColorStop(1,`rgba(${r},${g},${b},0)`);
+      ctx.fillStyle=gr; ctx.fillRect(0,l.y-l.gw,W,l.gw*2);
+      ctx.strokeStyle=`rgba(${r},${g},${b},${a})`; ctx.lineWidth=l.w;
+      ctx.beginPath(); ctx.moveTo(0,l.y); ctx.lineTo(W,l.y); ctx.stroke();
+    } else if(l.type==='sv'){
+      l.tr+=l.spd;
+      if(l.tr>l.lim+l.tl) l.tr=-l.tl;
+      if(l.tr<-l.tl) l.tr=l.lim+l.tl;
+      const {r,g,b}=l.c;
+      const y0=l.tr-l.tl, y1=l.tr;
+      const gr=ctx.createLinearGradient(0,y0,0,y1);
+      gr.addColorStop(0,`rgba(${r},${g},${b},0)`);
+      gr.addColorStop(0.6,`rgba(${r},${g},${b},${l.a*.5})`);
+      gr.addColorStop(1,`rgba(${r},${g},${b},${l.a})`);
+      ctx.strokeStyle=gr; ctx.lineWidth=l.w;
+      ctx.beginPath(); ctx.moveTo(l.pos,y0); ctx.lineTo(l.pos,y1); ctx.stroke();
+    } else if(l.type==='sh'){
+      l.tr+=l.spd;
+      if(l.tr>l.lim+l.tl) l.tr=-l.tl;
+      if(l.tr<-l.tl) l.tr=l.lim+l.tl;
+      const {r,g,b}=l.c;
+      const x0=l.tr-l.tl, x1=l.tr;
+      const gr=ctx.createLinearGradient(x0,0,x1,0);
+      gr.addColorStop(0,`rgba(${r},${g},${b},0)`);
+      gr.addColorStop(0.6,`rgba(${r},${g},${b},${l.a*.5})`);
+      gr.addColorStop(1,`rgba(${r},${g},${b},${l.a})`);
+      ctx.strokeStyle=gr; ctx.lineWidth=l.w;
+      ctx.beginPath(); ctx.moveTo(x0,l.pos); ctx.lineTo(x1,l.pos); ctx.stroke();
+    }
+  }
+
+  // sparkles at intersections
+  for(const s of lines._sparks){
+    const a=s.ta*(0.5+0.5*Math.sin(t*s.spd*60+s.ph));
+    const {r,g,b}=s.c;
+    ctx.fillStyle=`rgba(${r},${g},${b},${a})`;
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
+  }
+
+  t+=1/60;
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize',()=>{resize();});
+resize(); draw();
+
+// ── PROJECT CARD MINI-CANVASES ──
+document.querySelectorAll('.card-canvas').forEach(c=>{
+  const hue=parseInt(c.dataset.hue);
+  const cx=c.getContext('2d');
+  const dp=window.devicePixelRatio||1;
+  function rs(){ c.width=c.offsetWidth*dp; c.height=c.offsetHeight*dp; cx.scale(dp,dp); }
+  rs();
+  const cw=()=>c.offsetWidth, ch=()=>c.offsetHeight;
+  const cl=[];
+  for(let i=0;i<14;i++) cl.push({type:Math.random()>.5?'v':'h',pos:Math.random(),spd:.003+Math.random()*.012,ph:Math.random()*Math.PI*2,a:.08+Math.random()*.45});
+  for(let i=0;i<6;i++) cl.push({type:Math.random()>.5?'sv':'sh',pos:Math.random(),tr:Math.random(),spd:(.006+Math.random()*.018)*(Math.random()>.5?1:-1),tl:.12+Math.random()*.28,a:.5+Math.random()*.5});
+  let ct=0;
+  function dc(){
+    const w=cw(),h=ch();
+    cx.clearRect(0,0,w,h);
+    for(const l of cl){
+      const aa=l.a*(0.5+0.5*Math.sin(ct*l.spd*60+(l.ph||0)));
+      if(l.type==='v'){
+        cx.strokeStyle=`hsla(${hue},100%,68%,${aa})`; cx.lineWidth=.8;
+        cx.beginPath(); cx.moveTo(l.pos*w,0); cx.lineTo(l.pos*w,h); cx.stroke();
+      } else if(l.type==='h'){
+        cx.strokeStyle=`hsla(${hue+30},100%,62%,${aa*.6})`; cx.lineWidth=.6;
+        cx.beginPath(); cx.moveTo(0,l.pos*h); cx.lineTo(w,l.pos*h); cx.stroke();
+      } else if(l.type==='sv'){
+        l.tr+=l.spd; if(l.tr>1+l.tl)l.tr=-l.tl; if(l.tr<-l.tl)l.tr=1+l.tl;
+        const y0=l.tr-l.tl, y1=l.tr;
+        const g=cx.createLinearGradient(0,y0*h,0,y1*h);
+        g.addColorStop(0,`hsla(${hue},100%,72%,0)`); g.addColorStop(1,`hsla(${hue},100%,72%,${l.a})`);
+        cx.strokeStyle=g; cx.lineWidth=1;
+        cx.beginPath(); cx.moveTo(l.pos*w,y0*h); cx.lineTo(l.pos*w,y1*h); cx.stroke();
+      } else {
+        l.tr+=l.spd; if(l.tr>1+l.tl)l.tr=-l.tl; if(l.tr<-l.tl)l.tr=1+l.tl;
+        const x0=l.tr-l.tl, x1=l.tr;
+        const g=cx.createLinearGradient(x0*w,0,x1*w,0);
+        g.addColorStop(0,`hsla(${hue+20},100%,72%,0)`); g.addColorStop(1,`hsla(${hue+20},100%,72%,${l.a})`);
+        cx.strokeStyle=g; cx.lineWidth=1;
+        cx.beginPath(); cx.moveTo(x0*w,l.pos*h); cx.lineTo(x1*w,l.pos*h); cx.stroke();
+      }
+    }
+    ct+=1/60;
+    requestAnimationFrame(dc);
+  }
+  dc();
+});
+</script>
+</body>
+</html>

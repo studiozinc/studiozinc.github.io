@@ -49,7 +49,13 @@
     /* ═══════════════════════════════════════
        RESET
     ═══════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     html {
       scroll-behavior: smooth;
@@ -64,7 +70,10 @@
       transition: background .4s, color .4s;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     /* ═══════════════════════════════════════
        GRAIN OVERLAY
@@ -85,7 +94,9 @@
     ═══════════════════════════════════════ */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       height: 56px;
       display: flex;
@@ -110,7 +121,9 @@
       gap: .5rem;
     }
 
-    .nav-logo .accent { color: var(--accent); }
+    .nav-logo .accent {
+      color: var(--accent);
+    }
 
     .nav-right {
       display: flex;
@@ -130,17 +143,44 @@
       transition: border-color .2s, color .2s;
       border-radius: 2px;
     }
-    .tog:hover { border-color: var(--accent); color: var(--accent); }
+
+    .tog:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     /* lang/theme toggle visibility */
-    #langBtn .l-zh { display: inline; }
-    #langBtn .l-en { display: none; }
-    [data-lang="en"] #langBtn .l-zh { display: none; }
-    [data-lang="en"] #langBtn .l-en { display: inline; }
-    #themeBtn .t-dark { display: inline; }
-    #themeBtn .t-light { display: none; }
-    [data-theme="light"] #themeBtn .t-dark { display: none; }
-    [data-theme="light"] #themeBtn .t-light { display: inline; }
+    #langBtn .l-zh {
+      display: inline;
+    }
+
+    #langBtn .l-en {
+      display: none;
+    }
+
+    [data-lang="en"] #langBtn .l-zh {
+      display: none;
+    }
+
+    [data-lang="en"] #langBtn .l-en {
+      display: inline;
+    }
+
+    #themeBtn .t-dark {
+      display: inline;
+    }
+
+    #themeBtn .t-light {
+      display: none;
+    }
+
+    [data-theme="light"] #themeBtn .t-dark {
+      display: none;
+    }
+
+    [data-theme="light"] #themeBtn .t-light {
+      display: inline;
+    }
 
     /* hamburger */
     .nav-hamburger {
@@ -152,20 +192,33 @@
       cursor: pointer;
       padding: .3rem;
     }
+
     .nav-hamburger span {
-      display: block; width: 20px; height: 1.5px;
+      display: block;
+      width: 20px;
+      height: 1.5px;
       background: var(--fg);
       transition: transform .3s, opacity .3s;
     }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
 
     .nav-links {
       display: flex;
       align-items: center;
       gap: 1.5rem;
     }
+
     .nav-links a {
       font-family: 'JetBrains Mono', monospace;
       font-size: .65rem;
@@ -174,18 +227,27 @@
       color: var(--fg2);
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
     /* mobile drawer */
     .nav-drawer {
       display: none;
-      position: fixed; inset: 0; z-index: 99;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
       background: var(--bg);
       flex-direction: column;
       padding: 80px 2rem 3rem;
       gap: 0;
     }
-    .nav-drawer.open { display: flex; }
+
+    .nav-drawer.open {
+      display: flex;
+    }
+
     .nav-drawer a {
       font-family: 'Unbounded', sans-serif;
       font-weight: 700;
@@ -196,7 +258,11 @@
       padding: 1rem 0;
       transition: color .2s;
     }
-    .nav-drawer a:hover { color: var(--accent); }
+
+    .nav-drawer a:hover {
+      color: var(--accent);
+    }
+
     .drawer-bottom {
       margin-top: auto;
       display: flex;
@@ -206,148 +272,84 @@
     /* ═══════════════════════════════════════
        HERO
     ═══════════════════════════════════════ */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 2rem;
+    #hero {
       position: relative;
+      width: 100%;
+      height: 100vh;
       overflow: hidden;
-    }
-
-    /* subtle grid */
-    .hero-grid {
-      position: absolute; inset: 0;
-      pointer-events: none; z-index: 0;
-      background-image:
-        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-      background-size: 80px 80px;
-    }
-    [data-theme="light"] .hero-grid {
-      background-image:
-        linear-gradient(rgba(0,119,170,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,119,170,0.04) 1px, transparent 1px);
-    }
-
-    /* lava blobs */
-    .hero-lava {
-      position: absolute; inset: 0; z-index: 0;
-      pointer-events: none; overflow: hidden;
-    }
-    .hero-lava div {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      will-change: transform;
-    }
-    .hero-lava-1 {
-      width: 500px; height: 500px;
-      background: var(--accent);
-      top: -10%; left: -5%;
-      opacity: 0.12;
-      animation: drift1 20s ease-in-out infinite alternate;
-    }
-    .hero-lava-2 {
-      width: 400px; height: 400px;
-      background: #ff6b35;
-      bottom: -10%; right: -5%;
-      opacity: 0.08;
-      animation: drift2 25s ease-in-out infinite alternate;
-    }
-    .hero-lava-3 {
-      width: 300px; height: 300px;
-      background: #a855f7;
-      top: 40%; left: 50%;
-      opacity: 0.06;
-      animation: drift3 22s ease-in-out infinite alternate;
-    }
-    [data-theme="light"] .hero-lava-1 { opacity: 0.07; }
-    [data-theme="light"] .hero-lava-2 { opacity: 0.05; }
-    [data-theme="light"] .hero-lava-3 { opacity: 0.04; }
-
-    @keyframes drift1 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(30vw, 20vh) scale(1.2); }
-    }
-    @keyframes drift2 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-25vw, -15vh) scale(1.1); }
-    }
-    @keyframes drift3 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-20vw, 20vh) scale(0.8); }
-    }
-
-    .hero-content {
-      position: relative; z-index: 1;
-      max-width: 800px;
-    }
-
-    .hero-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .65rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
-      gap: .6rem;
-    }
-    .hero-label::before {
-      content: '//';
-      opacity: .5;
+      justify-content: center;
     }
 
-    .hero-headline {
-      font-family: 'Unbounded', 'Noto Sans TC', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      line-height: 1.05;
-      letter-spacing: -.03em;
-      color: var(--fg);
-      margin-bottom: 1.5rem;
+    #grid-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(9rem, 3vw, 1.4rem);
+      letter-spacing: 0.5em;
+      color: rgba(232, 232, 224, 0.9);
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
     }
 
     .hero-sub {
-      font-size: clamp(.9rem, 1.4vw, 1.05rem);
-      line-height: 1.7;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(4.65rem, 1.5vw, 0.75rem);
+      letter-spacing: 0.3em;
       color: var(--fg2);
-      max-width: 480px;
-      font-weight: 300;
-    }
-
-    .hero-bottom {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      padding: 1rem 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .status-pill {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .12em;
       text-transform: uppercase;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
       color: var(--fg2);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
-    .pulse {
-      width: 6px; height: 6px;
-      background: #22c55e;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--fg2), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
     }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, .4); }
-      50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: .3;
+        transform: scaleY(1)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(.6)
+      }
     }
 
     /* ═══════════════════════════════════════
@@ -366,6 +368,7 @@
       align-items: center;
       gap: .5rem;
     }
+
     .section-label::before {
       content: '//';
       opacity: .4;
@@ -393,7 +396,10 @@
       overflow: hidden;
       transition: background .2s;
     }
-    .work-card:hover { background: var(--surface); }
+
+    .work-card:hover {
+      background: var(--surface);
+    }
 
     .work-card-thumb {
       aspect-ratio: 16/10;
@@ -402,6 +408,7 @@
       background-color: var(--surface);
       transition: transform .4s;
     }
+
     .work-card:hover .work-card-thumb {
       transform: scale(1.02);
     }
@@ -427,7 +434,10 @@
       line-height: 1.3;
       transition: color .2s;
     }
-    .work-card:hover .work-card-name { color: var(--accent); }
+
+    .work-card:hover .work-card-name {
+      color: var(--accent);
+    }
 
     .work-card-sub {
       font-size: .75rem;
@@ -451,6 +461,7 @@
       color: var(--fg2);
       font-weight: 300;
     }
+
     .about-text strong {
       color: var(--fg);
       font-weight: 500;
@@ -485,13 +496,17 @@
       display: inline-block;
       transition: opacity .2s;
     }
-    .contact-email:hover { opacity: .7; }
+
+    .contact-email:hover {
+      opacity: .7;
+    }
 
     .contact-meta {
       display: flex;
       gap: 3rem;
       margin-top: 2.5rem;
     }
+
     .contact-meta-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: .55rem;
@@ -500,6 +515,7 @@
       color: var(--accent);
       margin-bottom: .3rem;
     }
+
     .contact-meta-val {
       font-size: .8rem;
       color: var(--fg2);
@@ -510,52 +526,83 @@
        FOOTER
     ═══════════════════════════════════════ */
     footer {
-      padding: 2rem;
+      padding: 2rem 2rem 0;
       border-top: 1px solid var(--border);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+      overflow: hidden;
     }
+
     .footer-copy {
       font-family: 'JetBrains Mono', monospace;
       font-size: .55rem;
       letter-spacing: .1em;
       color: var(--fg3);
+      margin-bottom: 0;
     }
-    .footer-mark {
+
+    .footer-logo {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 2rem;
+      overflow: visible;
+    }
+
+    .footer-logo text {
       font-family: 'Unbounded', sans-serif;
       font-weight: 900;
-      font-size: .7rem;
-      letter-spacing: .1em;
-      color: var(--fg3);
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
     }
-    .footer-mark span { color: var(--accent); }
 
     /* ═══════════════════════════════════════
        REVEAL
     ═══════════════════════════════════════ */
-    .reveal { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
-    .reveal.will-animate { opacity: 0; transform: translateY(16px); }
-    .reveal.will-animate.in { opacity: 1; transform: translateY(0); }
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.will-animate {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .reveal.will-animate.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ═══════════════════════════════════════
        MODAL
     ═══════════════════════════════════════ */
     .pj-overlay {
-      position: fixed; inset: 0; z-index: 800;
-      background: rgba(0,0,0,0.8);
+      position: fixed;
+      inset: 0;
+      z-index: 800;
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(8px);
-      opacity: 0; pointer-events: none;
+      opacity: 0;
+      pointer-events: none;
       transition: opacity .3s;
     }
-    .pj-overlay.open { opacity: 1; pointer-events: all; }
+
+    .pj-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
 
     .pj-modal {
       position: fixed;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       z-index: 801;
       transform: translate(-50%, -48%) scale(0.97);
-      opacity: 0; pointer-events: none;
+      opacity: 0;
+      pointer-events: none;
       transition: opacity .3s, transform .3s;
       width: min(720px, 92vw);
       max-height: 88vh;
@@ -563,170 +610,203 @@
       background: var(--bg);
       border: 1px solid var(--border2);
     }
+
     .pj-modal.open {
-      opacity: 1; pointer-events: all;
+      opacity: 1;
+      pointer-events: all;
       transform: translate(-50%, -50%) scale(1);
     }
-    .pj-modal::-webkit-scrollbar { width: 3px; }
-    .pj-modal::-webkit-scrollbar-thumb { background: var(--border2); }
+
+    .pj-modal::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .pj-modal::-webkit-scrollbar-thumb {
+      background: var(--border2);
+    }
 
     .pj-close {
-      position: sticky; top: 0; float: right;
+      position: sticky;
+      top: 0;
+      float: right;
       z-index: 10;
-      width: 36px; height: 36px;
+      width: 36px;
+      height: 36px;
       background: var(--surface);
       border: 1px solid var(--border);
       color: var(--fg2);
       font-size: .9rem;
       cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: background .2s, color .2s;
       margin-bottom: -36px;
     }
-    .pj-close:hover { background: var(--accent); color: var(--bg); }
+
+    .pj-close:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
 
     .pj-hero {
-      width: 100%; aspect-ratio: 16/9;
-      object-fit: cover; display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
       background: var(--surface);
     }
-    .pj-body { padding: 1.5rem 2rem 2rem; }
+
+    .pj-body {
+      padding: 1.5rem 2rem 2rem;
+    }
+
     .pj-type {
       font-family: 'JetBrains Mono', monospace;
-      font-size: .55rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--accent);
+      font-size: .55rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
       margin-bottom: .5rem;
     }
+
     .pj-title {
       font-family: 'Unbounded', sans-serif;
       font-weight: 700;
       font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-      color: var(--fg); letter-spacing: -.02em;
+      color: var(--fg);
+      letter-spacing: -.02em;
       margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--border);
     }
+
     .pj-scope-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: .55rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--accent);
+      font-size: .55rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
       margin-bottom: .5rem;
     }
+
     .pj-scope-text {
-      font-size: .85rem; line-height: 1.8;
-      color: var(--fg2); font-weight: 300;
-      margin-bottom: 1.5rem; max-width: 560px;
+      font-size: .85rem;
+      line-height: 1.8;
+      color: var(--fg2);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      max-width: 560px;
     }
+
     .pj-services {
-      display: flex; flex-wrap: wrap;
-      gap: .4rem; margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: 2rem;
     }
+
     .pj-svc-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: .55rem; letter-spacing: .08em;
+      font-size: .55rem;
+      letter-spacing: .08em;
       color: var(--fg2);
       border: 1px solid var(--border2);
       padding: .25rem .6rem;
     }
+
     .pj-imgs {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1px; background: var(--border);
+      gap: 1px;
+      background: var(--border);
     }
+
     .pj-img {
-      aspect-ratio: 4/3; object-fit: cover;
-      display: block; width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      width: 100%;
       background: var(--surface);
     }
+
     .pj-img-placeholder {
       aspect-ratio: 4/3;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: var(--surface);
       font-family: 'JetBrains Mono', monospace;
-      font-size: .5rem; letter-spacing: .15em;
-      color: var(--fg3); text-transform: uppercase;
+      font-size: .5rem;
+      letter-spacing: .15em;
+      color: var(--fg3);
+      text-transform: uppercase;
     }
 
     /* ═══════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════ */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex !important; }
+      .nav-links {
+        display: none;
+      }
 
-      .hero { min-height: 85vh; padding: 0 1.5rem; }
-      .hero-headline { font-size: clamp(2rem, 9vw, 3.2rem); }
-      .hero-bottom { padding: 1rem 1.5rem; }
+      .nav-hamburger {
+        display: flex !important;
+      }
 
-      .work-section { padding: 4rem 1.5rem 3rem; }
-      .work-grid { grid-template-columns: 1fr; }
+      .hero {
+        min-height: 85vh;
+        padding: 0 1.5rem;
+      }
 
-      .about-section, .contact-section { padding: 4rem 1.5rem; }
+      .work-section {
+        padding: 4rem 1.5rem 3rem;
+      }
 
-      .contact-meta { flex-direction: column; gap: 1.5rem; }
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
 
-      footer { flex-direction: column; gap: .5rem; text-align: center; }
+      .about-section,
+      .contact-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .contact-meta {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center;
+      }
     }
 
-    @media (max-width: 480px) {
-      .hero-headline { font-size: clamp(1.8rem, 10vw, 2.5rem); }
-    }
+    @media (max-width: 480px) {}
   </style>
 </head>
 
 <body>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-drawer" id="drawer">
-    <a href="#work" data-zh="作品" data-en="Work" onclick="closeDrawer()">Work</a>
-    <a href="#about" data-zh="關於" data-en="About" onclick="closeDrawer()">About</a>
-    <a href="#contact" data-zh="聯絡" data-en="Contact" onclick="closeDrawer()">Contact</a>
-    <div class="drawer-bottom">
-      <button class="tog" id="langBtn2"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
-      <button class="tog" id="themeBtn2"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
-    </div>
+  <!-- SITE TOGGLES -->
+  <div class="site-toggles" style="position: absolute; top: 1.5rem; right: 2rem; z-index: 100; display: flex; gap: 0.5rem;">
+    <button class="tog" id="langBtn"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
+    <button class="tog" id="themeBtn"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
   </div>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <span class="accent">鋅</span> studio zinc
-    </a>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#work" data-zh="作品" data-en="Work">Work</a>
-        <a href="#about" data-zh="關於" data-en="About">About</a>
-        <a href="#contact" data-zh="聯絡" data-en="Contact">Contact</a>
-      </div>
-      <button class="tog" id="langBtn"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
-      <button class="tog" id="themeBtn"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
-      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
   <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-lava">
-      <div class="hero-lava-1"></div>
-      <div class="hero-lava-2"></div>
-      <div class="hero-lava-3"></div>
+  <section id="hero">
+    <canvas id="grid-canvas"></canvas>
+    <div class="hero-text">
+      <div class="hero-title" data-zh="鋅工作室" data-en="Studio Zinc">STUDIO ZINC</div>
+      <div class="hero-sub" data-zh="數位實驗室" data-en="Digital Lab">Digital Lab</div>
     </div>
-    <div class="hero-content">
-      <div class="hero-label" data-zh="數位實驗室" data-en="Digital Lab">Digital Lab</div>
-      <h1 class="hero-headline" data-zh="設計、寫碼、<br>做有趣的東西。" data-en="Design, code,<br>build fun things.">Design, code,<br>build fun things.</h1>
-      <p class="hero-sub" data-zh="一個在台北的工程師兼設計師的個人數位工作台。專注於有道德的 App 開發和實驗性專案。"
-        data-en="A personal digital workbench by a designer & engineer in Taipei. Ethical apps, experiments, and things worth making.">
-        A personal digital workbench by a designer & engineer in Taipei. Ethical apps, experiments, and things worth making.
-      </p>
-    </div>
-    <div class="hero-bottom">
-      <div class="status-pill">
-        <div class="pulse"></div>
-        <span data-zh="開放合作" data-en="Open for collaboration">Open for collaboration</span>
-      </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span data-zh="向下捲動" data-en="Scroll">Scroll</span>
     </div>
   </section>
 
@@ -744,10 +824,11 @@
   <section id="about">
     <div class="about-section">
       <div class="section-label reveal" data-zh="關於" data-en="About">About</div>
-      <div class="about-text reveal"
-        data-zh="我是一個工程師出身的設計師，待在台北。先搞工程，後來開印刷店，最後走上設計這條路。我喜歡把東西從無到有做出來——不管是 App、品牌、還是網站。<br><br>現在主要做<strong>不偷你資料的 App</strong>，以及各種覺得好玩的專案。偶爾也接設計案。"
-        data-en="Engineer turned designer, based in Taipei. Started in engineering, ran a print shop, ended up in design. I like building things from scratch — apps, brands, websites, whatever.<br><br>Currently making <strong>apps that don't steal your data</strong>, and whatever else seems worth building. Open for design work too.">
-        Engineer turned designer, based in Taipei. Started in engineering, ran a print shop, ended up in design. I like building things from scratch — apps, brands, websites, whatever.<br><br>Currently making <strong>apps that don't steal your data</strong>, and whatever else seems worth building. Open for design work too.
+      <div class="about-text reveal" data-zh="哈嘍，這是我的數位遊樂場。<br><br>現在主要做<strong>注重隱私權的App</strong>，以及各種覺得好玩的專案。偶爾也接設計案。"
+        data-en="Hi, this is my digital playground. <br><br>Currently making <strong>privacy-focused apps</strong>, and design stuff for fun.">
+        Engineer turned designer, based in Taipei. Started in engineering, ran a print shop, ended up in design. I like
+        building things from scratch — apps, brands, websites, whatever.<br><br>Currently making <strong>apps that don't
+          steal your data</strong>, and whatever else seems worth building. Open for design work too.
       </div>
     </div>
   </section>
@@ -756,7 +837,7 @@
   <section id="contact">
     <div class="contact-section">
       <div class="section-label reveal" data-zh="聯絡" data-en="Say Hello">Say Hello</div>
-      <h2 class="contact-headline reveal" data-zh="想合作？聊聊。" data-en="Want to collaborate?<br>Let's talk.">Want to collaborate?<br>Let's talk.</h2>
+      <h2 class="contact-headline reveal" data-zh="想合作？聊聊。" data-en="Here's my contact<br>">Here's my contact<br></h2>
       <a href="mailto:hello@studiozinc.com" class="contact-email reveal">hello@studiozinc.com</a>
       <div class="contact-meta reveal">
         <div>
@@ -773,8 +854,14 @@
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-copy" data-zh="© 2026 Studio Zinc (ClickCircuit LLC)" data-en="© 2026 Studio Zinc (ClickCircuit LLC)">© 2026 Studio Zinc (ClickCircuit LLC)</span>
-    <span class="footer-mark">STUDIO <span>ZINC</span></span>
+    <span class="footer-copy" data-zh="© 2026 Studio Zinc (ClickCircuit LLC)"
+      data-en="© 2026 Studio Zinc (ClickCircuit LLC)">© 2026 Studio Zinc (ClickCircuit LLC)</span>
+    <svg class="footer-logo" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid meet">
+      <text x="0" y="105" textLength="1000" lengthAdjust="spacing" font-size="130" font-weight="900"
+        fill="currentColor">
+        STUDIO <tspan fill="var(--accent)">ZINC</tspan>
+      </text>
+    </svg>
   </footer>
 
   <!-- MODAL -->
@@ -830,22 +917,7 @@
     try { const s = localStorage.getItem('studiozinc-theme'); if (s) applyTheme(s); } catch (e) { }
     try { const l = localStorage.getItem('studiozinc-lang'); if (l) applyLang(l); } catch (e) { }
 
-    // ── HAMBURGER ───────────────────────────
-    const burger = document.getElementById('hamburger');
-    const drawer = document.getElementById('drawer');
-    function closeDrawer() {
-      if (!drawer || !burger) return;
-      drawer.classList.remove('open');
-      burger.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    if (burger && drawer) {
-      burger.addEventListener('click', () => {
-        const open = drawer.classList.toggle('open');
-        burger.classList.toggle('open', open);
-        document.body.style.overflow = open ? 'hidden' : '';
-      });
-    }
+
 
     // ── PROJECT DATA ────────────────────────
     const PROJECT_DATA = [
@@ -1015,6 +1087,186 @@
     }
 
     renderCards();
+
+    // ── HERO GRID ANIMATION ─────────────────
+    // These variables control the animation aesthetics, you can edit them here:
+    const GRID_COLORS = [
+      { r: 255, g: 45, b: 120 }, // Pink color for the lines
+      { r: 0, g: 229, b: 255 },  // Cyan color for the lines
+      { r: 255, g: 230, b: 0 },  // Yellow color for the lines
+      { r: 0, g: 255, b: 159 },  // Green color for the lines
+    ];
+
+    function gridRnd(a, b) { return a + Math.random() * (b - a); }
+    function gridRndCol() { return GRID_COLORS[Math.floor(Math.random() * GRID_COLORS.length)]; }
+
+    const gridCanvas = document.getElementById('grid-canvas');
+    if (gridCanvas) {
+      const gridCtx = gridCanvas.getContext('2d');
+      let GW, GH, animLines;
+      const gridDpr = window.devicePixelRatio || 1; // Pixel density multiplier for crisp canvas on retina displays
+
+      function gridResize() {
+        GW = gridCanvas.offsetWidth; GH = gridCanvas.offsetHeight;
+        gridCanvas.width = GW * gridDpr; gridCanvas.height = GH * gridDpr;
+        gridCtx.scale(gridDpr, gridDpr);
+        buildGridLines();
+      }
+
+      function buildGridLines() {
+        animLines = [];
+
+        // Grid density: how many lines span the screen based on screen dimensions
+        // Decrease the divisor (e.g., 32 to 16) for MORE lines, increase it (e.g., 32 to 64) for FEWER lines.
+        const verticalLineCount = Math.floor(GW / 32) + 6;
+        const horizontalLineCount = Math.floor(GH / 50) + 6;
+
+        // Add stable vertical background lines
+        for (let i = 0; i < verticalLineCount; i++) {
+          animLines.push({
+            type: 'v',
+            x: gridRnd(0, GW),                   // x-coordinate position of line
+            w: gridRnd(.4, 2),                   // line width (thickness in pixels)
+            c: gridRndCol(),                    // line color sampled randomly from GRID_COLORS
+            tA: gridRnd(.06, .6),                // base opacity/alpha (how visible the line is, max 1.0)
+            spd: gridRnd(.002, .016),            // pulsing animation speed
+            ph: Math.random() * Math.PI * 2,        // starting phase of sine wave to stagger the brightness pulses
+            gw: gridRnd(4, 14),                  // gradient width of the glow effect around the line
+            pm: gridRnd(.3, .7)                  // multiplier for the intensity of the brightness pulse
+          });
+        }
+
+        // Add stable horizontal background lines
+        for (let i = 0; i < horizontalLineCount; i++) {
+          animLines.push({
+            type: 'h',
+            y: gridRnd(0, GH),                   // y-coordinate position of line
+            w: gridRnd(.3, 1.4),                 // line width (thickness in pixels)
+            c: gridRndCol(),                    // line color 
+            tA: gridRnd(.04, .3),                // base opacity/alpha
+            spd: gridRnd(.002, .01),             // pulsing animation speed
+            ph: Math.random() * Math.PI * 2,        // starting phase of sine wave 
+            gw: gridRnd(2, 10),                  // gradient width of the glow effect
+            pm: gridRnd(.2, .6)                  // multiplier for the intensity of the brightness pulse
+          });
+        }
+
+        // Add fast shooting lines moving across the screen (like comets)
+        // Change '22' to a lower number for fewer shooting lines or higher for more.
+        const shootingLineCount = 22;
+        for (let i = 0; i < shootingLineCount; i++) {
+          const sv = Math.random() > .45;          // boolean: Is this a vertical (sv) or horizontal (sh) shooting line?
+          animLines.push({
+            type: sv ? 'sv' : 'sh',
+            pos: gridRnd(0, sv ? GW : GH),           // position axis (x for vertical, y for horizontal)
+            tr: gridRnd(0, sv ? GH : GW),            // starting travel tracking coordinate (position along its axis)
+            spd: gridRnd(.7, 3.2) * (Math.random() > .5 ? 1 : -1), // speed & direction (negative moves up/left, positive moves down/right)
+            tl: gridRnd(40, 200),                // tail length of the shooting line
+            w: gridRnd(.5, 1.8),                 // line width (thickness in pixels)
+            c: gridRndCol(),                    // line color
+            a: gridRnd(.45, 1),                  // maximum visibility/opacity when it passes
+            lim: sv ? GH : GW                       // coordinate bounds limit, used to wrap around the screen edge
+          });
+        }
+
+        // Add sparkling dots appearing at pseudo-intersections
+        animLines._sparks = [];
+        const sparkCount = 40;                 // Total number of sparkling dots randomly on screen
+        for (let i = 0; i < sparkCount; i++) {
+          animLines._sparks.push({
+            x: gridRnd(0, GW),                   // x-coordinate of the spark dot
+            y: gridRnd(0, GH),                   // y-coordinate of the spark dot
+            a: 0,                               // current alpha value of the spark
+            ta: gridRnd(.2, .8),                 // target/max alpha value showing how bright it will get
+            spd: gridRnd(.003, .02),             // speed at which the spark fades in and out
+            ph: Math.random() * Math.PI * 2,        // phase synchronization for pulsing
+            r: gridRnd(.8, 2.5),                 // radius of the spark dot in pixels
+            c: gridRndCol()                     // color of the spark
+          });
+        }
+      }
+
+      let gt = 0;
+      function drawGrid() {
+        gridCtx.clearRect(0, 0, GW, GH);
+
+        // Draw background generic dot pattern layer
+        gridCtx.fillStyle = 'rgba(232,232,224,0.025)';
+        const dotSpacing = 48; // Space in pixels between background grid dots. Change this for a tighter/looser grid.
+        for (let x = dotSpacing; x < GW; x += dotSpacing) {
+          for (let y = dotSpacing; y < GH; y += dotSpacing) {
+            gridCtx.beginPath(); gridCtx.arc(x, y, .5, 0, Math.PI * 2); gridCtx.fill();
+          }
+        }
+
+        // Draw lines
+        for (const l of animLines) {
+          if (l.type === 'v') {
+            const pulse = Math.sin(gt * l.spd * 60 + l.ph);
+            const a = l.tA * (l.pm * (0.5 + 0.5 * pulse) + (1 - l.pm) * 0.65);
+            const { r, g, b } = l.c;
+            const gr = gridCtx.createLinearGradient(l.x - l.gw, 0, l.x + l.gw, 0);
+            gr.addColorStop(0, `rgba(${r},${g},${b},0)`);
+            gr.addColorStop(0.5, `rgba(${r},${g},${b},${a * .18})`);
+            gr.addColorStop(1, `rgba(${r},${g},${b},0)`);
+            gridCtx.fillStyle = gr; gridCtx.fillRect(l.x - l.gw, 0, l.gw * 2, GH);
+            gridCtx.strokeStyle = `rgba(${r},${g},${b},${a})`; gridCtx.lineWidth = l.w;
+            gridCtx.beginPath(); gridCtx.moveTo(l.x, 0); gridCtx.lineTo(l.x, GH); gridCtx.stroke();
+          } else if (l.type === 'h') {
+            const pulse = Math.sin(gt * l.spd * 60 + l.ph);
+            const a = l.tA * (l.pm * (0.5 + 0.5 * pulse) + (1 - l.pm) * 0.65);
+            const { r, g, b } = l.c;
+            const gr = gridCtx.createLinearGradient(0, l.y - l.gw, 0, l.y + l.gw);
+            gr.addColorStop(0, `rgba(${r},${g},${b},0)`);
+            gr.addColorStop(0.5, `rgba(${r},${g},${b},${a * .14})`);
+            gr.addColorStop(1, `rgba(${r},${g},${b},0)`);
+            gridCtx.fillStyle = gr; gridCtx.fillRect(0, l.y - l.gw, GW, l.gw * 2);
+            gridCtx.strokeStyle = `rgba(${r},${g},${b},${a})`; gridCtx.lineWidth = l.w;
+            gridCtx.beginPath(); gridCtx.moveTo(0, l.y); gridCtx.lineTo(GW, l.y); gridCtx.stroke();
+          } else if (l.type === 'sv') {
+            // Update tracking coordinate for shooting line
+            l.tr += l.spd;
+            if (l.tr > l.lim + l.tl) l.tr = -l.tl; // wrap around screen top/bottom
+            if (l.tr < -l.tl) l.tr = l.lim + l.tl;
+            const { r, g, b } = l.c;
+            const y0 = l.tr - l.tl, y1 = l.tr;    // calculate tail utilizing tracker (tr) minus tail length (tl)
+            const gr = gridCtx.createLinearGradient(0, y0, 0, y1);
+            gr.addColorStop(0, `rgba(${r},${g},${b},0)`);
+            gr.addColorStop(0.6, `rgba(${r},${g},${b},${l.a * .5})`);
+            gr.addColorStop(1, `rgba(${r},${g},${b},${l.a})`);
+            gridCtx.strokeStyle = gr; gridCtx.lineWidth = l.w;
+            gridCtx.beginPath(); gridCtx.moveTo(l.pos, y0); gridCtx.lineTo(l.pos, y1); gridCtx.stroke();
+          } else if (l.type === 'sh') {
+            // Update tracking coordinate for shooting line
+            l.tr += l.spd;
+            if (l.tr > l.lim + l.tl) l.tr = -l.tl; // wrap around screen left/right
+            if (l.tr < -l.tl) l.tr = l.lim + l.tl;
+            const { r, g, b } = l.c;
+            const x0 = l.tr - l.tl, x1 = l.tr;    // calculate tail utilizing tracker (tr) minus tail length (tl)
+            const gr = gridCtx.createLinearGradient(x0, 0, x1, 0);
+            gr.addColorStop(0, `rgba(${r},${g},${b},0)`);
+            gr.addColorStop(0.6, `rgba(${r},${g},${b},${l.a * .5})`);
+            gr.addColorStop(1, `rgba(${r},${g},${b},${l.a})`);
+            gridCtx.strokeStyle = gr; gridCtx.lineWidth = l.w;
+            gridCtx.beginPath(); gridCtx.moveTo(x0, l.pos); gridCtx.lineTo(x1, l.pos); gridCtx.stroke();
+          }
+        }
+
+        // Process and draw sparkling dots at intersections
+        for (const s of animLines._sparks) {
+          const a = s.ta * (0.5 + 0.5 * Math.sin(gt * s.spd * 60 + s.ph)); // Calculate pulsing alpha
+          const { r, g, b } = s.c;
+          gridCtx.fillStyle = `rgba(${r},${g},${b},${a})`;
+          gridCtx.beginPath(); gridCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2); gridCtx.fill();
+        }
+
+        gt += 1 / 60; // 60 FPS timing increment tracker
+        requestAnimationFrame(drawGrid);
+      }
+
+      window.addEventListener('resize', () => { gridResize(); });
+      gridResize(); drawGrid();
+    }
   </script>
 
 </body>
