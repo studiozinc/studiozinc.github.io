@@ -24,7 +24,7 @@
       --border: rgba(255, 255, 255, 0.06);
       --border2: rgba(255, 255, 255, 0.12);
       --fg: #e8e8e8;
-      --fg2: #777;
+      --fg2: #ffffff;
       --fg3: #555;
       --accent: #00e5ff;
       --accent-dim: rgba(0, 229, 255, 0.06);
@@ -492,9 +492,15 @@
       color: var(--accent);
     }
 
-    .about-item strong {
-      color: var(--fg);
-      font-weight: 400;
+    .about-item a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+
+    .about-item a:hover {
+      opacity: .7;
+      text-decoration: underline;
     }
 
     .about-text strong {
@@ -734,6 +740,20 @@
       max-width: 560px;
     }
 
+    .pj-scope-text a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: color .2s, background .2s;
+    }
+
+    .pj-scope-text a:hover {
+      color: var(--bg);
+      background: var(--accent);
+      text-decoration: none;
+    }
+
     .pj-services {
       display: flex;
       flex-wrap: wrap;
@@ -867,10 +887,13 @@
       <div class="about-list reveal">
         <div class="about-item" data-zh="開發注重<strong>隱私與體驗</strong>的實用 App"
           data-en="Building helpful apps with <strong>privacy</strong> in mind">Building helpful apps with
-          <strong>privacy</strong> in mind</div>
-        <div class="about-item" data-zh="在台灣各地拍攝<strong>步巡影片</strong> (Walking Videos)"
-          data-en="Filming <strong>walking videos</strong> in Taiwan">Filming <strong>walking videos</strong> in Taiwan
+          <strong>privacy</strong> in mind
         </div>
+        <div class="about-item"
+          data-zh="在台灣各地拍攝 <a href='https://www.youtube.com/@walkaroundtaiwan' target='_blank'><strong>步巡影片</strong></a> (Walking Videos)"
+          data-en="Filming <a href='https://www.youtube.com/@walkaroundtaiwan' target='_blank'><strong>walking videos</strong></a> in Taiwan">
+          Filming <a href='https://www.youtube.com/@walkaroundtaiwan' target='_blank'><strong>walking
+              videos</strong></a> in Taiwan</div>
         <div class="about-item" data-zh="從事<strong>品牌、印刷與網頁</strong>設計"
           data-en="Designing stuff for <strong>print and web</strong>">Designing stuff for <strong>print and
             web</strong></div>
@@ -969,80 +992,110 @@
     const PROJECT_DATA = [
       {
         id: 'pj01',
-        type_zh: '網站 + 品牌', type_en: 'Web + Brand',
+        type_zh: 'DESIGN', type_en: 'DESIGN',
         title_zh: '大將開發',
         title_en: 'Tajiang Rebrand & Website',
-        client_zh: '', client_en: '',
-        scope_zh: '為高端住宅開發公司重新設計品牌與網站。',
-        scope_en: 'Rebrand and website redesign for a publicly listed real estate developer in Taipei. Logo references their textile manufacturing heritage. New site is faster, secure, and mobile-first.',
-        services_zh: ['網站設計', '標誌設計', '視覺系統'],
-        services_en: ['Web Dev', 'Logo', 'Visual System'],
+        scope_zh: '為高端住宅開發公司重新設計品牌與網站。Logo 結合其紡織背景，新站點更快、更現代且支援行動優先設計。',
+        scope_en: 'Rebrand and website redesign for a publicly listed real estate developer. Logo references their textile manufacturing heritage. New site is faster, secure, and mobile-first.',
+        services_zh: ['WordPress', '標誌設計', '網站設計'],
+        services_en: ['WordPress', 'Logo', 'Web Dev'],
         hero: 'images/pj_1.webp',
         imgs: ['images/pj_1_1.webp', 'images/pj_1_2.webp', 'images/pj_1_3.webp']
       },
       {
+        id: 'pj-eagle',
+        type_zh: 'DESIGN', type_en: 'DESIGN',
+        title_zh: 'Eagle Eye Crypto',
+        title_en: 'Eagle Eye Crypto',
+        scope_zh: 'BNB Chain 加密貨幣項目的網頁設計與品牌識別。內容包含視覺系統建立與插畫繪製。',
+        scope_en: 'Web design, branding, and illustrations for a BNB Chain cryptocurrency project. Established a consistent visual identity for their platform.',
+        services_zh: ['加密貨幣', '品牌設計', '插畫'],
+        services_en: ['Crypto', 'Branding', 'Illustration'],
+        hero: 'images/pj_3.webp',
+        imgs: []
+      },
+      {
+        id: 'pj-wat',
+        type_zh: 'DESIGN', type_en: 'DESIGN',
+        title_zh: 'Walk Around Taiwan',
+        title_en: 'WalkAroundTaiwan.com',
+        scope_zh: 'YouTube 頻道步巡台灣的官方網頁版部落格。我真的只是在台灣到處走動並拍攝。這點像是某種環境紀錄片。<br><a href="https://www.youtube.com/@walkaroundtaiwan" target="_blank">youtube.com/@walkaroundtaiwan</a>',
+        scope_en: 'Companion site to my youtube channel WalkAroundTaiwan. I literally just walk around Taiwan and film it. It\'s kind of like an ambient documentary.<br><a href="https://www.youtube.com/@walkaroundtaiwan" target="_blank">youtube.com/@walkaroundtaiwan</a>',
+        services_zh: ['網站設計', '部落格', 'YouTube'],
+        services_en: ['Web Dev', 'Blog', 'YouTube'],
+        hero: 'images/pj_walk.png',
+        imgs: []
+      },
+      {
         id: 'pj02',
-        type_zh: '網站 + 品牌', type_en: 'Web + Brand',
+        type_zh: 'DESIGN', type_en: 'DESIGN',
         title_zh: 'ZERO/DAY/SHIRTS',
         title_en: 'ZERO/DAY/SHIRTS',
-        client_zh: '', client_en: '',
-        scope_zh: '為社會議題服裝品牌設計網站與品牌識別。',
+        scope_zh: '為社會議題服裝品牌設計 Shopify 網站與品牌識別。負責螢幕印刷諮詢與包裝設計。',
         scope_en: 'Shopify site and brand identity for a socially conscious clothing brand. Advised on screen printing and packaging.',
-        services_zh: ['網站', '品牌', '印刷'],
-        services_en: ['Web', 'Brand', 'Print'],
+        services_zh: ['Shopify', '品牌', '印刷'],
+        services_en: ['Shopify', 'Brand', 'Print'],
         hero: 'images/pj_2.webp',
         imgs: ['images/pj_2_1.webp', 'images/pj_2_2.webp', 'images/pj_2_3.webp']
       },
       {
-        id: 'pj03',
-        type_zh: '網站 + 設計', type_en: 'Web + Design',
-        title_zh: '加密貨幣 & NFT 網站',
-        title_en: 'Crypto & NFT Website',
-        client_zh: '', client_en: '',
-        scope_zh: '加密貨幣與 NFT 項目的網站與插畫設計。',
-        scope_en: 'Website and illustrations for a cryptocurrency and NFT project.',
-        services_zh: ['網站', '前端', '設計'],
-        services_en: ['Web', 'Front-end', 'Design'],
-        hero: 'images/pj_3.webp',
-        imgs: ['images/pj_3_1.webp', 'images/pj_3_2.webp', 'images/pj_3_3.webp']
-      },
-      {
-        id: 'pj04',
-        type_zh: '設計 + 商品', type_en: 'Design + Merch',
-        title_zh: 'NPO 教育專案',
-        title_en: 'NPO Education Project',
-        client_zh: '', client_en: '',
-        scope_zh: '為化學教育 NPO 設計文宣與商品。',
-        scope_en: 'Promotional materials and merchandise design for a chemistry education NPO.',
-        services_zh: ['設計', '商品', '印刷'],
-        services_en: ['Design', 'Merch', 'Print'],
-        hero: 'images/pj_4.webp',
-        imgs: ['images/pj_4_1.webp', 'images/pj_4_2.webp', 'images/pj_4_3.webp']
-      },
-      {
         id: 'pj05',
-        type_zh: '設計', type_en: 'Design',
-        title_zh: '封面 & 海報',
+        type_zh: 'DESIGN', type_en: 'DESIGN',
+        title_zh: '書籍封面與海報',
         title_en: 'Covers & Posters',
-        client_zh: '', client_en: '',
-        scope_zh: '書籍封面、社群內容、活動海報。',
-        scope_en: 'Book covers, social media content, and event posters for various clients.',
+        scope_zh: '多樣化的書籍封面設計、活動海報與社群內容創作。',
+        scope_en: 'Book covers, event posters, and social media content for various creative projects. (WIP)',
         services_zh: ['設計', '海報', '封面'],
         services_en: ['Design', 'Posters', 'Covers'],
-        hero: 'images/pj_5.webp',
+        hero: 'images/pj_wip.png',
         imgs: []
       },
       {
-        id: 'pj06',
-        type_zh: 'App 開發', type_en: 'App Dev',
-        title_zh: 'App 專案',
-        title_en: 'App Projects',
-        client_zh: '', client_en: '',
-        scope_zh: '注重隱私與用戶體驗的行動應用開發。',
-        scope_en: 'Privacy-first mobile apps built with user experience in mind.',
-        services_zh: ['App', 'UX/UI', 'Logo'],
-        services_en: ['App Dev', 'UX/UI', 'Logo'],
-        hero: 'images/pj_6.webp',
+        id: 'pj-urine',
+        type_zh: 'APPS', type_en: 'APPS',
+        title_zh: 'Urine Tracker 泌尿科小幫手',
+        title_en: 'Urine Tracker',
+        scope_zh: '專業排尿日記 App。注重隱私、離線優先，協助使用者精確紀錄與分析。 (Google 審核中)',
+        scope_en: 'Professional voiding diary app. Privacy-first and offline-first solution for health tracking. (Coming Soon to Google Play)',
+        services_zh: ['App 開發', '隱私', '醫療'],
+        services_en: ['App Dev', 'Privacy', 'Health'],
+        hero: 'images/pj_urine.jpg',
+        imgs: []
+      },
+      {
+        id: 'pj-nurture',
+        type_zh: 'APPS', type_en: 'APPS',
+        title_zh: 'Nurture Tracker',
+        title_en: 'Nurture Tracker',
+        scope_zh: '私人且非侵入式的嬰兒餵食與成長追蹤 App。資料完全在地儲存。 (開發中)',
+        scope_en: 'Private, non-intrusive app for baby feeding and growth tracking. All data stays local. (In Development)',
+        services_zh: ['App 開發', '育兒', '隱私'],
+        services_en: ['App Dev', 'Parenting', 'Privacy'],
+        hero: 'images/pj_nurture.png',
+        imgs: []
+      },
+      {
+        id: 'pj-breath',
+        type_zh: 'APPS', type_en: 'APPS',
+        title_zh: 'Breathwork Buddy',
+        title_en: 'Breathwork Buddy',
+        scope_zh: '極簡主義的呼吸法與冥想計時器。',
+        scope_en: 'A minimalist holotropic breathwork and meditation timer designed for focus. (In Development)',
+        services_zh: ['App 開發', '冥想', '極簡'],
+        services_en: ['App Dev', 'Meditation', 'Minimalist'],
+        hero: 'images/pj_breath.png',
+        imgs: []
+      },
+      {
+        id: 'pj-elder',
+        type_zh: 'APPS', type_en: 'APPS',
+        title_zh: '長輩圖產生器',
+        title_en: 'Elder Art Generator',
+        scope_zh: '哇，我真的該繼續這個專案嗎？現在長輩隨便問個聊天機器人就可以幫他們做圖了吧？<br><a href="https://lbt.studiozinc.com/" target="_blank">lbt.studiozinc.com</a>',
+        scope_en: 'wow should i even continue this project? old peopel can just ask a chatbot to do it for them?<br><a href="https://lbt.studiozinc.com/" target="_blank">lbt.studiozinc.com</a>',
+        services_zh: ['Web App', '迷隱', '文化'],
+        services_en: ['Web App', 'Meme', 'Culture'],
+        hero: 'images/pj_elder.png',
         imgs: []
       }
     ];
