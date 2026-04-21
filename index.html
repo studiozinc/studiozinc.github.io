@@ -295,29 +295,24 @@
       z-index: 10;
       text-align: center;
       pointer-events: none;
-      padding: 0 1rem;
-      width: 100%;
     }
 
     .hero-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 9rem);
-      letter-spacing: 0.1em;
+      font-size: clamp(9rem, 3vw, 1.4rem);
+      letter-spacing: 0.5em;
       color: rgba(232, 232, 224, 0.9);
       font-weight: 400;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
-      line-height: 1.1;
-      word-break: break-word; /* allow long words to wrap on very small screens */
     }
 
     .hero-sub {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(1rem, 2.5vw, 2rem);
-      letter-spacing: 0.2em;
+      font-size: clamp(4.65rem, 1.5vw, 0.75rem);
+      letter-spacing: 0.3em;
       color: var(--fg2);
       text-transform: uppercase;
-      line-height: 1.4;
     }
 
     .scroll-hint {
@@ -797,7 +792,8 @@
 <body>
 
   <!-- SITE TOGGLES -->
-  <div class="site-toggles" style="position: absolute; top: 1.5rem; right: 2rem; z-index: 100; display: flex; gap: 0.5rem;">
+  <div class="site-toggles"
+    style="position: absolute; top: 1.5rem; right: 2rem; z-index: 100; display: flex; gap: 0.5rem;">
     <button class="tog" id="langBtn"><span class="l-zh">EN</span><span class="l-en">中文</span></button>
     <button class="tog" id="themeBtn"><span class="t-dark">☀</span><span class="t-light">☾</span></button>
   </div>
@@ -806,7 +802,7 @@
   <section id="hero">
     <canvas id="grid-canvas"></canvas>
     <div class="hero-text">
-      <div class="hero-title" data-zh="鋅工作室" data-en="Studio Zinc">STUDIO ZINC</div>
+      <div class="hero-title" data-zh="Studio Zinc" data-en="Studio Zinc">STUDIO ZINC</div>
       <div class="hero-sub" data-zh="數位實驗室" data-en="Digital Lab">Digital Lab</div>
     </div>
     <div class="scroll-hint">
@@ -829,8 +825,9 @@
   <section id="about">
     <div class="about-section">
       <div class="section-label reveal" data-zh="關於" data-en="About">About</div>
-      <div class="about-text reveal" data-zh="哈嘍，這是我的數位遊樂場。<br><br>現在主要做<strong>注重隱私權的App</strong>，以及各種覺得好玩的專案。偶爾也接設計案。"
-        data-en="Hi, this is my digital playground. <br><br>Currently making <strong>privacy-focused apps</strong>, and design stuff for fun.">
+      <div class="about-text reveal"
+        data-zh="哈嘍，我是DOLAN這是我的數位遊樂場。<br><br>現在主要做<strong>注重隱私權的App</strong>，以及各種覺得好玩的專案。偶爾也接設計案。"
+        data-en="Hi, it's your boy Dolan, this is my digital playground. <br><br>Currently making <strong>privacy-focused apps</strong>, filming walking videos in Taiwan, and designing stuff for fun.">
         Engineer turned designer, based in Taipei. Started in engineering, ran a print shop, ended up in design. I like
         building things from scratch — apps, brands, websites, whatever.<br><br>Currently making <strong>apps that don't
           steal your data</strong>, and whatever else seems worth building. Open for design work too.
